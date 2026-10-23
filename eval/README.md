@@ -15,6 +15,11 @@
 
 ## Reviewing
 
+Easiest: `python scripts/review_eval.py` shows one question at a time, opens
+the PDF at the right page in Chrome, and saves k/f/d answers into the CSV.
+
+Or by hand:
+
 1. Open `questions.csv` in Google Sheets, Numbers, or Excel.
 2. For each row, open the PDF at `data/raw/<opportunity_id>.pdf` on that page
    and check that the evidence and answer are right.
