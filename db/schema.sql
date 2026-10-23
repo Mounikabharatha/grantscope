@@ -23,3 +23,30 @@ CREATE TABLE IF NOT EXISTS documents (
     pdf_sha256              TEXT UNIQUE,
     pdf_bytes               BIGINT
 );
+
+-- Phase 3: chunks + embeddings. chunk_set names the chunking run
+-- (e.g. section_300, fixed_300) so experiments can live side by side.
+-- 384 = output size of BAAI/bge-small-en-v1.5.
+CREATE TABLE IF NOT EXISTS chunks (
+    chunk_set      TEXT NOT NULL,
+    chunk_id       TEXT NOT NULL,
+    opportunity_id BIGINT NOT NULL REFERENCES documents (opportunity_id) ON DELETE CASCADE,
+    chunk_index    INT NOT NULL,
+    section        TEXT,
+    page_start     INT,
+    page_end       INT,
+    text           TEXT NOT NULL,
+    n_words        INT,
+    embedding      vector(384) NOT NULL,
+    -- Keyword index for hybrid search (Phase 5).
+    tsv            tsvector GENERATED ALWAYS AS (
+                       to_tsvector('english', coalesce(section, '') || ' ' || text)
+                   ) STORED,
+    PRIMARY KEY (chunk_set, chunk_id)
+);
+
+-- HNSW: graph index for fast approximate nearest-neighbour search by cosine distance.
+CREATE INDEX IF NOT EXISTS chunks_embedding_hnsw
+    ON chunks USING hnsw (embedding vector_cosine_ops);
+CREATE INDEX IF NOT EXISTS chunks_tsv_gin ON chunks USING gin (tsv);
+CREATE INDEX IF NOT EXISTS chunks_opportunity ON chunks (opportunity_id);

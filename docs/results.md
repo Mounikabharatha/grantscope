@@ -16,6 +16,13 @@ from here go on the resume.
 | 2026-10-23 | section | 300 / 50 | 15,436 | 89 | Headings found in all 200 PDFs. 1,253 chunks under 10 words (e.g. "Cost Sharing Required? No"). Try merging tiny sections in Phase 5. |
 | 2026-10-23 | fixed | 300 / 50 | 7,406 | 291 | Baseline. |
 
+## Embeddings
+
+| Date | Model | Dims | Chunk set | # chunks | Embed time (M-series GPU) | Index |
+|---|---|---|---|---|---|---|
+| 2026-10-23 | BAAI/bge-small-en-v1.5 (local, free) | 384 | section_300 | 15,436 | 169 s (91 chunks/s) | HNSW, cosine |
+| 2026-10-23 | BAAI/bge-small-en-v1.5 (local, free) | 384 | fixed_300 | 7,406 | 69 s (107 chunks/s) | HNSW, cosine |
+
 ## Retrieval experiments (recall@5 on the eval set)
 
 | Date | Eval set size | Setup (chunking, search, reranker) | Recall@5 | Notes |
@@ -30,6 +37,6 @@ from here go on the resume.
 
 ## Cost and speed
 
-| Date | Setup | Avg latency | p95 latency | Cost per query |
+| Date | Setup | Median latency | p95 latency | Cost per query |
 |---|---|---|---|---|
-| | | | | |
+| 2026-10-23 | Vector search only, local Mac, 30 queries, top-5 over 15,436 chunks | 22.8 ms embed + 2.7 ms DB | 37.9 ms embed + 5.1 ms DB | $0 (local model) |

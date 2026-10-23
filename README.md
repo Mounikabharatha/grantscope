@@ -43,6 +43,23 @@ heading path with each chunk (e.g. `ELIGIBILITY > Eligible Applicants`) and
 never lets a chunk cross a section boundary. Chunks also record their page
 numbers for citations.
 
+## Phase 3: embeddings + vector search
+
+```bash
+python scripts/embed_chunks.py                         # section_300 chunks
+python scripts/embed_chunks.py --chunk-set fixed_300   # baseline chunks
+python scripts/search.py "Can tribal governments apply for wildlife grants?"
+```
+
+Embeddings come from `BAAI/bge-small-en-v1.5` (384 dimensions), a free model
+that runs locally. Cloudflare Workers AI hosts the same model, so the
+deployed app can embed queries identically. Each chunk is embedded together
+with its grant title, agency and section heading, while the stored text stays
+unchanged for quoting. Vectors live in Postgres (pgvector) with an HNSW index
+for cosine distance.
+
+API: `GET /search?q=...&k=5&agency=EPA&min_award=500000&open_on=2026-11-01`
+
 ## Tests
 
 ```bash
@@ -61,7 +78,7 @@ uvicorn app.main:app --reload
 - [x] Phase 0: project setup
 - [x] Phase 1: document collection script
 - [x] Phase 2: section-aware chunking
-- [ ] Phase 3: embeddings + pgvector index
+- [x] Phase 3: embeddings + pgvector index
 - [ ] Phase 4: evaluation set + baseline score
 - [ ] Phase 5: hybrid search + reranker
 - [ ] Phase 6: cited answers, quote verification, refusals
