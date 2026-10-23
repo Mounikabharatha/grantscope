@@ -31,6 +31,24 @@ python scripts/fetch_grants.py --limit 200   # downloads PDFs into data/raw/
 python scripts/load_metadata.py              # loads metadata.jsonl into Postgres
 ```
 
+## Phase 2: split PDFs into chunks
+
+```bash
+python scripts/chunk_documents.py                    # section-aware (default)
+python scripts/chunk_documents.py --strategy fixed   # baseline, for comparison
+```
+
+Section-aware chunking finds headings by font size and boldness, keeps the
+heading path with each chunk (e.g. `ELIGIBILITY > Eligible Applicants`) and
+never lets a chunk cross a section boundary. Chunks also record their page
+numbers for citations.
+
+## Tests
+
+```bash
+python -m pytest
+```
+
 ## Run the API
 
 ```bash
@@ -42,7 +60,7 @@ uvicorn app.main:app --reload
 
 - [x] Phase 0: project setup
 - [x] Phase 1: document collection script
-- [ ] Phase 2: section-aware chunking
+- [x] Phase 2: section-aware chunking
 - [ ] Phase 3: embeddings + pgvector index
 - [ ] Phase 4: evaluation set + baseline score
 - [ ] Phase 5: hybrid search + reranker
