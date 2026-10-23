@@ -60,6 +60,16 @@ for cosine distance.
 
 API: `GET /search?q=...&k=5&agency=EPA&min_award=500000&open_on=2026-11-01`
 
+## Phase 4: evaluation set
+
+[eval/questions.csv](eval/questions.csv): questions written from the PDFs, each
+with the grant, page and an exact evidence quote, plus unanswerable questions
+for testing refusals. See [eval/README.md](eval/README.md) for how to review.
+
+```bash
+python scripts/check_eval_set.py   # every evidence quote must exist in the PDFs
+```
+
 ## Tests
 
 ```bash
