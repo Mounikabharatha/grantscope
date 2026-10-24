@@ -76,6 +76,28 @@ Baseline (vector search, section-aware chunks): **recall@5 = 82.1%** on 78
 answerable questions, vs 64.1% with fixed-size chunks. See
 [docs/results.md](docs/results.md).
 
+## Phase 5: hybrid search + reranker
+
+```bash
+python scripts/evaluate_retrieval.py   # compares vector, keyword, hybrid, vector_rerank, hybrid_rerank
+python scripts/search.py "DERA question subject line" --method hybrid_rerank
+```
+
+- **Keyword search:** Postgres full-text over grant title (weight A), section heading (B) and text (C).
+- **Hybrid:** vector + keyword merged with Reciprocal Rank Fusion (k=60).
+- **Reranker:** `BAAI/bge-reranker-base` cross-encoder re-scores the top 30 (also hosted on Cloudflare Workers AI).
+
+| Section-aware chunks, 78 questions | Recall@1 | Recall@5 | MRR | Right grant in top 5 | Median latency (Mac) |
+|---|---|---|---|---|---|
+| Vector (baseline) | 46.2% | 82.1% | 0.607 | 96.2% | 21 ms |
+| Hybrid | 38.5% | 70.5% | 0.533 | 98.7% | 186 ms |
+| Vector + reranker | 67.9% | 89.7% | 0.783 | 98.7% | 840 ms |
+| **Hybrid + reranker (default)** | **65.4%** | **89.7%** | **0.771** | **100%** | 1,082 ms |
+
+Most of the gain comes from the reranker; hybrid's contribution is exact-term
+queries (acronyms, IDs) and always surfacing the right grant. Details in
+[docs/results.md](docs/results.md).
+
 ## Tests
 
 ```bash
@@ -96,7 +118,7 @@ uvicorn app.main:app --reload
 - [x] Phase 2: section-aware chunking
 - [x] Phase 3: embeddings + pgvector index
 - [x] Phase 4: evaluation set + baseline score
-- [ ] Phase 5: hybrid search + reranker
+- [x] Phase 5: hybrid search + reranker
 - [ ] Phase 6: cited answers, quote verification, refusals
 - [ ] Phase 7: evaluation in CI
 - [ ] Phase 8: deploy, cost and latency
