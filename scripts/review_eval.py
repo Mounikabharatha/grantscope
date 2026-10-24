@@ -116,8 +116,8 @@ def main() -> None:
         print(wrap(f"QUESTION: {row['question']}"))
         if row["type"] == "answerable":
             print(wrap(f"GRANT:    {row['grant']}"))
-            print(f"PAGE:     {row['page'] or '?'} of the PDF file (the box at the top of Chrome, e.g. \"{row['page'] or '?'} / 33\"). "
-                  "The number printed on the page itself can be lower; ignore it.")
+            print(f"PAGE:     {row['page'] or '?'} = the first number in Chrome's page box at the top. "
+                  "Ignore the number printed on the page; it is often lower.")
             print(wrap(f"ANSWER:   {row['answer']}"))
             if row["evidence"]:
                 print(wrap(f"QUOTE:    \"{row['evidence']}\""))
