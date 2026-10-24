@@ -8,7 +8,7 @@ import psycopg
 from dotenv import load_dotenv
 from fastapi import FastAPI, Query
 
-from app.search import Filters, vector_search
+from app.search import METHODS, Filters, search as run_search
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
@@ -37,8 +37,9 @@ def search(
     min_award: int | None = None,
     open_on: date | None = None,
     chunk_set: str = "section_300",
+    method: str = Query("hybrid_rerank", enum=METHODS),
 ) -> dict:
     filters = Filters(agency_code=agency, min_award=min_award, open_on=open_on)
     with psycopg.connect(os.environ["DATABASE_URL"]) as conn:
-        hits = vector_search(conn, q, chunk_set, k, filters)
-    return {"query": q, "results": hits}
+        hits = run_search(conn, q, chunk_set, k, filters, method)
+    return {"query": q, "method": method, "results": hits}

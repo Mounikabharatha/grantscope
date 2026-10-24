@@ -1,16 +1,37 @@
-"""Phase 3: vector search with metadata filters.
+"""Retrieval: vector, keyword, hybrid, and reranked search with metadata filters.
 
-`<=>` is pgvector's cosine distance (0 = same direction, 2 = opposite), so
-similarity = 1 - distance. The HNSW index makes this an approximate search:
-it walks a graph of neighbours instead of comparing against every chunk.
+vector   - meaning-based. `<=>` is pgvector's cosine distance (0 = same
+           direction, 2 = opposite), so similarity = 1 - distance. The HNSW
+           index walks a graph of neighbours instead of comparing every chunk.
+keyword  - Postgres full-text search. Exact words win: acronyms ("DERA"),
+           names, numbers. Grant-title matches weigh most, then section, then text.
+hybrid   - run both and merge with Reciprocal Rank Fusion (RRF): each chunk
+           scores sum(1 / (60 + rank)) over the lists it appears in. RRF only
+           uses ranks, so the two very different score scales never need tuning.
+*_rerank - a cross-encoder (BAAI/bge-reranker-base) reads the question and each
+           candidate together and re-orders the top candidates. Slower but much
+           more precise than comparing two separately computed vectors.
+
+Settings are standard defaults chosen before evaluation (RRF k=60, 50
+candidates per list, rerank top 30), not tuned on the evaluation set.
 """
 
 from dataclasses import dataclass
 from datetime import date
+from functools import lru_cache
 
 import psycopg
 
 from app.embeddings import embed_query
+
+RRF_K = 60
+CANDIDATES = 50
+RERANK_CANDIDATES = 30
+RERANKER_MODEL = "BAAI/bge-reranker-base"  # also on Cloudflare Workers AI
+METHODS = ["vector", "keyword", "hybrid", "vector_rerank", "hybrid_rerank"]
+
+COLUMNS = """c.chunk_id, c.opportunity_id, c.section, c.page_start, c.page_end, c.text,
+             d.title, d.agency_code, d.award_ceiling, d.close_date, d.source_url"""
 
 
 @dataclass
@@ -48,9 +69,7 @@ def vector_search(
         "k": k,
     }
     sql = f"""
-        SELECT c.chunk_id, c.opportunity_id, c.section, c.page_start, c.page_end, c.text,
-               d.title, d.agency_code, d.award_ceiling, d.close_date, d.source_url,
-               1 - (c.embedding <=> %(query_vec)s::vector) AS score
+        SELECT {COLUMNS}, 1 - (c.embedding <=> %(query_vec)s::vector) AS score
         FROM chunks c JOIN documents d USING (opportunity_id)
         WHERE c.chunk_set = %(chunk_set)s {where}
         ORDER BY c.embedding <=> %(query_vec)s::vector
@@ -62,3 +81,97 @@ def vector_search(
         cur.execute("SET LOCAL hnsw.iterative_scan = relaxed_order")
         cur.execute(sql, params)
         return cur.fetchall()
+
+
+def keyword_search(
+    conn: psycopg.Connection,
+    query: str,
+    chunk_set: str = "section_300",
+    k: int = 5,
+    filters: Filters | None = None,
+) -> list[dict]:
+    """Full-text search where any query word may match (OR), ranked by how many
+    match, how close together they are, and where (title > section > text).
+
+    websearch_to_tsquery would AND every word, so a natural question like
+    "Can tribes apply?" would almost never match; OR + ranking fixes that.
+    Stop words ("what", "is", "the") are dropped by to_tsvector.
+    """
+    where, params = filter_sql(filters or Filters())
+    params |= {"query": query, "chunk_set": chunk_set, "k": k}
+    sql = f"""
+        WITH terms AS (
+            SELECT string_agg(quote_literal(lexeme), ' | ') AS q
+            FROM unnest(tsvector_to_array(to_tsvector('english', %(query)s))) AS lexeme
+        ), tsq AS (
+            SELECT to_tsquery('english', q) AS q FROM terms WHERE q IS NOT NULL
+        )
+        SELECT {COLUMNS}, ts_rank_cd(c.tsv, tsq.q, 1) AS score
+        FROM chunks c JOIN documents d USING (opportunity_id), tsq
+        WHERE c.chunk_set = %(chunk_set)s AND c.tsv @@ tsq.q {where}
+        ORDER BY score DESC
+        LIMIT %(k)s
+    """
+    with conn.cursor(row_factory=psycopg.rows.dict_row) as cur:
+        cur.execute(sql, params)
+        return cur.fetchall()
+
+
+def rrf_fuse(result_lists: list[list[dict]], k: int) -> list[dict]:
+    scores: dict[str, float] = {}
+    rows: dict[str, dict] = {}
+    for results in result_lists:
+        for rank, row in enumerate(results, start=1):
+            scores[row["chunk_id"]] = scores.get(row["chunk_id"], 0.0) + 1 / (RRF_K + rank)
+            rows.setdefault(row["chunk_id"], row)
+    best = sorted(scores, key=scores.get, reverse=True)[:k]
+    return [{**rows[cid], "score": scores[cid]} for cid in best]
+
+
+def hybrid_search(conn, query, chunk_set="section_300", k=5, filters=None) -> list[dict]:
+    return rrf_fuse([
+        vector_search(conn, query, chunk_set, CANDIDATES, filters),
+        keyword_search(conn, query, chunk_set, CANDIDATES, filters),
+    ], k)
+
+
+@lru_cache(maxsize=1)
+def get_reranker():
+    import torch
+    from sentence_transformers import CrossEncoder
+
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    return CrossEncoder(RERANKER_MODEL, device=device, max_length=512)
+
+
+def rerank(query: str, candidates: list[dict], k: int) -> list[dict]:
+    if not candidates:
+        return []
+    # Give the reranker the same context the embedding saw: which grant and section.
+    passages = [f"{c['title']}\n{c['section'] or ''}\n\n{c['text']}" for c in candidates]
+    scores = get_reranker().predict([(query, p) for p in passages], batch_size=16)
+    ranked = sorted(zip(candidates, scores), key=lambda pair: pair[1], reverse=True)[:k]
+    return [{**c, "score": float(s)} for c, s in ranked]
+
+
+def search(
+    conn: psycopg.Connection,
+    query: str,
+    chunk_set: str = "section_300",
+    k: int = 5,
+    filters: Filters | None = None,
+    method: str = "hybrid_rerank",
+) -> list[dict]:
+    if method == "vector":
+        return vector_search(conn, query, chunk_set, k, filters)
+    if method == "keyword":
+        return keyword_search(conn, query, chunk_set, k, filters)
+    if method == "hybrid":
+        return hybrid_search(conn, query, chunk_set, k, filters)
+    if method == "vector_rerank":
+        candidates = vector_search(conn, query, chunk_set, max(k, RERANK_CANDIDATES), filters)
+        return rerank(query, candidates, k)
+    if method == "hybrid_rerank":
+        candidates = hybrid_search(conn, query, chunk_set, max(k, RERANK_CANDIDATES), filters)
+        return rerank(query, candidates, k)
+    raise ValueError(f"unknown method {method!r}; choose from {METHODS}")

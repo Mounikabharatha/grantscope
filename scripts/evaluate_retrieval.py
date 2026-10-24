@@ -11,8 +11,8 @@ chunk (right grant + contains the evidence quote) is in the top k results.
               even if the exact passage doesn't
 
 Usage:
-  python scripts/evaluate_retrieval.py                          # both chunk sets
-  python scripts/evaluate_retrieval.py --chunk-sets section_300
+  python scripts/evaluate_retrieval.py                                  # all methods, both chunk sets
+  python scripts/evaluate_retrieval.py --methods vector hybrid --chunk-sets section_300
 """
 
 import argparse
@@ -33,18 +33,18 @@ sys.path.insert(0, str(ROOT))
 
 from app.embeddings import get_model  # noqa: E402
 from app.evaluation import is_relevant, load_questions  # noqa: E402
-from app.search import vector_search  # noqa: E402
+from app.search import METHODS, search  # noqa: E402
 
 KS = [1, 3, 5, 10, 20]
 RESULTS_DIR = ROOT / "eval" / "results"
 
 
-def evaluate(conn, questions, chunk_set: str, search=vector_search) -> dict:
+def evaluate(conn, questions, chunk_set: str, method: str) -> dict:
     per_question = []
     latencies = []
     for q in questions:
         start = time.perf_counter()
-        hits = search(conn, q.question, chunk_set, max(KS))
+        hits = search(conn, q.question, chunk_set, max(KS), method=method)
         latencies.append((time.perf_counter() - start) * 1000)
         rank = next((i for i, h in enumerate(hits, 1) if is_relevant(h, q)), None)
         grant_rank = next((i for i, h in enumerate(hits, 1) if h["opportunity_id"] == q.opportunity_id), None)
@@ -61,6 +61,8 @@ def evaluate(conn, questions, chunk_set: str, search=vector_search) -> dict:
         by_category[r["category"]].append(bool(r["rank"] and r["rank"] <= 5))
     return {
         "chunk_set": chunk_set,
+        "method": method,
+        "name": f"{chunk_set}/{method}",
         "n_questions": n,
         "recall": recall,
         "mrr": sum(1 / r["rank"] for r in per_question if r["rank"]) / n,
@@ -72,21 +74,21 @@ def evaluate(conn, questions, chunk_set: str, search=vector_search) -> dict:
 
 
 def print_report(results: list[dict]) -> None:
-    print(f"\n{'chunk set':<14}" + "".join(f"{'R@' + str(k):>8}" for k in KS) + f"{'MRR':>8}{'grant@5':>9}{'median ms':>11}")
+    print(f"\n{'setup':<28}" + "".join(f"{'R@' + str(k):>8}" for k in KS) + f"{'MRR':>8}{'grant@5':>9}{'median ms':>11}{'p95 ms':>9}")
     for r in results:
-        print(f"{r['chunk_set']:<14}" + "".join(f"{r['recall'][k]:>8.1%}" for k in KS)
-              + f"{r['mrr']:>8.3f}{r['grant_at_5']:>9.1%}{r['latency_ms']['median']:>11.1f}")
+        print(f"{r['name']:<28}" + "".join(f"{r['recall'][k]:>8.1%}" for k in KS)
+              + f"{r['mrr']:>8.3f}{r['grant_at_5']:>9.1%}{r['latency_ms']['median']:>11.1f}{r['latency_ms']['p95']:>9.1f}")
 
     print("\nRecall@5 by question category:")
     cats = sorted({c for r in results for c in r["recall5_by_category"]})
-    print(f"  {'category':<14}{'n':>4}" + "".join(f"{r['chunk_set']:>14}" for r in results))
+    print(f"  {'category':<14}{'n':>4}" + "".join(f"{r['name'].replace('section_300/', 'sec/').replace('fixed_300/', 'fix/'):>20}" for r in results))
     for c in cats:
         n = results[0]["recall5_by_category"].get(c, (0, 0))[1]
-        print(f"  {c:<14}{n:>4}" + "".join(f"{r['recall5_by_category'].get(c, (0, 0))[0]:>14.0%}" for r in results))
+        print(f"  {c:<14}{n:>4}" + "".join(f"{r['recall5_by_category'].get(c, (0, 0))[0]:>20.0%}" for r in results))
 
-    for r in results:
+    for r in results[-1:] if len(results) > 2 else results:  # misses for the last (usually best) setup
         misses = [q for q in r["per_question"] if not (q["rank"] and q["rank"] <= 5)]
-        print(f"\n[{r['chunk_set']}] {len(misses)} misses at k=5:")
+        print(f"\n[{r['name']}] {len(misses)} misses at k=5:")
         for q in misses:
             where = f"found at rank {q['rank']}" if q["rank"] else "not in top 20"
             grant = f"grant at rank {q['grant_rank']}" if q["grant_rank"] else "grant not in top 20"
@@ -96,7 +98,8 @@ def print_report(results: list[dict]) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--chunk-sets", nargs="+", default=["section_300", "fixed_300"])
-    parser.add_argument("--label", default="vector", help="name for this run, e.g. vector, hybrid, rerank")
+    parser.add_argument("--methods", nargs="+", default=METHODS, choices=METHODS)
+    parser.add_argument("--label", default="retrieval", help="name for the saved results file")
     args = parser.parse_args()
     load_dotenv(ROOT / ".env")
 
@@ -105,7 +108,7 @@ def main() -> None:
     get_model()  # load once so latency numbers measure search, not model loading
 
     with psycopg.connect(os.environ["DATABASE_URL"]) as conn:
-        results = [evaluate(conn, questions, cs) for cs in args.chunk_sets]
+        results = [evaluate(conn, questions, cs, m) for cs in args.chunk_sets for m in args.methods]
     print_report(results)
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)

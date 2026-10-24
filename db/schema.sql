@@ -38,10 +38,9 @@ CREATE TABLE IF NOT EXISTS chunks (
     text           TEXT NOT NULL,
     n_words        INT,
     embedding      vector(384) NOT NULL,
-    -- Keyword index for hybrid search (Phase 5).
-    tsv            tsvector GENERATED ALWAYS AS (
-                       to_tsvector('english', coalesce(section, '') || ' ' || text)
-                   ) STORED,
+    -- Keyword index for hybrid search: grant title (weight A), section
+    -- heading (B) and text (C). Filled by scripts/embed_chunks.py.
+    tsv            tsvector,
     PRIMARY KEY (chunk_set, chunk_id)
 );
 

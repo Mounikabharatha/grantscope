@@ -22,6 +22,16 @@ sys.path.insert(0, str(ROOT))
 
 from app.embeddings import MODEL_NAME, embed_passages, passage_text  # noqa: E402
 
+# Keyword index: title matches count most (A), then section heading (B), then text (C).
+TSV_SQL = """
+    UPDATE chunks c
+    SET tsv = setweight(to_tsvector('english', d.title), 'A')
+           || setweight(to_tsvector('english', coalesce(c.section, '')), 'B')
+           || setweight(to_tsvector('english', c.text), 'C')
+    FROM documents d
+    WHERE d.opportunity_id = c.opportunity_id AND c.chunk_set = %s
+"""
+
 COLUMNS = ["chunk_set", "chunk_id", "opportunity_id", "chunk_index", "section",
            "page_start", "page_end", "text", "n_words", "embedding"]
 
@@ -50,6 +60,7 @@ def main() -> None:
                     chunk["section"], chunk["page_start"], chunk["page_end"], chunk["text"],
                     chunk["n_words"], "[" + ",".join(f"{x:.6f}" for x in vector) + "]",
                 ])
+        conn.execute(TSV_SQL, (args.chunk_set,))
         conn.execute("ANALYZE chunks")
         count = conn.execute("SELECT count(*) FROM chunks WHERE chunk_set = %s", (args.chunk_set,)).fetchone()[0]
     print(f"Loaded {count} rows into chunks (chunk_set={args.chunk_set}).")
