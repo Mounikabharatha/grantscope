@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GrantScope</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --card: #ffffff; --text: #1d1d1b; --muted: #6b6b66;
+    --border: #e3e3de; --accent: #2f6f5e; --accent-text: #ffffff; --chip: #eef3f1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161716; --card: #1f201f; --text: #ececea; --muted: #a0a09b;
+      --border: #333431; --accent: #6fbfa6; --accent-text: #0f1a16; --chip: #24302c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { margin: 0; font-size: 28px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 4px 0 24px; }
+  form { display: grid; gap: 12px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  input, select, button {
+    font: inherit; color: var(--text); background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px;
+  }
+  input, select { min-width: 0; max-width: 100%; }
+  #q { flex: 1 1 240px; }
+  button {
+    background: var(--accent); color: var(--accent-text); border: none;
+    font-weight: 600; cursor: pointer; padding: 10px 20px;
+  }
+  button:disabled { opacity: 0.6; cursor: wait; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+  .filters label { display: flex; flex-direction: column; gap: 4px; color: var(--muted); flex: 1 1 180px; min-width: 0; }
+  .filters select, .filters input { width: 100%; }
+  .examples { font-size: 14px; color: var(--muted); }
+  .examples a { color: var(--accent); cursor: pointer; text-decoration: none; margin-right: 12px; }
+  #status { margin: 24px 0 8px; color: var(--muted); font-size: 14px; min-height: 21px; }
+  .result {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .result h2 { font-size: 17px; margin: 0 0 6px; }
+  .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; font-size: 13px; }
+  .chip { background: var(--chip); border-radius: 999px; padding: 2px 10px; }
+  .section { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+  .text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .links { margin-top: 10px; font-size: 14px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .links a { color: var(--accent); }
+  .score { margin-left: auto; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>GrantScope</h1>
+  <p class="sub">Search 200 public U.S. federal grant announcements. Every result links to the exact PDF page.</p>
+
+  <form id="form">
+    <div class="row">
+      <input id="q" name="q" placeholder="e.g. Can tribal governments apply for wildlife grants?" required minlength="3" autofocus>
+      <button id="go" type="submit">Search</button>
+    </div>
+    <div class="filters">
+      <label>Agency
+        <select id="agency"><option value="">All agencies</option></select>
+      </label>
+      <label>Minimum award ceiling ($)
+        <input id="min_award" type="number" min="0" step="1000" placeholder="any">
+      </label>
+      <label>Search method
+        <select id="method">
+          <option value="hybrid_rerank">Hybrid + reranker (best)</option>
+          <option value="vector_rerank">Vector + reranker</option>
+          <option value="hybrid">Hybrid (no reranker)</option>
+          <option value="vector">Vector only (baseline)</option>
+          <option value="keyword">Keyword only</option>
+        </select>
+      </label>
+    </div>
+    <div class="examples">Try:
+      <a data-q="What subject line should I use when emailing questions about the DERA National NOFO?">DERA questions</a>
+      <a data-q="Is cost sharing required for the Clean Vessel Act grants?">Clean Vessel Act cost share</a>
+      <a data-q="Can individual students apply for Scholarships for Disadvantaged Students?">Scholarships eligibility</a>
+    </div>
+  </form>
+
+  <div id="status"></div>
+  <div id="results"></div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const money = (n) => n == null ? null : "$" + Number(n).toLocaleString("en-US");
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text != null) node.textContent = text;  // textContent: PDF text is never treated as HTML
+  return node;
+}
+
+async function loadAgencies() {
+  try {
+    const agencies = await (await fetch("/agencies")).json();
+    for (const a of agencies) {
+      const opt = el("option", null, `${a.name} (${a.code}, ${a.grants})`);
+      opt.value = a.code;
+      $("agency").append(opt);
+    }
+  } catch { /* filter stays at "All agencies" */ }
+}
+
+function render(data) {
+  const box = $("results");
+  box.replaceChildren();
+  $("status").textContent = data.results.length
+    ? `${data.results.length} results in ${(data.took_ms / 1000).toFixed(2)} s`
+    : "No matching passages.";
+  for (const r of data.results) {
+    const card = el("article", "result");
+    card.append(el("h2", null, r.title));
+
+    const meta = el("div", "meta");
+    meta.append(el("span", "chip", r.agency_code));
+    if (r.award_ceiling) meta.append(el("span", "chip", "Up to " + money(r.award_ceiling)));
+    if (r.close_date) meta.append(el("span", "chip", "Closes " + r.close_date));
+    meta.append(el("span", "score", "score " + Number(r.score).toFixed(3)));
+    card.append(meta);
+
+    if (r.section) card.append(el("div", "section", r.section));
+    card.append(el("p", "text", r.text));
+
+    const links = el("div", "links");
+    const pdf = el("a", null, `Open PDF, page ${r.page_start}`);
+    pdf.href = `/pdfs/${r.opportunity_id}.pdf#page=${r.page_start}`;
+    pdf.target = "_blank";
+    const src = el("a", null, "Grants.gov listing");
+    src.href = r.source_url;
+    src.target = "_blank";
+    links.append(pdf, src);
+    card.append(links);
+    box.append(card);
+  }
+}
+
+$("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const params = new URLSearchParams({ q: $("q").value.trim(), k: 5, method: $("method").value });
+  if ($("agency").value) params.set("agency", $("agency").value);
+  if ($("min_award").value) params.set("min_award", $("min_award").value);
+  $("go").disabled = true;
+  $("status").textContent = "Searching…";
+  try {
+    const resp = await fetch("/search?" + params);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    render(await resp.json());
+  } catch (err) {
+    $("status").textContent = "Search failed: " + err.message;
+  } finally {
+    $("go").disabled = false;
+  }
+});
+
+for (const a of document.querySelectorAll(".examples a")) {
+  a.addEventListener("click", () => { $("q").value = a.dataset.q; $("form").requestSubmit(); });
+}
+
+loadAgencies();
+</script>
+</body>
+</html>

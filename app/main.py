@@ -1,18 +1,47 @@
-"""GrantScope API."""
+"""GrantScope API and search page.
+
+  /          search page (app/static/index.html)
+  /search    JSON search API
+  /agencies  agencies and grant counts, for the page's filter
+  /pdfs/...  the downloaded grant PDFs, so results can link to the exact page
+  /health    database + pgvector check
+  /docs      interactive API documentation (built into FastAPI)
+"""
 
 import os
+import time
+from contextlib import asynccontextmanager
 from datetime import date
 from pathlib import Path
 
 import psycopg
 from dotenv import load_dotenv
 from fastapi import FastAPI, Query
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
-from app.search import METHODS, Filters, search as run_search
+from app.embeddings import get_model
+from app.search import METHODS, Filters, get_reranker, search as run_search
 
-load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(ROOT / ".env")
 
-app = FastAPI(title="GrantScope")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Load both models at startup so the first search isn't slow.
+    get_model()
+    get_reranker()
+    yield
+
+
+app = FastAPI(title="GrantScope", lifespan=lifespan)
+app.mount("/pdfs", StaticFiles(directory=ROOT / "data" / "raw"), name="pdfs")
+
+
+@app.get("/", include_in_schema=False)
+def index() -> FileResponse:
+    return FileResponse(Path(__file__).parent / "static" / "index.html")
 
 
 @app.get("/health")
@@ -29,6 +58,15 @@ def health() -> dict:
     }
 
 
+@app.get("/agencies")
+def agencies() -> list[dict]:
+    with psycopg.connect(os.environ["DATABASE_URL"]) as conn:
+        rows = conn.execute(
+            "SELECT agency_code, min(agency), count(*) FROM documents GROUP BY 1 ORDER BY 3 DESC"
+        ).fetchall()
+    return [{"code": code, "name": name, "grants": n} for code, name, n in rows]
+
+
 @app.get("/search")
 def search(
     q: str = Query(..., min_length=3, description="your question"),
@@ -40,6 +78,12 @@ def search(
     method: str = Query("hybrid_rerank", enum=METHODS),
 ) -> dict:
     filters = Filters(agency_code=agency, min_award=min_award, open_on=open_on)
+    start = time.perf_counter()
     with psycopg.connect(os.environ["DATABASE_URL"]) as conn:
         hits = run_search(conn, q, chunk_set, k, filters, method)
-    return {"query": q, "method": method, "results": hits}
+    return {
+        "query": q,
+        "method": method,
+        "took_ms": round((time.perf_counter() - start) * 1000),
+        "results": hits,
+    }

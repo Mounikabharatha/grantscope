@@ -104,12 +104,23 @@ queries (acronyms, IDs) and always surfacing the right grant. Details in
 python -m pytest
 ```
 
-## Run the API
+## Run it locally
 
 ```bash
-uvicorn app.main:app --reload
-# open http://127.0.0.1:8000/health
+cd ~/Desktop/RAG/grantscope
+source .venv/bin/activate
+uvicorn app.main:app --port 8010
 ```
+
+Wait for `Application startup complete` (the two AI models load first, ~10-20 s), then open:
+
+| URL | What it is |
+|---|---|
+| http://localhost:8010 | Search page |
+| http://localhost:8010/docs | Interactive API documentation |
+| http://localhost:8010/health | Database check |
+
+Stop the server with `Ctrl + C`.
 
 ## Progress
 
