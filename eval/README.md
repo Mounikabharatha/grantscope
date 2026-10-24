@@ -15,7 +15,12 @@
 
 ## Reviewing
 
-Easiest: `python scripts/review_eval.py` shows one question at a time, opens
+Spot-check: `python scripts/review_eval.py --sample 20` reviews a fixed random
+sample spread across all agencies plus some unanswerable questions. Every
+quote is also machine-verified by `check_eval_set.py`, so the human review
+covers what a script can't: does the quote actually answer the question?
+
+Full review: `python scripts/review_eval.py` shows one question at a time, opens
 the PDF at the right page in Chrome, and saves k/f/d answers into the CSV.
 
 Or by hand:

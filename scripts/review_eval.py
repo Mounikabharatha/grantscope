@@ -5,8 +5,9 @@ answer, and the evidence quote in context, opens the PDF at the right page in
 Chrome, and saves your decision straight into the CSV.
 
 Usage:
-  python scripts/review_eval.py            # continue with the next draft question
-  python scripts/review_eval.py --no-pdf   # don't open PDFs
+  python scripts/review_eval.py              # continue with the next draft question
+  python scripts/review_eval.py --sample 20  # a fair random spot-check instead of all
+  python scripts/review_eval.py --no-pdf     # don't open PDFs
 
 Tip: in the PDF, press Cmd+F and type a few words of the QUOTE to jump to it.
 
@@ -16,6 +17,7 @@ Keys:  k = keep   f = fix (asks for a note)   d = delete   s = skip   q = quit
 import argparse
 import csv
 import json
+import random
 import subprocess
 import sys
 import textwrap
@@ -48,6 +50,28 @@ def evidence_in_context(rows_chunks: list[dict], evidence: str) -> str | None:
     return None
 
 
+def spread_sample(todo: list[dict], size: int, already_reviewed: int) -> list[dict]:
+    """A fixed random sample (same every run, so you can quit and resume)
+    that takes questions from every agency plus some unanswerable ones."""
+    import json as _json
+    agency = {str(d["opportunity_id"]): d["agency_code"]
+              for d in map(_json.loads, (ROOT / "data" / "metadata.jsonl").open())}
+    groups: dict[str, list[dict]] = {}
+    for row in todo:
+        key = agency.get(row["opportunity_id"], "unanswerable")
+        groups.setdefault(key, []).append(row)
+    rng = random.Random(42)
+    for rows in groups.values():
+        rng.shuffle(rows)
+    picked: list[dict] = []
+    target = max(0, size - already_reviewed)
+    while len(picked) < target and any(groups.values()):
+        for rows in groups.values():  # round-robin across agencies
+            if rows and len(picked) < target:
+                picked.append(rows.pop())
+    return sorted(picked, key=lambda r: r["id"])
+
+
 def open_pdf(opportunity_id: str, page: str) -> None:
     pdf = ROOT / "data" / "raw" / f"{opportunity_id}.pdf"
     url = pdf.as_uri() + (f"#page={page}" if page else "")
@@ -64,6 +88,7 @@ def save(rows: list[dict], fieldnames: list[str]) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--no-pdf", action="store_true")
+    parser.add_argument("--sample", type=int, help="spot-check this many questions, spread across agencies")
     args = parser.parse_args()
 
     with QUESTIONS.open(newline="") as f:
@@ -77,13 +102,17 @@ def main() -> None:
 
     todo = [r for r in rows if r["status"].strip().lower() == "draft"]
     done = len(rows) - len(todo)
-    print(f"{done}/{len(rows)} reviewed. {len(todo)} to go.")
+    total = len(rows)
+    if args.sample:
+        todo = spread_sample(todo, args.sample, already_reviewed=done)
+        total = max(args.sample, done)
+    print(f"{done}/{total} reviewed. {len(todo)} to go.")
     print("For each question: read it, Cmd+F the QUOTE in the PDF, ask 'does this answer the question?'\n")
 
     for n, row in enumerate(todo, start=done + 1):
         wrap = lambda s: textwrap.fill(s, 100, subsequent_indent="    ")
         print("=" * 100)
-        print(f"[{n}/{len(rows)}] {row['id']}  ({row['type']}, {row['category']})")
+        print(f"[{n}/{total}] {row['id']}  ({row['type']}, {row['category']})")
         print(wrap(f"QUESTION: {row['question']}"))
         if row["type"] == "answerable":
             print(wrap(f"GRANT:    {row['grant']}"))
