@@ -8,6 +8,7 @@ section vs. fixed chunking can be compared fairly.
 
 import csv
 import re
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -29,8 +30,10 @@ class Question:
 
 def normalize(text: str) -> str:
     """Lowercase and keep only letters/digits, so quotes match despite
-    punctuation, bullets, curly quotes, or line-break differences."""
-    return " ".join(re.findall(r"[a-z0-9]+", text.lower()))
+    punctuation, bullets, curly quotes, or line-break differences. NFKC turns
+    ligatures like "ﬁ" (common in PDFs) into plain "fi"."""
+    text = unicodedata.normalize("NFKC", text).lower()
+    return " ".join(re.findall(r"[a-z0-9]+", text))
 
 
 def load_questions(include_drafts: bool = True) -> list[Question]:
@@ -51,6 +54,37 @@ def load_questions(include_drafts: bool = True) -> list[Question]:
     ]
     allowed = {"keep", "draft"} if include_drafts else {"keep"}
     return [q for q in questions if q.status in allowed]
+
+
+def find_quote_page(pdf_path: Path, quote: str) -> int | None:
+    """Physical page (1 = first page, as Chrome's page box counts) where the
+    quote appears. Checks page pairs too, for quotes split across a page break.
+
+    Note: this is not the number printed on the page. Most NOFOs don't
+    number the cover, so printed "Page 4 of 20" is often physical page 5.
+    """
+    import fitz
+
+    target = normalize(quote)
+    if not target:
+        return None
+    with fitz.open(pdf_path) as doc:
+        raw_pages = [page.get_text() for page in doc]
+    # Words hyphenated across a line break ("uni-\nversities") are joined in
+    # chunks, so try each page both as printed and with those breaks joined.
+    variants = [
+        [normalize(t) for t in raw_pages],
+        [normalize(re.sub(r"-\s*\n\s*", "", t)) for t in raw_pages],
+    ]
+    for pages in variants:
+        for i, text in enumerate(pages):
+            if target in text:
+                return i + 1
+    for pages in variants:
+        for i in range(len(pages) - 1):
+            if target in pages[i] + " " + pages[i + 1]:
+                return i + 1
+    return None
 
 
 def is_relevant(chunk: dict, q: Question) -> bool:

@@ -8,6 +8,8 @@ Usage:
   python scripts/review_eval.py            # continue with the next draft question
   python scripts/review_eval.py --no-pdf   # don't open PDFs
 
+Tip: in the PDF, press Cmd+F and type a few words of the QUOTE to jump to it.
+
 Keys:  k = keep   f = fix (asks for a note)   d = delete   s = skip   q = quit
 """
 
@@ -70,7 +72,8 @@ def main() -> None:
 
     todo = [r for r in rows if r["status"].strip().lower() == "draft"]
     done = len(rows) - len(todo)
-    print(f"{done}/{len(rows)} reviewed. {len(todo)} to go.\n")
+    print(f"{done}/{len(rows)} reviewed. {len(todo)} to go.")
+    print("For each question: read it, Cmd+F the QUOTE in the PDF, ask 'does this answer the question?'\n")
 
     for n, row in enumerate(todo, start=done + 1):
         wrap = lambda s: textwrap.fill(s, 100, subsequent_indent="    ")
@@ -78,7 +81,8 @@ def main() -> None:
         print(f"[{n}/{len(rows)}] {row['id']}  ({row['type']}, {row['category']})")
         print(wrap(f"QUESTION: {row['question']}"))
         if row["type"] == "answerable":
-            print(wrap(f"GRANT:    {row['grant']}  (PDF page {row['page'] or '?'})"))
+            print(wrap(f"GRANT:    {row['grant']}"))
+            print(f"PAGE:     {row['page'] or '?'} in Chrome's page box (the printed page number is often 1 less)")
             print(wrap(f"ANSWER:   {row['answer']}"))
             if row["evidence"]:
                 print(wrap(f"QUOTE:    \"{row['evidence']}\""))

@@ -8,6 +8,7 @@ def q(evidence, opportunity_id=1):
 def test_normalize_ignores_punctuation_and_quotes():
     assert normalize("“DERA National NOFO Question.”") == normalize('"DERA National NOFO Question"')
     assert normalize("Award Ceiling:\n$675,000") == "award ceiling 675 000"
+    assert normalize("For-proﬁt, diﬀerent") == normalize("For-profit, different")  # PDF ligatures
 
 
 def test_relevant_needs_right_grant_and_quote():
