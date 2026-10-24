@@ -36,6 +36,20 @@
     font-weight: 600; cursor: pointer; padding: 10px 20px;
   }
   button:disabled { opacity: 0.6; cursor: wait; }
+  button.secondary { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
+  .answer {
+    background: var(--card); border: 2px solid var(--accent); border-radius: 10px;
+    padding: 18px 20px; margin-bottom: 20px;
+  }
+  .answer.refused { border-color: var(--border); }
+  .answer .label { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+  .answer.refused .label { color: var(--muted); }
+  .answer p { margin: 6px 0 0; font-size: 17px; }
+  .cite { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; margin-top: 14px; }
+  .cite q { font-style: italic; }
+  .cite .src { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .cite .src a { color: var(--accent); }
+  h3 { font-size: 14px; color: var(--muted); font-weight: 600; margin: 24px 0 10px; }
   .filters { display: flex; gap: 8px; flex-wrap: wrap; font-size: 14px; }
   .filters label { display: flex; flex-direction: column; gap: 4px; color: var(--muted); flex: 1 1 180px; min-width: 0; }
   .filters select, .filters input { width: 100%; }
@@ -59,12 +73,13 @@
 <body>
 <main>
   <h1>GrantScope</h1>
-  <p class="sub">Search 200 public U.S. federal grant announcements. Every result links to the exact PDF page.</p>
+  <p class="sub">Ask questions about 200 public U.S. federal grant announcements. Answers quote the exact PDF sentence they rely on, and say so when the documents don't have the answer.</p>
 
   <form id="form">
     <div class="row">
       <input id="q" name="q" placeholder="e.g. Can tribal governments apply for wildlife grants?" required minlength="3" autofocus>
-      <button id="go" type="submit">Search</button>
+      <button id="go" type="submit" data-mode="ask">Ask</button>
+      <button id="go-search" type="submit" data-mode="search" class="secondary">Search passages</button>
     </div>
     <div class="filters">
       <label>Agency
@@ -73,7 +88,7 @@
       <label>Minimum award ceiling ($)
         <input id="min_award" type="number" min="0" step="1000" placeholder="any">
       </label>
-      <label>Search method
+      <label>Search method (for "Search passages")
         <select id="method">
           <option value="hybrid_rerank">Hybrid + reranker (best)</option>
           <option value="vector_rerank">Vector + reranker</option>
@@ -87,6 +102,7 @@
       <a data-q="What subject line should I use when emailing questions about the DERA National NOFO?">DERA questions</a>
       <a data-q="Is cost sharing required for the Clean Vessel Act grants?">Clean Vessel Act cost share</a>
       <a data-q="Can individual students apply for Scholarships for Disadvantaged Students?">Scholarships eligibility</a>
+      <a data-q="What is the deadline for the NSF CAREER program?">NSF CAREER (not in our data)</a>
     </div>
   </form>
 
@@ -116,13 +132,46 @@ async function loadAgencies() {
   } catch { /* filter stays at "All agencies" */ }
 }
 
+function pdfLink(opportunityId, page, label) {
+  const a = el("a", null, label);
+  a.href = `/pdfs/${opportunityId}.pdf#page=${page}`;
+  a.target = "_blank";
+  return a;
+}
+
+function renderAnswer(data) {
+  const box = $("results");
+  box.replaceChildren();
+  $("status").textContent = `Answered in ${(data.took_ms / 1000).toFixed(1)} s`;
+  const card = el("section", data.refused ? "answer refused" : "answer");
+  card.append(el("div", "label", data.refused ? "No supported answer" : "Answer"));
+  card.append(el("p", null, data.answer));
+  for (const c of data.citations) {
+    const cite = el("div", "cite");
+    cite.append(el("q", null, c.quote));
+    const src = el("div", "src", `${c.title}${c.section ? " · " + c.section : ""} · `);
+    src.append(pdfLink(c.opportunity_id, c.page, `PDF page ${c.page}`));
+    cite.append(src);
+    card.append(cite);
+  }
+  box.append(card);
+  if (data.passages.length) {
+    box.append(el("h3", null, data.refused ? "Closest passages found" : "Passages the answer was drawn from"));
+    renderResults(data.passages, box);
+  }
+}
+
 function render(data) {
   const box = $("results");
   box.replaceChildren();
   $("status").textContent = data.results.length
     ? `${data.results.length} results in ${(data.took_ms / 1000).toFixed(2)} s`
     : "No matching passages.";
-  for (const r of data.results) {
+  renderResults(data.results, box);
+}
+
+function renderResults(results, box) {
+  for (const r of results) {
     const card = el("article", "result");
     card.append(el("h2", null, r.title));
 
@@ -137,9 +186,7 @@ function render(data) {
     card.append(el("p", "text", r.text));
 
     const links = el("div", "links");
-    const pdf = el("a", null, `Open PDF, page ${r.page_start}`);
-    pdf.href = `/pdfs/${r.opportunity_id}.pdf#page=${r.page_start}`;
-    pdf.target = "_blank";
+    const pdf = pdfLink(r.opportunity_id, r.page_start, `Open PDF, page ${r.page_start}`);
     const src = el("a", null, "Grants.gov listing");
     src.href = r.source_url;
     src.target = "_blank";
@@ -151,19 +198,22 @@ function render(data) {
 
 $("form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const params = new URLSearchParams({ q: $("q").value.trim(), k: 5, method: $("method").value });
+  const mode = e.submitter?.dataset.mode || "ask";
+  const params = new URLSearchParams({ q: $("q").value.trim() });
+  if (mode === "search") params.set("method", $("method").value);
   if ($("agency").value) params.set("agency", $("agency").value);
   if ($("min_award").value) params.set("min_award", $("min_award").value);
-  $("go").disabled = true;
-  $("status").textContent = "Searching…";
+  for (const b of [$("go"), $("go-search")]) b.disabled = true;
+  $("status").textContent = mode === "ask" ? "Finding passages and writing an answer…" : "Searching…";
   try {
-    const resp = await fetch("/search?" + params);
+    const resp = await fetch(`/${mode}?` + params);
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    render(await resp.json());
+    const data = await resp.json();
+    mode === "ask" ? renderAnswer(data) : render(data);
   } catch (err) {
-    $("status").textContent = "Search failed: " + err.message;
+    $("status").textContent = (mode === "ask" ? "Answer" : "Search") + " failed: " + err.message;
   } finally {
-    $("go").disabled = false;
+    for (const b of [$("go"), $("go-search")]) b.disabled = false;
   }
 });
 

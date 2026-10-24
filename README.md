@@ -98,6 +98,27 @@ Most of the gain comes from the reranker; hybrid's contribution is exact-term
 queries (acronyms, IDs) and always surfacing the right grant. Details in
 [docs/results.md](docs/results.md).
 
+## Phase 6: cited answers, quote verification, refusals
+
+```bash
+brew install ollama && brew services start ollama && ollama pull llama3.1:8b   # one time
+python scripts/evaluate_answers.py        # all 93 questions, ~20 min on an M1 Pro
+```
+
+On the page, **Ask** returns an answer with the exact quotes it relies on (each checked word-for-word
+against the source passage, with a link to the PDF page), or says it couldn't find a supported answer.
+API: `GET /ask?q=...`
+
+| 93 questions, Llama 3.1 8B local | Result |
+|---|---|
+| Unanswerable questions correctly refused | 92.9% (13/14) |
+| Answerable questions answered | 93.7% (74/79) |
+| Correct (of answered, reviewed) | 95.9% (71/74) |
+| Faithful: every claim backed by a verified quote (reviewed) | 97.3% (73/75 answers shown) |
+| Quotes found word-for-word in the cited passage | 96.1%; the rest were dropped before display |
+
+Failures and how the numbers were checked: [docs/results.md](docs/results.md).
+
 ## Tests
 
 ```bash
@@ -130,7 +151,7 @@ Stop the server with `Ctrl + C`.
 - [x] Phase 3: embeddings + pgvector index
 - [x] Phase 4: evaluation set + baseline score
 - [x] Phase 5: hybrid search + reranker
-- [ ] Phase 6: cited answers, quote verification, refusals
+- [x] Phase 6: cited answers, quote verification, refusals
 - [ ] Phase 7: evaluation in CI
 - [ ] Phase 8: deploy, cost and latency
 

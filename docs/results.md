@@ -61,11 +61,45 @@ few points are noise.
   limits: e.g. q041's top result is the grant's "Additional information on eligibility" section, which
   also partly answers the question but doesn't contain the single evidence quote.
 
-## Answer quality
+## Answer quality (Phase 6)
 
-| Date | Setup | Faithfulness | Correct refusals | Notes |
-|---|---|---|---|---|
-| | | | | |
+Setup: hybrid + reranker top 5 passages -> Llama 3.1 8B (Ollama, local, temperature 0) answers only from
+the passages with word-for-word quotes -> every quote checked against the passage it cites; unverified
+quotes dropped; no verified quote = refusal. Early refusal if the best reranker score < 0.05 (fixed, not tuned).
+Judge for correctness/faithfulness = the same Llama 3.1 8B, then the flagged cases reviewed by hand.
+
+| Run | Unanswerable refused | Answerable answered | Correct (of answered) | Faithful (of answered) | Quote validity | Median latency |
+|---|---|---|---|---|---|---|
+| v1 (2026-10-24) | 73.3% (11/15) | 94.9% (74/78) | 95.9% (71/74), judge | 91.9% (68/74), judge | 96.3% (103/107) | 11.6 s |
+| **v2 (2026-10-24)** | **92.9% (13/14)** | **93.7% (74/79)** | 97.3% (72/74) judge; **95.9% (71/74) after review** | 94.6% (70/74) judge; **98.6% (73/74) after review** | **96.1% (99/103)** | 11.4 s (generation 9.8 s) |
+
+Counting every answer shown to a user (74 answerable + 1 unanswerable that slipped through):
+**faithful 73/75 = 97.3%**, after review.
+
+### What changed between v1 and v2 (and why)
+
+- **Answer key fixes, found by the system** (recorded in `eval/questions.csv` reviewer notes):
+  - q091 was drafted as unanswerable, but the SDS NOFO page 8 does list scholarship caps ($50,000 dental,
+    $40,000 others); my keyword check had missed it. Converted to answerable (now 79 answerable / 14 unanswerable).
+  - q004: the Tribal Wildlife NOFO contradicts itself (80 expected awards on page 3, "issue 30 to 40 awards" on
+    page 8). Reference updated to accept either.
+- **Bug fix:** the model sometimes wrote "this is not mentioned in the passages" while flagging the answer as
+  answerable and attaching an unrelated quote (q071, q084, q089). Such text is now treated as a refusal
+  (`is_non_answer`, unit-tested on real answers like "not eligible" so they still pass).
+- **Judge context:** the faithfulness judge now sees each quote's section heading, as a human checker would.
+
+### Remaining failures (v2, reviewed)
+
+- **q081, hallucinated entity:** asked about the *Department of Energy* SBIR program, it answered with the
+  *USDA* SBIR rules (the quote is real, the attribution is wrong). The most serious failure type.
+- **q051, wrong grant:** two similar NEH "Landmarks" NOFOs; it quoted the other one's $230,000 instead of $460,000.
+- **q027, misleading wording:** "No, the cost share cannot be waived for facilities *not* located in..."
+  twists "cost sharing may be waived for facilities in economically distressed communities".
+- **q091, partial:** gave the $40,000 cap but not the $50,000 dental cap.
+- **5 false refusals** (q003, q008, q044 + 2): the model said "not answerable" despite a relevant top passage
+  (score > 0.96), or (q017) quoted only "• Individuals.", which is too short to verify by design.
+- The 8B judge made 3 false "unsupported" calls (q060, q062, q065) and missed q027; judge numbers alone are
+  not reliable at this model size.
 
 ## Cost and speed
 
@@ -73,3 +107,4 @@ few points are noise.
 |---|---|---|---|---|
 | 2026-10-23 | Vector search only, local Mac, 30 queries, top-5 over 15,436 chunks | 22.8 ms embed + 2.7 ms DB | 37.9 ms embed + 5.1 ms DB | $0 (local model) |
 | 2026-10-24 | hybrid + reranker, local Mac (MPS), 78 eval queries, 15,436 chunks | 1,082 ms | 1,177 ms | $0 (local models). Reranking 30 passages is ~85% of the time; vector alone is ~21 ms. |
+| 2026-10-24 | full answer: retrieval + Llama 3.1 8B generation, local M1 Pro, 93 eval questions | 11.4 s | 40 s max | $0 (local models). Generation is ~85% of the time. |

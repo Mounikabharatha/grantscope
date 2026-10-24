@@ -1,6 +1,7 @@
 """GrantScope API and search page.
 
   /          search page (app/static/index.html)
+  /ask       answer with verified citations, or a refusal (JSON)
   /search    JSON search API
   /agencies  agencies and grant counts, for the page's filter
   /pdfs/...  the downloaded grant PDFs, so results can link to the exact page
@@ -20,6 +21,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from app.answer import answer_question
 from app.embeddings import get_model
 from app.search import METHODS, Filters, get_reranker, search as run_search
 
@@ -87,3 +89,17 @@ def search(
         "took_ms": round((time.perf_counter() - start) * 1000),
         "results": hits,
     }
+
+
+@app.get("/ask")
+def ask(
+    q: str = Query(..., min_length=3, description="your question"),
+    agency: str | None = None,
+    min_award: int | None = None,
+    open_on: date | None = None,
+) -> dict:
+    filters = Filters(agency_code=agency, min_award=min_award, open_on=open_on)
+    start = time.perf_counter()
+    with psycopg.connect(os.environ["DATABASE_URL"]) as conn:
+        result = answer_question(conn, q, filters)
+    return {**result.to_dict(), "took_ms": round((time.perf_counter() - start) * 1000)}
