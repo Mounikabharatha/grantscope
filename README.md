@@ -67,8 +67,14 @@ with the grant, page and an exact evidence quote, plus unanswerable questions
 for testing refusals. See [eval/README.md](eval/README.md) for how to review.
 
 ```bash
-python scripts/check_eval_set.py   # every evidence quote must exist in the PDFs
+python scripts/check_eval_set.py      # every evidence quote must exist in the PDFs
+python scripts/review_eval.py --sample 20   # human spot-check
+python scripts/evaluate_retrieval.py  # recall@k, MRR for each chunk set
 ```
+
+Baseline (vector search, section-aware chunks): **recall@5 = 82.1%** on 78
+answerable questions, vs 64.1% with fixed-size chunks. See
+[docs/results.md](docs/results.md).
 
 ## Tests
 
@@ -89,7 +95,7 @@ uvicorn app.main:app --reload
 - [x] Phase 1: document collection script
 - [x] Phase 2: section-aware chunking
 - [x] Phase 3: embeddings + pgvector index
-- [ ] Phase 4: evaluation set + baseline score
+- [x] Phase 4: evaluation set + baseline score
 - [ ] Phase 5: hybrid search + reranker
 - [ ] Phase 6: cited answers, quote verification, refusals
 - [ ] Phase 7: evaluation in CI
