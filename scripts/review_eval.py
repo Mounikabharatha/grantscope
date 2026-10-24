@@ -35,8 +35,13 @@ def evidence_in_context(rows_chunks: list[dict], evidence: str) -> str | None:
     for c in rows_chunks:
         text = c["text"]
         if target and target in normalize((c["section"] or "") + " " + text):
-            words = evidence.split()
-            start = text.find(words[0]) if words else -1
+            # Locate the quote itself (not just its first word, which may also
+            # appear earlier): try the whole quote, then shorter openings.
+            words, lower, start = evidence.split(), text.lower(), -1
+            for n in (len(words), 6, 4, 2):
+                start = lower.find(" ".join(words[:n]).lower())
+                if start >= 0:
+                    break
             if start < 0:
                 return text[:300]
             return ("…" if start > 120 else "") + text[max(0, start - 120): start + len(evidence) + 130] + "…"
