@@ -60,8 +60,9 @@ def find_quote_page(pdf_path: Path, quote: str) -> int | None:
     """Physical page (1 = first page, as Chrome's page box counts) where the
     quote appears. Checks page pairs too, for quotes split across a page break.
 
-    Note: this is not the number printed on the page. Most NOFOs don't
-    number the cover, so printed "Page 4 of 20" is often physical page 5.
+    Note: this is not the number printed on the page. NOFOs usually don't
+    number the cover or table of contents, so the printed number is lower by
+    1-3+ pages depending on the PDF.
     """
     import fitz
 
