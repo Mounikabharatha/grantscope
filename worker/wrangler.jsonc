@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "grantscope",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // The search page and PDFs (built by `npm run assets` into ./public). Matching paths are
+  // served directly; everything else (/search, /ask, ...) reaches the Worker.
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "ai": { "binding": "AI" },
+  "hyperdrive": [
+    // Filled in after `npx wrangler hyperdrive create` (see README, Phase 8).
+    { "binding": "HYPERDRIVE", "id": "HYPERDRIVE_ID" }
+  ],
+  "observability": { "enabled": true }
+}

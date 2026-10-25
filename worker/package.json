@@ -1,0 +1,21 @@
+{
+  "name": "grantscope-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/build-assets.mjs",
+    "dev": "npm run assets && wrangler dev --remote",
+    "deploy": "npm run assets && wrangler deploy",
+    "check": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types test/*.test.ts"
+  },
+  "dependencies": {
+    "postgres": "^3.4.9"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261025.1",
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.152.0"
+  }
+}
