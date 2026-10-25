@@ -3,7 +3,8 @@
 # 1. tests            unit tests + check that every eval-set quote exists in the chunks (~2 min)
 # 2. retrieval-eval   rebuild the search index from the committed chunk snapshot in a fresh
 #                     Postgres + pgvector, run the 79-question retrieval eval, and FAIL the build
-#                     if recall@5 drops below the minimums (~15 min, CPU only)
+#                     if recall@5 drops below the minimums (~35 min on CPU: ~17 min to embed
+#                     15,436 chunks, ~17 min for the reranker over 79 questions)
 #
 # The answer-generation eval (Llama 3.1 8B, scripts/evaluate_answers.py) needs a 5 GB model and
 # ~20 min of GPU time, so it runs locally, not here.
@@ -13,7 +14,9 @@ name: CI
 on:
   push:
     branches: [main]
+    paths-ignore: ["**.md", "docs/**"]  # documentation-only changes don't need a 35-min eval
   pull_request:
+    paths-ignore: ["**.md", "docs/**"]
   workflow_dispatch:
 
 concurrency:

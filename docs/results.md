@@ -61,6 +61,15 @@ These are the reference numbers for the CI quality gate (Phase 7): the build fai
 recall@5 drops below **79% (vector)** or **87% (hybrid + reranker)**, about two questions under the
 measured scores, so CPU-vs-GPU rounding doesn't fail a build but a real regression does.
 
+### CI reproduction (Phase 7, GitHub Actions, CPU only)
+
+| Date | Run | section_300 vector R@5 | section_300 hybrid + reranker R@5 | Gate | Runtime |
+|---|---|---|---|---|---|
+| 2026-10-25 | [#40180633884](https://github.com/Mounikabharatha/grantscope/actions/runs/40180633884) | 82.3% (R@1 46.8%) | 89.9% (R@1 64.6%) | passed | 36 min (embedding 1,002 s at 15 chunks/s; reranking ~13 s/question on CPU) |
+
+Recall@5 on a fresh CPU machine matches the local Apple-GPU run exactly; recall@1 for vector differs by
+one question (46.8% vs 45.6%) from floating-point differences.
+
 ### Phase 5 takeaways
 
 - **Baseline -> final: recall@5 82.1% -> 89.7%, recall@1 46.2% -> 65.4%, MRR 0.607 -> 0.771** (section chunks, 78 questions).
