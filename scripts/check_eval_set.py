@@ -10,6 +10,7 @@ in the PDF (Chrome's page count, not the number printed on the page).
 Usage:
   python scripts/check_eval_set.py
   python scripts/check_eval_set.py --fix-pages   # rewrite wrong page numbers
+  python scripts/check_eval_set.py --chunk-sets section_300   # e.g. in CI
 """
 
 import argparse
@@ -22,12 +23,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from app.data import read_chunks  # noqa: E402
 from app.evaluation import QUESTIONS, find_quote_page, is_relevant, load_questions  # noqa: E402
 
 CHUNK_SETS = ["section_300", "fixed_300"]
 
 
 def check_pages(fix: bool) -> int:
+    if not any((ROOT / "data" / "raw").glob("*.pdf")):
+        print("\n[pages] skipped: no PDFs in data/raw (e.g. in CI)")
+        return 0
     with QUESTIONS.open(newline="") as f:
         reader = csv.DictReader(f)
         fieldnames, rows = reader.fieldnames, list(reader)
@@ -57,6 +62,7 @@ def check_pages(fix: bool) -> int:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--fix-pages", action="store_true")
+    parser.add_argument("--chunk-sets", nargs="+", default=CHUNK_SETS)
     args = parser.parse_args()
     questions = load_questions()
     answerable = [q for q in questions if q.type == "answerable"]
@@ -65,8 +71,8 @@ def main() -> None:
     print("Categories:", dict(Counter(q.category for q in questions)))
 
     problems = 0
-    for chunk_set in CHUNK_SETS:
-        chunks = [json.loads(line) for line in (ROOT / "data" / "chunks" / f"{chunk_set}.jsonl").open()]
+    for chunk_set in args.chunk_sets:
+        chunks = read_chunks(chunk_set)
         by_grant: dict[int, list[dict]] = {}
         for c in chunks:
             by_grant.setdefault(c["opportunity_id"], []).append(c)

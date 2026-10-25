@@ -20,6 +20,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from app.data import read_chunks  # noqa: E402
 from app.embeddings import MODEL_NAME, embed_passages, passage_text  # noqa: E402
 
 # Keyword index: title matches count most (A), then section heading (B), then text (C).
@@ -43,7 +44,7 @@ def main() -> None:
     load_dotenv(ROOT / ".env")
 
     docs = {d["opportunity_id"]: d for d in map(json.loads, (ROOT / "data" / "metadata.jsonl").open())}
-    chunks = [json.loads(line) for line in (ROOT / "data" / "chunks" / f"{args.chunk_set}.jsonl").open()]
+    chunks = read_chunks(args.chunk_set)  # local .jsonl, or the committed snapshot in CI
 
     print(f"Embedding {len(chunks)} chunks with {MODEL_NAME}...")
     start = time.perf_counter()

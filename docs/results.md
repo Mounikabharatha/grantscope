@@ -48,6 +48,19 @@ few points are noise.
 | 2026-10-24 | fixed_300 | vector + reranker | 53.8% | 79.5% | 83.3% | 88.5% | 0.676 | 97.4% | |
 | 2026-10-24 | fixed_300 | hybrid + reranker | 59.0% | 83.3% | 87.2% | 92.3% | 0.724 | 100% | The reranker shrinks the chunking gap from 18 to 2.5 points. |
 
+### Re-measured on the 79-question set (after q091 became answerable in Phase 6)
+
+| Date | Chunking | Search | R@1 | R@3 | R@5 | R@10 | MRR | Right grant in top 5 |
+|---|---|---|---|---|---|---|---|---|
+| 2026-10-25 | section_300 | vector | 45.6% | 70.9% | 82.3% (65/79) | 87.3% | 0.602 | 96.2% |
+| 2026-10-25 | section_300 | hybrid + reranker | 64.6% | 88.6% | **89.9% (71/79)** | 93.7% | 0.765 | 100% |
+| 2026-10-25 | fixed_300 | vector | 29.1% | 51.9% | 63.3% | 77.2% | 0.445 | 94.9% |
+| 2026-10-25 | fixed_300 | hybrid + reranker | 58.2% | 82.3% | 86.1% | 92.4% | 0.716 | 100% |
+
+These are the reference numbers for the CI quality gate (Phase 7): the build fails if section_300
+recall@5 drops below **79% (vector)** or **87% (hybrid + reranker)**, about two questions under the
+measured scores, so CPU-vs-GPU rounding doesn't fail a build but a real regression does.
+
 ### Phase 5 takeaways
 
 - **Baseline -> final: recall@5 82.1% -> 89.7%, recall@1 46.2% -> 65.4%, MRR 0.607 -> 0.771** (section chunks, 78 questions).

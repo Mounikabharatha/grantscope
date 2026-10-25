@@ -13,6 +13,8 @@ chunk (right grant + contains the evidence quote) is in the top k results.
 Usage:
   python scripts/evaluate_retrieval.py                                  # all methods, both chunk sets
   python scripts/evaluate_retrieval.py --methods vector hybrid --chunk-sets section_300
+  python scripts/evaluate_retrieval.py --chunk-sets section_300 --methods vector hybrid_rerank \
+      --min-recall5 vector=0.79 hybrid_rerank=0.87     # CI quality gate: exit 1 if below
 """
 
 import argparse
@@ -100,6 +102,8 @@ def main() -> None:
     parser.add_argument("--chunk-sets", nargs="+", default=["section_300", "fixed_300"])
     parser.add_argument("--methods", nargs="+", default=METHODS, choices=METHODS)
     parser.add_argument("--label", default="retrieval", help="name for the saved results file")
+    parser.add_argument("--min-recall5", nargs="+", default=[], metavar="METHOD=VALUE",
+                        help="fail (exit 1) if a method's recall@5 is below VALUE, e.g. hybrid_rerank=0.87")
     args = parser.parse_args()
     load_dotenv(ROOT / ".env")
 
@@ -115,6 +119,51 @@ def main() -> None:
     out = RESULTS_DIR / f"{date.today()}_{args.label}.json"
     out.write_text(json.dumps(results, indent=2, default=str))
     print(f"\nSaved full results to {out.relative_to(ROOT)}")
+
+    failures = check_gates(results, args.min_recall5)
+    write_github_summary(results, args.min_recall5, failures)
+    if failures:
+        print("\nQUALITY GATE FAILED:\n  " + "\n  ".join(failures))
+        sys.exit(1)
+    if args.min_recall5:
+        print("\nQuality gate passed.")
+
+
+def parse_gates(specs: list[str]) -> dict[str, float]:
+    return {method: float(value) for method, value in (spec.split("=", 1) for spec in specs)}
+
+
+def check_gates(results: list[dict], specs: list[str]) -> list[str]:
+    failures = []
+    for method, minimum in parse_gates(specs).items():
+        for r in (r for r in results if r["method"] == method):
+            if r["recall"][5] < minimum:
+                failures.append(f"{r['name']}: recall@5 {r['recall'][5]:.1%} < required {minimum:.1%}")
+    return failures
+
+
+def write_github_summary(results: list[dict], specs: list[str], failures: list[str]) -> None:
+    """In GitHub Actions, show a results table on the run's summary page."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    gates = parse_gates(specs)
+    lines = [
+        "## Retrieval evaluation",
+        "",
+        f"{results[0]['n_questions']} answerable questions from `eval/questions.csv`.",
+        "",
+        "| Setup | Recall@1 | Recall@5 | Recall@10 | MRR | Right grant in top 5 | Minimum R@5 |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    for r in results:
+        gate = gates.get(r["method"])
+        status = "" if gate is None else f"{gate:.0%} {'✅' if r['recall'][5] >= gate else '❌'}"
+        lines.append(f"| {r['name']} | {r['recall'][1]:.1%} | {r['recall'][5]:.1%} | {r['recall'][10]:.1%} "
+                     f"| {r['mrr']:.3f} | {r['grant_at_5']:.1%} | {status} |")
+    lines += ["", "**Quality gate failed**" if failures else "**Quality gate passed**", ""]
+    with open(path, "a") as f:
+        f.write("\n".join(lines) + "\n")
 
 
 if __name__ == "__main__":

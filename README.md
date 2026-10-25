@@ -1,5 +1,7 @@
 # GrantScope
 
+[![CI](https://github.com/Mounikabharatha/grantscope/actions/workflows/ci.yml/badge.svg)](https://github.com/Mounikabharatha/grantscope/actions/workflows/ci.yml)
+
 Ask questions about public grant documents and get answers with citations.
 The answers come only from the documents, and the system says "I don't know"
 when the documents don't contain the answer.
@@ -72,8 +74,8 @@ python scripts/review_eval.py --sample 20   # human spot-check
 python scripts/evaluate_retrieval.py  # recall@k, MRR for each chunk set
 ```
 
-Baseline (vector search, section-aware chunks): **recall@5 = 82.1%** on 78
-answerable questions, vs 64.1% with fixed-size chunks. See
+Baseline (vector search, section-aware chunks): **recall@5 = 82.3%** on 79
+answerable questions, vs 63.3% with fixed-size chunks. See
 [docs/results.md](docs/results.md).
 
 ## Phase 5: hybrid search + reranker
@@ -87,12 +89,12 @@ python scripts/search.py "DERA question subject line" --method hybrid_rerank
 - **Hybrid:** vector + keyword merged with Reciprocal Rank Fusion (k=60).
 - **Reranker:** `BAAI/bge-reranker-base` cross-encoder re-scores the top 30 (also hosted on Cloudflare Workers AI).
 
-| Section-aware chunks, 78 questions | Recall@1 | Recall@5 | MRR | Right grant in top 5 | Median latency (Mac) |
+| Section-aware chunks, 79 questions | Recall@1 | Recall@5 | MRR | Right grant in top 5 | Median latency (Mac) |
 |---|---|---|---|---|---|
-| Vector (baseline) | 46.2% | 82.1% | 0.607 | 96.2% | 21 ms |
-| Hybrid | 38.5% | 70.5% | 0.533 | 98.7% | 186 ms |
-| Vector + reranker | 67.9% | 89.7% | 0.783 | 98.7% | 840 ms |
-| **Hybrid + reranker (default)** | **65.4%** | **89.7%** | **0.771** | **100%** | 1,082 ms |
+| Vector (baseline) | 45.6% | 82.3% | 0.602 | 96.2% | 23 ms |
+| Hybrid | 39.2% | 70.9% | 0.539 | 98.7% | 179 ms |
+| Vector + reranker | 67.1% | 89.9% | 0.776 | 98.7% | 860 ms |
+| **Hybrid + reranker (default)** | **64.6%** | **89.9%** | **0.765** | **100%** | 1,062 ms |
 
 Most of the gain comes from the reranker; hybrid's contribution is exact-term
 queries (acronyms, IDs) and always surfacing the right grant. Details in
@@ -118,6 +120,20 @@ API: `GET /ask?q=...`
 | Quotes found word-for-word in the cited passage | 96.1%; the rest were dropped before display |
 
 Failures and how the numbers were checked: [docs/results.md](docs/results.md).
+
+## Phase 7: continuous integration
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on every push and pull request:
+
+1. **Unit tests** and a check that every eval-set quote exists in the chunks.
+2. **Retrieval quality gate:** starts a fresh Postgres + pgvector, rebuilds the search index from the
+   committed chunk snapshot ([data/snapshot/](data/snapshot)), runs the 79-question retrieval eval on CPU,
+   and **fails the build if recall@5 drops below 79% (vector) or 87% (hybrid + reranker)**. Results
+   appear as a table on the run's summary page and as a downloadable artifact.
+
+The answer-generation eval needs the 5 GB Llama model, so it runs locally
+(`python scripts/evaluate_answers.py`). After re-chunking, refresh the snapshot with
+`python scripts/make_snapshot.py`.
 
 ## Tests
 
@@ -152,7 +168,7 @@ Stop the server with `Ctrl + C`.
 - [x] Phase 4: evaluation set + baseline score
 - [x] Phase 5: hybrid search + reranker
 - [x] Phase 6: cited answers, quote verification, refusals
-- [ ] Phase 7: evaluation in CI
+- [x] Phase 7: evaluation in CI
 - [ ] Phase 8: deploy, cost and latency
 
 Every measured number goes in [docs/results.md](docs/results.md).
