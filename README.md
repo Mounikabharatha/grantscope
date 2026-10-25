@@ -162,6 +162,13 @@ from Workers AI were checked against the local models: identical (cosine 1.0000,
 | Median latency | search 1.8 s, answer 6.5 s |
 | Cost | $0: Cloudflare and Neon free tiers |
 
+**Wrong-grant fix:** before searching, the question is scoped to the agency or grant it names
+(`app/scope.py`, `worker/src/scope.ts`). Questions about agencies we have no grants from (NIH, DOE, NSF,
+...) are refused immediately with a list of the agencies we do have, and look-alike grants (e.g. two
+NEH "Landmarks" NOFOs) are told apart by matching the title in order. Measured on a separate
+35-question holdout set written before the fix: trick questions refused 11/13 -> 12/13 with no loss in
+answered or correct questions; details in [docs/results.md](docs/results.md).
+
 Redeploy after changes:
 
 ```bash

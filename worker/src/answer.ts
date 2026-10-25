@@ -2,6 +2,7 @@
 // Same prompt, same 0.05 early-refusal cutoff, same word-for-word quote check.
 
 import type postgres from "postgres";
+import { scopeQuestion } from "./scope.ts";
 import { search, type Filters, type Hit } from "./search.ts";
 import { isNonAnswer, normalize, parseJson } from "./text.ts";
 
@@ -44,13 +45,14 @@ export interface Answer {
   question: string;
   answer: string;
   refused: boolean;
-  refusal_reason: "no_passages" | "not_answerable" | "unverified" | null;
+  refusal_reason: "out_of_scope" | "no_passages" | "not_answerable" | "unverified" | null;
   citations: Citation[];
   dropped_citations: Citation[];
   passages: Hit[];
   top_score: number | null;
   timings_ms: Record<string, number>;
   model: string;
+  scope: { agencies: string[]; agency_codes: string[]; opportunity_ids: number[] };
 }
 
 export function formatPassages(passages: Hit[]): string {
@@ -94,10 +96,23 @@ async function generate(ai: Ai, question: string, passages: Hit[]): Promise<unkn
 
 export async function answerQuestion(sql: postgres.Sql, ai: Ai, question: string, filters: Filters = {}): Promise<Answer> {
   const timings: Record<string, number> = {};
-  const base = { question, citations: [], dropped_citations: [], timings_ms: timings, model: LLM_MODEL };
-
   let start = Date.now();
-  const passages = await search(sql, ai, question, { k: TOP_K, filters, method: "hybrid_rerank" });
+  // Restrict the search to the agency/grant the question names, or refuse if it only names
+  // agencies we have no grants from (scope.ts).
+  const scope = await scopeQuestion(sql, question);
+  const scopeInfo = { agencies: scope.agencies, agency_codes: scope.agency_codes, opportunity_ids: scope.opportunity_ids };
+  const base = { question, citations: [], dropped_citations: [], timings_ms: timings, model: LLM_MODEL, scope: scopeInfo };
+  if (scope.refusal) {
+    timings.retrieval = Date.now() - start;
+    return { ...base, answer: scope.refusal, refused: true, refusal_reason: "out_of_scope", passages: [], top_score: null };
+  }
+
+  const scoped: Filters = {
+    ...filters,
+    agencyCodes: scope.agency_codes.length ? scope.agency_codes : filters.agencyCodes,
+    opportunityIds: scope.opportunity_ids.length ? scope.opportunity_ids : filters.opportunityIds,
+  };
+  const passages = await search(sql, ai, question, { k: TOP_K, filters: scoped, method: "hybrid_rerank" });
   timings.retrieval = Date.now() - start;
   const top_score = passages.length ? passages[0].score : null;
 

@@ -1,0 +1,148 @@
+{
+  "base_url": "https://grantscope.mounikabharatha.workers.dev",
+  "date": "2026-10-25",
+  "answers": [
+    {
+      "id": "q029",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Which states are covered by the EPA Region 9 Wetland Program Development Grants?",
+      "reference": "Arizona, California, Hawaii, Nevada, plus Guam, American Samoa, CNMI and Tribal lands there",
+      "answer": "Arizona, California, Hawaii, Nevada, Guam, American Samoa, and the Commonwealth of the Northern Mariana Islands, and Tribal lands within those states.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9993166923522949,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Arizona, California, Hawaii, Nevada, and the U.S. territories of Guam, American Samoa, and the Commonwealth of the Northan Mariana Islands and Tribal lands located within those states.",
+          "verified": true,
+          "title": "Region 9 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 9 Fiscal Year 2025 Wetland Program Development Grants > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements",
+          "page": 6,
+          "page_end": 6,
+          "opportunity_id": 361361
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1131,
+        "generation": 5920,
+        "total": 7465
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Includes all correct states and territories"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q051",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the most I can request for a three-week NEH Landmarks of History and Culture and Summer Institutes project (December 2026 deadline)?",
+      "reference": "$460,000",
+      "answer": "Up to $460,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9851750731468201,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "You may request up to $460,000, depending on the duration of your proposed project.",
+          "verified": true,
+          "title": "Landmarks of History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 8,
+          "page_end": 8,
+          "opportunity_id": 363880
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1141,
+        "generation": 2791,
+        "total": 4326
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact as reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q080",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "How much does an NIH R01 grant provide per year?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from National Institutes of Health (NIH). I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 475
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "q081",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "What are the eligibility rules for the Department of Energy SBIR program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Energy. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 385
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "q087",
+      "type": "unanswerable",
+      "category": "not_in_document",
+      "question": "Does the Clean Vessel Act program fund electric boat charging stations?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "No, the Clean Vessel Act program funds pumpout and dump stations, but not electric boat charging stations.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9893485307693481,
+      "citations": [
+        {
+          "passage": 4,
+          "quote": "Construction, renovation, operation, and maintenance of pumpout and dump stations, including floating restrooms in the water that are not connected to land or structures connected to the land and are used solely by boaters.",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Description",
+          "page": 7,
+          "page_end": 7,
+          "opportunity_id": 362055
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1325,
+        "generation": 5064,
+        "total": 6793
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    }
+  ]
+}

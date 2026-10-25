@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { isNonAnswer, normalize, parseJson } from "../src/text.ts";
 import { formatPassages, verify } from "../src/answer.ts";
 import { rrfFuse } from "../src/search.ts";
+import { mentionedAgencies, namedGrants, tokens } from "../src/scope.ts";
 
 const PASSAGES = [
   { chunk_id: "a", opportunity_id: 1, title: "Wolf Livestock Loss", section: "ELIGIBILITY > Cost Sharing Required?",
@@ -57,4 +58,29 @@ test("RRF rewards chunks found by both searches", () => {
 test("parseJson tolerates text around the object", () => {
   assert.deepEqual(parseJson('Sure! {"answerable": false} hope that helps'), { answerable: false });
   assert.deepEqual(parseJson({ answerable: true }), { answerable: true });
+});
+
+// Same cases as tests/test_scope.py
+test("agency acronyms are case-sensitive, names are not", () => {
+  const names = (q: string) => mentionedAgencies(q).map((a) => a.name);
+  assert.deepEqual(names("What does NSF fund?"), ["National Science Foundation (NSF)"]);
+  assert.deepEqual(names("what does the national science foundation fund?"), ["National Science Foundation (NSF)"]);
+  assert.deepEqual(names("Does the grant cover a doe and her fawn? I'll dot the i's."), []);
+  assert.deepEqual(names("Can state governments apply?"), []);
+  assert.deepEqual(names("What does the State Department fund?"), ["State Department (DRL)"]);
+});
+
+test("tokens split digits, drop codes and plurals", () => {
+  assert.deepEqual(tokens("F26AS00088 FY2025 Region 06 Wetlands Grants"), ["2025", "region", "6", "wetland", "grant"]);
+});
+
+test("named grant: most specific in-order full match wins", () => {
+  const titles = new Map([[1, "Coastal Habitat Grants for Small Towns"], [2, "Coastal Habitat Grants for Rural Small Towns"],
+    [3, "River Monitoring Program"], [4, "Habitat"]]);
+  assert.deepEqual(namedGrants("How much do Coastal Habitat Grants for Rural Small Towns provide?", titles), [2]);
+  assert.deepEqual(namedGrants("How much do Coastal Habitat Grants for Small Towns provide?", titles), [1]);
+  assert.deepEqual(namedGrants("What habitat grants exist for towns?", titles), []);
+  const rfa = new Map([[5, "Research Facilities Act Program"]]);
+  assert.deepEqual(namedGrants("Is an inspection program for boat facilities eligible under the research Act?", rfa), []);
+  assert.deepEqual(namedGrants("What does the Research Facilities Act Program fund?", rfa), [5]);
 });

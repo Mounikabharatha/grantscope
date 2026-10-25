@@ -1,0 +1,3193 @@
+{
+  "model": "llama3.1:8b",
+  "min_rerank_score": 0.05,
+  "records": [
+    {
+      "id": "q001",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the maximum award for the Wolf Livestock Loss Compensation and Prevention grants?",
+      "reference": "$675,000",
+      "answer": "The maximum award is $675,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9912179112434387,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "Award Ceiling: $675,000",
+          "verified": true,
+          "title": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation and Prevention",
+          "section": "BASIC INFORMATION",
+          "page": 3,
+          "opportunity_id": 364133
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 3221,
+        "generation": 6870,
+        "total": 10606
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same maximum award amount as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q002",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "What percentage cost share is required for the wolf livestock loss compensation grant program?",
+      "reference": "At least 50% non-federal cost share of total project cost",
+      "answer": "50 percent",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9991459846496582,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "the minimum non-Federal cost share is 50 percent of the total project cost",
+          "verified": true,
+          "title": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation and Prevention",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 5,
+          "opportunity_id": 364133
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1997,
+        "generation": 9261,
+        "total": 11354
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact with slightly different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q003",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Can tribal organizations that are not federally recognized tribes receive Tribal Wildlife Grants funding?",
+      "reference": "Only as subrecipients or contractors to a federally recognized Tribe",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.998176097869873,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1808,
+        "generation": 7813,
+        "total": 9622
+      }
+    },
+    {
+      "id": "q004",
+      "type": "answerable",
+      "category": "amount",
+      "question": "How many Tribal Wildlife Grants does FWS expect to award in FY2026?",
+      "reference": "80 (Basic Information, page 3). Note: page 8 of the same NOFO says FWS will 'issue 30 to 40 awards', so the document is inconsistent; either figure is supported.",
+      "answer": "The FWS expects to issue 30 to 40 awards in FY 2026.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9957906603813171,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "issue 30 to 40 awards.",
+          "verified": true,
+          "title": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "PROGRAM OVERVIEW > Program Description",
+          "page": 8,
+          "opportunity_id": 362774
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1713,
+        "generation": 8329,
+        "total": 10156
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with a note about inconsistency in the document."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q005",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "What is the maximum federal share for Clean Vessel Act grants in the continental states?",
+      "reference": "75% federal (25% match required)",
+      "answer": "The maximum federal share for Clean Vessel Act grants in the continental states is 75 percent of the total project cost.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9163441061973572,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "For awards made to applicants in the continental States, Hawai'i, the District of Columbia, and Puerto Rico, the Federal share may not exceed 75 percent of the total project cost.",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 5,
+          "opportunity_id": 362055
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1986,
+        "generation": 10623,
+        "total": 12712
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the same key fact as the reference, with minor wording difference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q006",
+      "type": "answerable",
+      "category": "allowable",
+      "question": "Is an inspection program for pumpout facilities an eligible activity under the Clean Vessel Act grants?",
+      "reference": "Yes, if it does not include law enforcement activities",
+      "answer": "Yes, an inspection program for pumpout facilities is an eligible activity under the Clean Vessel Act grants.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997170567512512,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Is an inspection or monitoring program to ensure pumpout facilities installed with CVA funds are in working order an eligible activity? A: Yes, if the program does not include law enforcement activities.",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Description > Frequently Asked Questions and Answers",
+          "page": 7,
+          "opportunity_id": 362055
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1864,
+        "generation": 13020,
+        "total": 14990
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact as reference, with no additional details."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q007",
+      "type": "answerable",
+      "category": "contact",
+      "question": "Who should I contact with questions about the Prescott Marine Mammal Rescue and Response grant?",
+      "reference": "Anita Harrington, Anita_Harrington@fws.gov, 703-358-2206",
+      "answer": "Contact Anita Harrington at Anita_Harrington@fws.gov or 703-358-2206.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9965195655822754,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "For additional information about this Funding Opportunity, please contact Anita Harrington at Anita_Harrington@fws.gov or 703-358-2206.",
+          "verified": true,
+          "title": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION > Have Questions?",
+          "page": 3,
+          "opportunity_id": 363992
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1818,
+        "generation": 11737,
+        "total": 13678
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers provide the same contact information."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q008",
+      "type": "answerable",
+      "category": "period",
+      "question": "What is the maximum period of performance for a Prescott Marine Mammal Rescue and Response grant?",
+      "reference": "Three years",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.9993638396263123,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1643,
+        "generation": 41930,
+        "total": 43576
+      }
+    },
+    {
+      "id": "q009",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "What match ratio does the NAWCA US Small Grants program require?",
+      "reference": "At least 1:1 non-federal match",
+      "answer": "The NAWCA US Small Grants program requires a minimum of a 1:1 non-federal match to grant ratio.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997246861457825,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The NAWCA U.S. Small Grants Program requires a minimum of a 1:1 non-federal match to grant ratio.",
+          "verified": true,
+          "title": "F26AS00007-NAWCA 2026 US Small Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 4,
+          "opportunity_id": 361965
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1911,
+        "generation": 10574,
+        "total": 12554
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q010",
+      "type": "answerable",
+      "category": "process",
+      "question": "Do I need to contact program staff before applying to the National Fish Passage Program?",
+      "reference": "Yes, contact local program staff before developing or submitting",
+      "answer": "Yes, you need to contact program staff before applying to the National Fish Passage Program.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9986498951911926,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applicants seeking technical or financial assistance from the National Fish Passage Program are required to contact local program staff BEFORE developing or submitting an application.",
+          "verified": true,
+          "title": "F26AS00105 National Fish Passage Program",
+          "section": "SUBMISSION REQUIREMENTS AND DEADLINES > Address to Request Application Package",
+          "page": 9,
+          "opportunity_id": 363699
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1798,
+        "generation": 10869,
+        "total": 12755
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q011",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Who is eligible to apply for the National Fish Passage Program?",
+      "reference": "Unrestricted - any type of entity",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.981631875038147,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1789,
+        "generation": 19101,
+        "total": 20891
+      }
+    },
+    {
+      "id": "q012",
+      "type": "answerable",
+      "category": "format",
+      "question": "How many pages can the proposal be for the DRL Advancing Labor Rights in the Garment Industry grant?",
+      "reference": "15 pages maximum",
+      "answer": "15 pages maximum",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9994400143623352,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "15 pages maximum",
+          "verified": true,
+          "title": "Advancing Labor Rights in the Garment Industry",
+          "section": "Advancing Labor Rights in the Garment Industry > Contents > D. Application Contents and Format > 3. Proposal (15 pages maximum)",
+          "page": 8,
+          "opportunity_id": 363387
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1761,
+        "generation": 7430,
+        "total": 9301
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in identical wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q013",
+      "type": "answerable",
+      "category": "period",
+      "question": "How long is the performance period for the Advancing Labor Rights in the Garment Industry award?",
+      "reference": "24 months",
+      "answer": "The performance period is 24 months or less.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9993807077407837,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Project Performance Period: Proposed projects should be completed in 24 months or less.",
+          "verified": true,
+          "title": "Advancing Labor Rights in the Garment Industry",
+          "section": "Advancing Labor Rights in the Garment Industry > Contents > A. Basic Information > 1. Overview",
+          "page": 3,
+          "opportunity_id": 363387
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1918,
+        "generation": 9941,
+        "total": 11947
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with 'or less' being acceptable variation"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q014",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the award amount for the DRL Global Digital Threat Lab?",
+      "reference": "$2,960,039 (one award)",
+      "answer": "The award amount is $2,960,039.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9790306687355042,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "Award amount $2,960,039 (approximately)",
+          "verified": true,
+          "title": "Global Digital Threat Lab",
+          "section": "Global Digital Threat Lab > Contents > A. Basic Information > 1. Overview",
+          "page": 3,
+          "opportunity_id": 363201
+        },
+        {
+          "passage": 2,
+          "quote": "Total available funding $2,960,039, pending availability of funds",
+          "verified": true,
+          "title": "Global Digital Threat Lab",
+          "section": "Global Digital Threat Lab > Contents > A. Basic Information > 1. Overview",
+          "page": 3,
+          "opportunity_id": 363201
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1978,
+        "generation": 11862,
+        "total": 14092
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same award amount as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q015",
+      "type": "answerable",
+      "category": "deadline",
+      "question": "When is the application deadline for the Independent Journalism Consortium in Europe?",
+      "reference": "11:59 PM, Tuesday September 1, 2026",
+      "answer": "The application deadline for the Independent Journalism Consortium in Europe is September 1, 11:59PM, EDT.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9994344115257263,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applications are due no later than September 1, 11:59PM, EDT",
+          "verified": true,
+          "title": "Independent Journalism Consortium in Europe",
+          "section": "Europe > Contents > E. Submission Requirements and Deadlines > 4. Submission Dates and Times",
+          "page": 12,
+          "opportunity_id": 363640
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1698,
+        "generation": 9558,
+        "total": 11376
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact, just different wording and time zone"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q016",
+      "type": "answerable",
+      "category": "period",
+      "question": "What is the performance period for the Emergency Assistance for Fundamental Freedom Defenders award?",
+      "reference": "12 to 18 months",
+      "answer": "The performance period is 12 to 18 months.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9991239905357361,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Length of performance period 12 to 18 months",
+          "verified": true,
+          "title": "Emergency Assistance for Fundamental Freedom Defenders",
+          "section": "Defenders > Contents > A. Basic Information > 1. Overview",
+          "page": 3,
+          "opportunity_id": 363780
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1682,
+        "generation": 11112,
+        "total": 12906
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q017",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Can individuals apply for the DRL Early Warning and Response in Nigeria grant?",
+      "reference": "Yes, individuals are listed as eligible",
+      "answer": "I couldn't find a supported answer to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "unverified",
+      "top_score": 0.9977678060531616,
+      "citations": [],
+      "dropped_citations": [
+        {
+          "passage": 2,
+          "quote": "\u2022 Individuals.",
+          "verified": false,
+          "title": "",
+          "section": null,
+          "page": null,
+          "opportunity_id": null
+        }
+      ],
+      "timings_ms": {
+        "retrieval": 1586,
+        "generation": 7628,
+        "total": 9214
+      }
+    },
+    {
+      "id": "q018",
+      "type": "answerable",
+      "category": "deadline",
+      "question": "What is the application deadline for the DRL Early Warning and Response in Nigeria grant?",
+      "reference": "August 25, 2026, 11:59 PM ET (Grants.gov lists 08/28/2026 - PDF differs)",
+      "answer": "The application deadline for the DRL Early Warning and Response in Nigeria grant is Tuesday August 25, 2026, 11:59PM ET.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9983351826667786,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applications are due no later than Tuesday August 25, 2026, 11:59PM ET",
+          "verified": true,
+          "title": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > E. Submission Requirements and Deadlines > 4. Submission Dates and Times",
+          "page": 11,
+          "opportunity_id": 363719
+        },
+        {
+          "passage": 2,
+          "quote": "Tuesday August 25, 2026, 11:59PM ET",
+          "verified": true,
+          "title": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > A. Basic Information > Deadline for Applications",
+          "page": 1,
+          "opportunity_id": 363719
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1263,
+        "generation": 10064,
+        "total": 11514
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same application deadline and time zone mentioned"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q019",
+      "type": "answerable",
+      "category": "period",
+      "question": "What is the minimum period of performance for the Early Warning and Response in Nigeria project?",
+      "reference": "At least 18 months",
+      "answer": "The minimum period of performance for the Early Warning and Response in Nigeria project is 18 months.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.999946117401123,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The period of performance for this project should be a minimum of 18 months.",
+          "verified": true,
+          "title": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > A. Basic Information > Anticipated project start date",
+          "page": 3,
+          "opportunity_id": 363719
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1767,
+        "generation": 10544,
+        "total": 12410
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q020",
+      "type": "answerable",
+      "category": "deadline",
+      "question": "When is the application deadline for the 2026 DERA National Program?",
+      "reference": "January 22, 2027, 11:59 PM ET",
+      "answer": "January 22, 2027 11:59 pm ET",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9990628361701965,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "January 22, 2027 11:59 pm ET Application Submission Deadline",
+          "verified": true,
+          "title": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Submission Requirements and Deadlines > A. Submission Dates and Times",
+          "page": 4,
+          "opportunity_id": 363936
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2087,
+        "generation": 8198,
+        "total": 10890
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact and wording as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q021",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Are for-profit hospitals eligible to apply for EPA DERA National Program funding?",
+      "reference": "No",
+      "answer": "No, for-profit hospitals are not eligible to apply for EPA DERA National Program funding.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.999237060546875,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "For-profit colleges, universities, trade schools, and hospitals are not eligible to apply.",
+          "verified": true,
+          "title": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Eligibility > A. Eligible Applicants",
+          "page": 6,
+          "opportunity_id": 363936
+        }
+      ],
+      "dropped_citations": [
+        {
+          "passage": 2,
+          "quote": "For-profit hospitals are not eligible to apply for EPA DERA National Program funding.",
+          "verified": false,
+          "title": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Eligibility > A. Eligible Applicants",
+          "page": 6,
+          "opportunity_id": 363936
+        }
+      ],
+      "timings_ms": {
+        "retrieval": 1864,
+        "generation": 14273,
+        "total": 16703
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in identical wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q022",
+      "type": "answerable",
+      "category": "process",
+      "question": "What subject line should I use when emailing questions about the DERA National NOFO?",
+      "reference": "\"DERA National NOFO Question\" to dera@epa.gov",
+      "answer": "Use the subject line \u2018DERA National NOFO Question\u2019 when emailing questions about the DERA National NOFO.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9993020296096802,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Send written questions to dera@epa.gov with the subject line \u201cDERA National NOFO Question.\u201d",
+          "verified": true,
+          "title": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Basic Information > G. Question and Answer Process",
+          "page": 5,
+          "opportunity_id": 363936
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1678,
+        "generation": 11209,
+        "total": 13463
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state the same subject line and email address."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q023",
+      "type": "answerable",
+      "category": "amount",
+      "question": "How much can an applicant request from an EPA Brownfields Job Training grant?",
+      "reference": "Up to $300,000 over three years or less",
+      "answer": "An applicant can request up to $300,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996762275695801,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applicants may request up to $300,000, with a project period of three years or less.",
+          "verified": true,
+          "title": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Eligibility > B. Threshold Criteria",
+          "page": 10,
+          "opportunity_id": 363223
+        },
+        {
+          "passage": 4,
+          "quote": "Indicate the amount of federal funds requested (must not exceed $300,000 in EPA Brownfields Job Training Grants funds).",
+          "verified": true,
+          "title": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Application Contents and Format > B. Application Information Sheet",
+          "page": 23,
+          "opportunity_id": 363223
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1877,
+        "generation": 16611,
+        "total": 19103
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Includes the time frame of 'over three years or less'"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q024",
+      "type": "answerable",
+      "category": "amount",
+      "question": "How many Brownfields Job Training grants does EPA expect to award?",
+      "reference": "Up to 20",
+      "answer": "EPA expects to award up to 20 Brownfields Job Training grants.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996640682220459,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "It is anticipated that up to 20 awards will be made under this announcement.",
+          "verified": true,
+          "title": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Basic Information > D. Funding Details",
+          "page": 6,
+          "opportunity_id": 363223
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1884,
+        "generation": 10979,
+        "total": 13175
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact as reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q025",
+      "type": "answerable",
+      "category": "process",
+      "question": "Can I submit more than one application to the EPA Environmental Education Grant Program?",
+      "reference": "Yes, if each is for a different project",
+      "answer": "Yes, you can submit more than one application as long as each one is for a different project and is separately submitted.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997299313545227,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applicants may submit more than one (1) application under this announcement so long as each one is for a different project and is separately submitted.",
+          "verified": true,
+          "title": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements",
+          "page": 6,
+          "opportunity_id": 361098
+        },
+        {
+          "passage": 2,
+          "quote": "Applicants may submit more than one (1) application under this announcement so long as each one is for a different project and is separately submitted.",
+          "verified": true,
+          "title": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements",
+          "page": 6,
+          "opportunity_id": 361098
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1797,
+        "generation": 14193,
+        "total": 16354
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with slightly different wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q026",
+      "type": "answerable",
+      "category": "contact",
+      "question": "Who is the technical contact for the EPA Environmental Education Grant Program?",
+      "reference": "Michael Band, EEGrants@epa.gov",
+      "answer": "Michael Band",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996343851089478,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Technical Contact: Michael Band; EEGrants@epa.gov",
+          "verified": true,
+          "title": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Basic Information > E. Agency Contact Information:",
+          "page": 4,
+          "opportunity_id": 361098
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1715,
+        "generation": 6463,
+        "total": 8364
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact as reference, different wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q027",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "Can the cost share be waived for EPA Wildfire Smoke Preparedness in Community Buildings grants?",
+      "reference": "Yes, for facilities in economically distressed communities",
+      "answer": "No, the cost share cannot be waived for facilities not located in economically distressed communities.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996167421340942,
+      "citations": [
+        {
+          "passage": 5,
+          "quote": "Cost sharing may be waived for facilities located in economically distressed communities.",
+          "verified": true,
+          "title": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Eligibility > B. Cost Sharing > Cost Share Waiver",
+          "page": 6,
+          "opportunity_id": 361217
+        },
+        {
+          "passage": 5,
+          "quote": "To be considered for a cost share waiver, the application must include a rationale demonstrating that the project meets the requirements described in this section in either the project narrative or as an attachment (see Section 4.A).",
+          "verified": true,
+          "title": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Eligibility > B. Cost Sharing > Cost Share Waiver",
+          "page": 6,
+          "opportunity_id": 361217
+        },
+        {
+          "passage": 5,
+          "quote": "For purposes of this competition and the evaluation of applications, an \u201ceconomically distressed community\u201d must meet one (or more) of the following economic distress criteria:",
+          "verified": true,
+          "title": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Eligibility > B. Cost Sharing > Cost Share Waiver",
+          "page": 6,
+          "opportunity_id": 361217
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1740,
+        "generation": 19389,
+        "total": 21646
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "System answer accurately states that cost share can be waived for facilities in economically distressed communities."
+      },
+      "faithfulness": {
+        "supported": false,
+        "unsupported_claim": "No, the cost share cannot be waived for facilities not located in economically distressed communities."
+      }
+    },
+    {
+      "id": "q028",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the maximum request for a Wildfire Smoke Preparedness in Community Buildings application?",
+      "reference": "$2,500,000",
+      "answer": "The maximum request is $2,500,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9995564818382263,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "Applications must not request more than $2,500,000.",
+          "verified": true,
+          "title": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Eligibility > (1) Other Eligibility Requirements",
+          "page": 5,
+          "opportunity_id": 361217
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2012,
+        "generation": 11662,
+        "total": 13874
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same maximum request amount as the reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q029",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Which states are covered by the EPA Region 9 Wetland Program Development Grants?",
+      "reference": "Arizona, California, Hawaii, Nevada, plus Guam, American Samoa, CNMI and Tribal lands there",
+      "answer": "Arizona, California, Hawaii, Nevada, and the U.S. territories of Guam, American Samoa, and the Commonwealth of the Northan Mariana Islands and Tribal lands located within those states.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9993166923522949,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Arizona, California, Hawaii, Nevada, and the U.S. territories of Guam, American Samoa, and the Commonwealth of the Northan Mariana Islands and Tribal lands located within those states.",
+          "verified": true,
+          "title": "Region 9 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 9 Fiscal Year 2025 Wetland Program Development Grants > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements",
+          "page": 6,
+          "opportunity_id": 361361
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2137,
+        "generation": 17767,
+        "total": 20168
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "System answer includes all states and territories listed in the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q030",
+      "type": "answerable",
+      "category": "allowable",
+      "question": "Is leasing vehicles an eligible cost under EPA Region 9 Wetland Program Development Grants?",
+      "reference": "Yes",
+      "answer": "Leasing vehicles is eligible for funding under this program, but must be described in the budget detail and linked to project activities.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.996837854385376,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The lease of vehicles is eligible for funding under this program but must be described in the budget detail and linked to project activities.",
+          "verified": true,
+          "title": "Region 9 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 9 Fiscal Year 2025 Wetland Program Development Grants > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements",
+          "page": 7,
+          "opportunity_id": 361361
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2001,
+        "generation": 15898,
+        "total": 18158
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "System answer accurately states that leasing vehicles is eligible, matching the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q031",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "How much cost share does the SNEP Innovative Restoration Grants program require?",
+      "reference": "At least 15% of federal funds requested",
+      "answer": "15% of the federal funds requested",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9992343187332153,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applicants must provide a non-federal cost share (match) equal to at least 15% of the federal funds requested.",
+          "verified": true,
+          "title": "Southeast New England Program (SNEP) Innovative Restoration Grants",
+          "section": "Innovative Restoration Grants > Eligibility > B. Cost Sharing",
+          "page": 4,
+          "opportunity_id": 364125
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2573,
+        "generation": 10134,
+        "total": 12835
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact, just different wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q032",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the range of individual award amounts for SNEP Innovative Restoration Grants?",
+      "reference": "$250,000 - $1,000,000 per award",
+      "answer": "The range of individual award amounts for SNEP Innovative Restoration Grants is $250,000 - $1,000,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9794744253158569,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "The amount of funding is expected to be $250,000 - $1,000,000, per award,",
+          "verified": true,
+          "title": "Southeast New England Program (SNEP) Innovative Restoration Grants",
+          "section": "Innovative Restoration Grants > Basic Information > D. Funding Details:",
+          "page": 3,
+          "opportunity_id": 364125
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2285,
+        "generation": 10025,
+        "total": 12427
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q033",
+      "type": "answerable",
+      "category": "process",
+      "question": "Can one application address multiple project areas under the EPA Innovative Water Infrastructure Workforce Development Grant?",
+      "reference": "No, only one of the four Project Areas",
+      "answer": "No, one application can only address one of the four Project Areas.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.999884843826294,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "Applications must address only one of the four Project Areas listed in Section 3.",
+          "verified": true,
+          "title": "Innovative Water Infrastructure Workforce Development Grant",
+          "section": "Innovative Water Infrastructure Workforce Development Grant > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements",
+          "page": 7,
+          "opportunity_id": 363657
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2100,
+        "generation": 17758,
+        "total": 20020
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that only one Project Area can be addressed per application."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q034",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "Is cost share required for the EPA Innovative Water Infrastructure Workforce Development Grant?",
+      "reference": "No, any cost share is voluntary",
+      "answer": "No, cost share is voluntary.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9949589371681213,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Any cost share proposed by an applicant is voluntary.",
+          "verified": true,
+          "title": "Innovative Water Infrastructure Workforce Development Grant",
+          "section": "Innovative Water Infrastructure Workforce Development Grant > Eligibility > B. Cost Sharing",
+          "page": 7,
+          "opportunity_id": 363657
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1942,
+        "generation": 14558,
+        "total": 16658
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with 'voluntary' wording being identical"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q035",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "If my program received a 2023 Dental Faculty Loan Repayment Program award, can I apply again this cycle?",
+      "reference": "No, still within the project period",
+      "answer": "No, if your program received a 2023 Dental Faculty Loan Repayment Program award, you are not eligible to apply this cycle because you are still within your project period.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9908429384231567,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "\u2022 2023 Dental Faculty Loan Repayment Program (HRSA-23-091)",
+          "verified": true,
+          "title": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Eligibility > Types of eligible organizations > Other eligibility criteria",
+          "page": 7,
+          "opportunity_id": 361375
+        },
+        {
+          "passage": 1,
+          "quote": "you are not eligible to apply because you are still within your project period:",
+          "verified": true,
+          "title": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Eligibility > Types of eligible organizations > Other eligibility criteria",
+          "page": 7,
+          "opportunity_id": 361375
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2354,
+        "generation": 17990,
+        "total": 20755
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that the program is not eligible to apply this cycle because it is still within the project period."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q036",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "What must Dental Faculty Loan Repayment Program participants agree to do?",
+      "reference": "Work full-time as faculty in general/pediatric dentistry, dental public health, or dental hygiene",
+      "answer": "Participants must agree to work full-time as faculty members in general dentistry, pediatric dentistry, dental public health, or dental hygiene.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996417760848999,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Participants must agree to work full-time as faculty members in general dentistry, pediatric dentistry, dental public health, or dental hygiene.",
+          "verified": true,
+          "title": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Eligibility > Trainee eligibility",
+          "page": 7,
+          "opportunity_id": 361375
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2045,
+        "generation": 16306,
+        "total": 18566
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact(s) as the reference, with minor wording differences."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q037",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "What geographic areas can HRSA RCORP-Planning activities serve?",
+      "reference": "Only HRSA-designated rural counties and rural census tracts",
+      "answer": "HRSA-designated rural counties and rural census tracts.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9926835894584656,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "RCORP-Planning activities may only support HRSA-designated rural counties and rural census tracts.",
+          "verified": true,
+          "title": "Rural Communities Opioid Response Program (RCORP)-Planning",
+          "section": "Planning > Step 1: Review the Opportunity > Eligibility > Completeness and",
+          "page": 7,
+          "opportunity_id": 362283
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2138,
+        "generation": 17175,
+        "total": 19546
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with similar wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q038",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Can for-profit organizations apply for HRSA RCORP-Planning grants?",
+      "reference": "Yes, domestic for-profit entities can apply",
+      "answer": "Yes, for-profit organizations can apply for HRSA RCORP-Planning grants.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9942744374275208,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "You can apply if you are a domestic public or private, non-profit or for-profit entity.",
+          "verified": true,
+          "title": "Rural Communities Opioid Response Program (RCORP)-Planning",
+          "section": "Planning > Step 1: Review the Opportunity > Eligibility > Who can apply",
+          "page": 6,
+          "opportunity_id": 362283
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2147,
+        "generation": 14524,
+        "total": 16968
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q039",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "How many organizations make up a health care network for the Rural Northern Border Region Network Planning Program?",
+      "reference": "At least three",
+      "answer": "At least three regional or local organizations",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9995852112770081,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Health Care Network: At least three regional or local organizations that come together to develop strategies for improving health services in a community.",
+          "verified": true,
+          "title": "Rural Northern Border Region Network Planning Program",
+          "section": "Step 1: Review the Opportunity > Eligibility > Network Requirements",
+          "page": 6,
+          "opportunity_id": 361798
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1827,
+        "generation": 11535,
+        "total": 13561
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q040",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "Is cost sharing required for the Rural Northern Border Region Network Planning Program?",
+      "reference": "No",
+      "answer": "This program has no cost-sharing requirement.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9999104738235474,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "This program has no cost-sharing requirement.",
+          "verified": true,
+          "title": "Rural Northern Border Region Network Planning Program",
+          "section": "Step 1: Review the Opportunity > Eligibility > Cost sharing",
+          "page": 7,
+          "opportunity_id": 361798
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1616,
+        "generation": 11496,
+        "total": 13263
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact is stated, with slightly different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q041",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Who can apply for HRSA's Medical Student Education Program?",
+      "reference": "Accredited public medical schools in top-quartile primary care shortage states without an active MSE grant",
+      "answer": "Accredited public, osteopathic and allopathic medical schools in the eligible states",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9914647936820984,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "HRSA has identified accredited public, osteopathic and allopathic medical schools in the eligible states using the Commission on Osteopathic College Accreditation (COCA) and Liaison Committee on Medical Education (LCME)",
+          "verified": true,
+          "title": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Additional information on eligibility",
+          "page": 5,
+          "opportunity_id": 362317
+        },
+        {
+          "passage": 1,
+          "quote": "Entities with provisional or preliminary accreditation may apply if you meet the eligibility criteria and accreditation documentation requirements from LCME or COCA.",
+          "verified": true,
+          "title": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Additional information on eligibility",
+          "page": 5,
+          "opportunity_id": 362317
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1845,
+        "generation": 19559,
+        "total": 21765
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Includes same key details as reference answer, with additional correct detail"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q042",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "How much of their time must the Project Director dedicate to the HRSA Medical Student Education Program?",
+      "reference": "About 20%",
+      "answer": "The Project Director must dedicate approximately 20 percent of their time to grant activities.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997889399528503,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The Project Director (PD) must be a board-certified physician, employed by the applicant organization, and dedicate approximately 20 percent of their time to grant activities, whether charged to the grant as salary or provided to the project as in-kind contribution.",
+          "verified": true,
+          "title": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Qualifications for principal investigator or project director",
+          "page": 6,
+          "opportunity_id": 362317
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1776,
+        "generation": 17372,
+        "total": 19330
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with similar wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q043",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "What matching is required for the HRSA Medical Student Education Program?",
+      "reference": "Between 1% and 10% of federal funds",
+      "answer": "1% of the federal share",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9963423609733582,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "\u2022 Fails to satisfy the minimum matching requirement of 1% of the federal share.",
+          "verified": true,
+          "title": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Completeness and responsive criteria",
+          "page": 7,
+          "opportunity_id": 362317
+        },
+        {
+          "passage": 3,
+          "quote": "This program requires you to contribute 1% of the federal share.",
+          "verified": true,
+          "title": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Cost sharing Federal share",
+          "page": 7,
+          "opportunity_id": 362317
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2329,
+        "generation": 14154,
+        "total": 16878
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact about matching percentage range"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q044",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Can individual students apply directly for HRSA Scholarships for Disadvantaged Students?",
+      "reference": "No, schools apply",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.943920373916626,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2102,
+        "generation": 6066,
+        "total": 8168
+      }
+    },
+    {
+      "id": "q045",
+      "type": "answerable",
+      "category": "compliance",
+      "question": "What maintenance of effort does the Scholarships for Disadvantaged Students program require?",
+      "reference": "Spend at least as much non-federal money as the prior fiscal year",
+      "answer": "The Scholarships for Disadvantaged Students program requires that you spend at least as much as you spent in the last fiscal year before the award.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9979864358901978,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "If you receive an award, you will have to spend at least as much as you spent in the last fiscal year before the award.",
+          "verified": true,
+          "title": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Maintenance of effort",
+          "page": 6,
+          "opportunity_id": 361429
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1438,
+        "generation": 10247,
+        "total": 11887
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact about spending at least as much as the prior fiscal year"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q046",
+      "type": "answerable",
+      "category": "format",
+      "question": "What letters of support are required for the HRSA Maternal Produce Prescription Program application?",
+      "reference": "From both a healthcare partner and a community-based organization partner",
+      "answer": "Two letters of support are required: one from a healthcare partner and one from a community-based organization partner.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9940508008003235,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Include a letter of support from one or more healthcare partner(s) that serve maternal populations in low-income and underserved urban and rural areas in the grant application and specify their role in implementing and evaluating the project.",
+          "verified": true,
+          "title": "Maternal Produce Prescription Program (MP3)",
+          "section": "Step 1: Review the Opportunity > All Proposals are Expected to:",
+          "page": 8,
+          "opportunity_id": 361442
+        },
+        {
+          "passage": 3,
+          "quote": "Include a letter of support from one or more community-based organization partner(s) in the grant application specifying their role in implementing and evaluating the project.",
+          "verified": true,
+          "title": "Maternal Produce Prescription Program (MP3)",
+          "section": "Step 3: Build Your Application > Project narrative > Attachment 2: Letter of support from community-based organization(s)",
+          "page": 24,
+          "opportunity_id": 361442
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2299,
+        "generation": 16680,
+        "total": 19298
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q047",
+      "type": "answerable",
+      "category": "deadline",
+      "question": "When is the expected start date for HRSA Maternal Produce Prescription Program awards?",
+      "reference": "09/30/2026",
+      "answer": "The expected start date for HRSA Maternal Produce Prescription Program awards is 09/30/2026.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.987743616104126,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "Expected start date: 09/30/2026",
+          "verified": true,
+          "title": "Maternal Produce Prescription Program (MP3)",
+          "section": "Step 1: Review the Opportunity > Basic information > Key dates",
+          "page": 4,
+          "opportunity_id": 361442
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1918,
+        "generation": 9156,
+        "total": 11238
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q048",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Are foreign organizations eligible for the HRSA Rural Health Clinic Technical Assistance Program?",
+      "reference": "No, only domestic organizations",
+      "answer": "No, only domestic organizations are eligible.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9718807339668274,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Only domestic organizations are eligible.",
+          "verified": true,
+          "title": "Rural Health Clinic Technical Assistance Program",
+          "section": "Contents > Before you begin > Review the Opportunity > Eligibility > Types of eligible organizations > Additional Information on Eligibility",
+          "page": 6,
+          "opportunity_id": 362289
+        },
+        {
+          "passage": 1,
+          "quote": "\u201cDomestic\u201d means the 50 states, the District of Columbia, the Commonwealth of Puerto Rico, the Northern Mariana Islands, American Samoa, Guam, the U.S. Virgin Islands, the Federated States of Micronesia, the Republic of the Marshall Islands, and the Republic of Palau.",
+          "verified": true,
+          "title": "Rural Health Clinic Technical Assistance Program",
+          "section": "Contents > Before you begin > Review the Opportunity > Eligibility > Types of eligible organizations > Additional Information on Eligibility",
+          "page": 6,
+          "opportunity_id": 362289
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1553,
+        "generation": 14143,
+        "total": 15962
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that only domestic organizations are eligible."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q049",
+      "type": "answerable",
+      "category": "amount",
+      "question": "How much is the monthly stipend for NEH Awards for Faculty at HBCUs?",
+      "reference": "$5,000 per month full-time",
+      "answer": "The monthly stipend is $5,000 for full-time work.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9998288154602051,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "NEH will provide a stipend of $5,000 per month for full-time work to successful applicant",
+          "verified": true,
+          "title": "Awards for Faculty at HBCUs",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award amounts",
+          "page": 6,
+          "opportunity_id": 361391
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1657,
+        "generation": 10831,
+        "total": 12593
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q050",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Can I apply for NEH Awards for Faculty at HBCUs if I am currently enrolled in a degree program?",
+      "reference": "No",
+      "answer": "No, you are not eligible to apply if you are currently enrolled in a degree granting program.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9999170303344727,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "While you do not need to have an advanced degree, you are not eligible to apply if you are currently enrolled in a degree granting program.",
+          "verified": true,
+          "title": "Awards for Faculty at HBCUs",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information > Currently enrolled students",
+          "page": 7,
+          "opportunity_id": 361391
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1512,
+        "generation": 11470,
+        "total": 13081
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that being enrolled in a degree program makes one ineligible."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q051",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the most I can request for a three-week NEH Landmarks of History and Culture and Summer Institutes project (December 2026 deadline)?",
+      "reference": "$460,000",
+      "answer": "The maximum amount you can request is $460,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9851749539375305,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "You may request up to $460,000, depending on the duration of your proposed project.",
+          "verified": true,
+          "title": "Landmarks of History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 8,
+          "opportunity_id": 363880
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1739,
+        "generation": 10329,
+        "total": 12173
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same maximum request amount as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q052",
+      "type": "answerable",
+      "category": "period",
+      "question": "When does the period of performance start and end for NEH Landmarks of History and Culture and Summer Institutes awards from the December 2026 deadline?",
+      "reference": "November 1, 2027 - December 31, 2029",
+      "answer": "The period of performance for NEH Landmarks of History and Culture and Summer Institutes awards from the December 2026 deadline starts November 1, 2027, and ends December 31, 2029.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9989124536514282,
+      "citations": [
+        {
+          "passage": 4,
+          "quote": "The period of performance is the time during which you may incur expenses to carry out the work under the award. The period of performance will start November 1, 2027, and end December 31, 2029.",
+          "verified": true,
+          "title": "Landmarks of History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Period of Performance",
+          "page": 9,
+          "opportunity_id": 363880
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1998,
+        "generation": 14048,
+        "total": 16209
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Matches the reference answer exactly."
+      },
+      "faithfulness": {
+        "supported": false,
+        "unsupported_claim": "The period of performance for NEH Landmarks of History and Culture and Summer Institutes awards from the December 2026 deadline"
+      }
+    },
+    {
+      "id": "q053",
+      "type": "answerable",
+      "category": "process",
+      "question": "Can one person be project director for multiple NEH Landmarks of History and Culture and Summer Institutes applications (December 2026 deadline)?",
+      "reference": "No",
+      "answer": "No, an individual may not serve as project director for multiple proposed projects.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9990853071212769,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "An individual may not serve as project director for multiple proposed projects under this notice.",
+          "verified": true,
+          "title": "Landmarks of History and Culture and Summer Institutes",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information",
+          "page": 9,
+          "opportunity_id": 363880
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1857,
+        "generation": 9779,
+        "total": 11784
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that an individual cannot serve as project director for multiple projects."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q054",
+      "type": "answerable",
+      "category": "process",
+      "question": "How many applications can an organization submit to the NEH National Digital Newspaper Program?",
+      "reference": "One",
+      "answer": "An organization may submit only one application under this notice.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9995586276054382,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "An organization may submit only one application under this notice.",
+          "verified": true,
+          "title": "National Digital Newspaper Program",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information",
+          "page": 9,
+          "opportunity_id": 364030
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1958,
+        "generation": 10668,
+        "total": 12773
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that an organization can submit only one application."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q055",
+      "type": "answerable",
+      "category": "amount",
+      "question": "How many recipients does NEH expect to fund in the National Digital Newspaper Program?",
+      "reference": "About 11 (approx. $3M total)",
+      "answer": "NEH anticipates awarding approximately $3,000,000 in total funding to an estimated 11 recipients.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9999043941497803,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "NEH anticipates awarding approximately $3,000,000 in total funding to an estimated 11 recipients.",
+          "verified": true,
+          "title": "National Digital Newspaper Program",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 8,
+          "opportunity_id": 364030
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1824,
+        "generation": 13899,
+        "total": 15872
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact(s) as reference, with minor wording difference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q056",
+      "type": "answerable",
+      "category": "format",
+      "question": "What is the page limit for the narrative in a National Digital Newspaper Program application?",
+      "reference": "15 pages (mandatory)",
+      "answer": "15 single-spaced pages",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9992063641548157,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "limit the narrative to 15 single-spaced pages",
+          "verified": true,
+          "title": "National Digital Newspaper Program",
+          "section": "D. Application Contents > 2. Application Elements > Attachment 1: Narrative (required)",
+          "page": 11,
+          "opportunity_id": 364030
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2038,
+        "generation": 10833,
+        "total": 13016
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q057",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the maximum award for a Chairman's Special Award under NEH Public Humanities Projects?",
+      "reference": "$2,000,000",
+      "answer": "The maximum award for a Chairman's Special Award under NEH Public Humanities Projects is up to $2,000,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9984304308891296,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applicants proposing ambitious projects of exceptional significance and impact may apply for a Chairman\u2019s Special Award of up to $2,000,000.",
+          "verified": true,
+          "title": "Public Humanities Projects",
+          "section": "A. Program Description > 1. Purpose > Funding levels > Chairman\u2019s Special Award",
+          "page": 7,
+          "opportunity_id": 364098
+        },
+        {
+          "passage": 3,
+          "quote": "You may request up to $75,000 for Planning, up to $500,000 for Implementation, or up to $2,000,000 for a Chairman\u2019s Special Award,",
+          "verified": true,
+          "title": "Public Humanities Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 10,
+          "opportunity_id": 364098
+        },
+        {
+          "passage": 5,
+          "quote": "Implementation awards range from up to $100,000 to $500,000, or up to $2,000,000 for a Chairman\u2019s Special Award,",
+          "verified": true,
+          "title": "Public Humanities Projects",
+          "section": "A. Program Description > 1. Purpose > Funding levels > Implementation",
+          "page": 7,
+          "opportunity_id": 364098
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1862,
+        "generation": 21004,
+        "total": 23249
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the same maximum award amount as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q058",
+      "type": "answerable",
+      "category": "allowable",
+      "question": "Are strategic planning or feasibility studies fundable under NEH Public Humanities Projects?",
+      "reference": "No, listed as a funding restriction",
+      "answer": "No, strategic planning or feasibility studies are not fundable under NEH Public Humanities Projects.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9995402097702026,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "strategic planning or feasibility studies projects that satisfy requirements for educational degrees or formal professional training",
+          "verified": true,
+          "title": "Public Humanities Projects",
+          "section": "A. Program Description > 2. Funding Restrictions",
+          "page": 9,
+          "opportunity_id": 364098
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2026,
+        "generation": 13932,
+        "total": 16130
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with slightly different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q059",
+      "type": "answerable",
+      "category": "amount",
+      "question": "How much can I request for production of a documentary film from NEH Media Projects?",
+      "reference": "Up to $700,000",
+      "answer": "You may request up to $700,000 for Production of a documentary film, inclusive of both direct and indirect costs.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997037053108215,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "up to $700,000 for Production of a documentary film, inclusive of both direct and indirect costs.",
+          "verified": true,
+          "title": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 7,
+          "opportunity_id": 361558
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2398,
+        "generation": 12449,
+        "total": 14947
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the same key fact as the reference, with minor wording differences."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q060",
+      "type": "answerable",
+      "category": "allowable",
+      "question": "Does NEH Media Projects fund creative writing or memoirs?",
+      "reference": "No, listed as restricted",
+      "answer": "No, NEH Media Projects does not fund creative writing or memoirs.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9958386421203613,
+      "citations": [
+        {
+          "passage": 3,
+          "quote": "creative writing, autobiographies, memoirs, and creative nonfiction",
+          "verified": true,
+          "title": "Media Projects",
+          "section": "A. Program Description > 2. Funding Restrictions",
+          "page": 7,
+          "opportunity_id": 361558
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1694,
+        "generation": 10835,
+        "total": 12625
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with slightly different wording"
+      },
+      "faithfulness": {
+        "supported": false,
+        "unsupported_claim": "No, NEH Media Projects does not fund creative writing or memoirs."
+      }
+    },
+    {
+      "id": "q061",
+      "type": "answerable",
+      "category": "allowable",
+      "question": "Are indirect costs allowed in the USDA AgrAbility (Assistive Technology Program for Farmers with Disabilities) grants?",
+      "reference": "No",
+      "answer": "Indirect costs are not allowed.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9965062141418457,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "No Indirect Cost (IDC). IDC is not authorized for this NOFO.",
+          "verified": true,
+          "title": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > C. Funding Restrictions",
+          "page": 23,
+          "opportunity_id": 362043
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1790,
+        "generation": 11695,
+        "total": 13627
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q062",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the maximum state award per year for the USDA AgrAbility program?",
+      "reference": "$180,000 per year",
+      "answer": "The maximum state award per year for the USDA AgrAbility program is $180,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9600314497947693,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Maximum State Award Amount: $180,000 per year",
+          "verified": true,
+          "title": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > Title Description",
+          "page": 10,
+          "opportunity_id": 362043
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2404,
+        "generation": 10076,
+        "total": 12682
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same maximum state award per year."
+      },
+      "faithfulness": {
+        "supported": false,
+        "unsupported_claim": "the USDA AgrAbility program"
+      }
+    },
+    {
+      "id": "q063",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "What match does the USDA Beginning Farmer and Rancher Development Program require?",
+      "reference": "25% of grant funds, cash or in-kind (waivable for underserved)",
+      "answer": "The USDA Beginning Farmer and Rancher Development Program requires a match of 25 percent of the funds provided by the grant or cooperative agreement.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9988228678703308,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applicants MUST provide match from nonfederal sources in the form of cash or in-kind contribution in an amount equal to 25 percent of the funds provided by the grant or cooperative agreement.",
+          "verified": true,
+          "title": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Cost Sharing or Matching",
+          "page": 18,
+          "opportunity_id": 362376
+        },
+        {
+          "passage": 4,
+          "quote": "to be eligible to receive a grant or enter into a cooperative agreement under this subsection, a recipient or participant shall provide a match in the form of cash or in-kind contributions in an amount equal to 25 percent of the funds provided by the grant or cooperative agreement.",
+          "verified": true,
+          "title": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > (A) In general",
+          "page": 18,
+          "opportunity_id": 362376
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2115,
+        "generation": 16147,
+        "total": 18707
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Matches key fact about 25% match requirement and mentions cash or in-kind, with correct note about waiver for underserved"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q064",
+      "type": "answerable",
+      "category": "deadline",
+      "question": "What project start date should FY2026 Beginning Farmer and Rancher Development Program applications list?",
+      "reference": "September 15, 2026",
+      "answer": "September 15, 2026",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997705817222595,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "All applications for FY 2026 should list September 15, 2026, as the project starting date.",
+          "verified": true,
+          "title": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Application Restrictions",
+          "page": 15,
+          "opportunity_id": 362376
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1761,
+        "generation": 9944,
+        "total": 11909
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated as reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q065",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Can an organization that received a Beginning Farmer and Rancher standard grant in FY2024 apply in FY2026?",
+      "reference": "No",
+      "answer": "No, an organization that received a Beginning Farmer and Rancher standard grant in FY2024 is ineligible to apply in FY2026.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9985837936401367,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "organizations and institutions that have received a regular standard or education team grant in the last funding cycle (FY 2024) are ineligible to apply.",
+          "verified": true,
+          "title": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > A. Eligibility Requirements",
+          "page": 17,
+          "opportunity_id": 362376
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1544,
+        "generation": 14805,
+        "total": 16555
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that the organization is ineligible to apply in FY2026."
+      },
+      "faithfulness": {
+        "supported": false,
+        "unsupported_claim": "an organization that received a Beginning Farmer and Rancher standard grant in FY2024 is ineligible to apply in FY2026"
+      }
+    },
+    {
+      "id": "q066",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Can for-profit businesses apply for USDA Community Food Projects grants?",
+      "reference": "No",
+      "answer": "For-profit entities are not eligible to apply for this program.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9983568787574768,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "Individuals and for-profit entities are not eligible to apply for this program.",
+          "verified": true,
+          "title": "Community Food Projects Competitive Grants Program",
+          "section": "Notice of Funding Opportunity > Community Food Projects Competitive Grants Program > ANNOUNCEMENT > Community Food Project and Planning Project Eligibility",
+          "page": 14,
+          "opportunity_id": 362816
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2513,
+        "generation": 10009,
+        "total": 12713
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, just different wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q067",
+      "type": "answerable",
+      "category": "allowable",
+      "question": "Can Federally Recognized Tribes Extension Program funds pay for meals?",
+      "reference": "No, except to maintain the continuity of a meeting",
+      "answer": "Meals are not permitted, except when provided to maintain the continuity of a meeting.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.99710613489151,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "b. Meals (except when provided to maintain the continuity of a meeting)",
+          "verified": true,
+          "title": "Federally Recognized Tribes Extension Program",
+          "section": "Notice of Funding Opportunity > Federally Recognized Tribes Extension Program > ANNOUNCEMENT > C. Funding Restrictions",
+          "page": 16,
+          "opportunity_id": 362018
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1878,
+        "generation": 13727,
+        "total": 16090
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q068",
+      "type": "answerable",
+      "category": "amount",
+      "question": "How many awards does NIFA anticipate for the Enhancing Agricultural Opportunities for Military Veterans (AgVets) program?",
+      "reference": "3-4",
+      "answer": "NIFA anticipates 3-4 awards for the Enhancing Agricultural Opportunities for Military Veterans (AgVets) program.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9990376234054565,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Anticipated # of Awards: 3-4",
+          "verified": true,
+          "title": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description",
+          "page": 7,
+          "opportunity_id": 363139
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1684,
+        "generation": 10766,
+        "total": 12578
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same number of anticipated awards as the reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q069",
+      "type": "answerable",
+      "category": "allowable",
+      "question": "What is the indirect cost limit for the USDA Special Research Grants Program for Aquaculture Research?",
+      "reference": "30% of total federal funds awarded",
+      "answer": "The indirect cost limit is 30 percent of the recipient\u2019s Total Federal Funds Awarded (TFFA).",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9966153502464294,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Indirect Cost (IDC) is not to exceed 30 percent of the recipient\u2019s Total Federal Funds Awarded (TFFA).",
+          "verified": true,
+          "title": "Special Research Grants Program for Aquaculture Research",
+          "section": "Notice of Funding Opportunity > Special Research Grants Program for Aquaculture Research > ANNOUNCEMENT > C. Funding Restrictions",
+          "page": 16,
+          "opportunity_id": 362397
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1095,
+        "generation": 15438,
+        "total": 16683
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same wording and detail as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q070",
+      "type": "answerable",
+      "category": "cost_share",
+      "question": "What matching does the USDA Specialty Crop Research Initiative require?",
+      "reference": "Dollar-for-dollar (100%)",
+      "answer": "The USDA Specialty Crop Research Initiative requires a dollar-for-dollar match from nonfederal sources.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9985364675521851,
+      "citations": [
+        {
+          "passage": 3,
+          "quote": "the recipient of an award from the SCRI program must provide funds, in-kind contributions, or a combination of both, from sources other than funds provided through such grant in an amount that is at least equal to the amount awarded by NIFA.",
+          "verified": true,
+          "title": "Specialty Crop Research Initiative",
+          "section": "Notice of Funding Opportunity > Pre-Applications > B. Cost Sharing or Matching",
+          "page": 14,
+          "opportunity_id": 361873
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1762,
+        "generation": 15517,
+        "total": 17407
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, just different wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q071",
+      "type": "answerable",
+      "category": "deadline",
+      "question": "What time are Specialty Crop Research Initiative pre-applications due?",
+      "reference": "5:00 PM ET, June 15, 2026",
+      "answer": "5:00 P.M. Eastern Time, June 15, 2026",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9993996620178223,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "5:00 P.M. Eastern Time, June 15, 2026",
+          "verified": true,
+          "title": "Specialty Crop Research Initiative",
+          "section": "Notice of Funding Opportunity > Pre-Applications > Task Description Deadline",
+          "page": 2,
+          "opportunity_id": 361873
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1060,
+        "generation": 12077,
+        "total": 13259
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact and wording as the reference answer"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q072",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "Who is eligible for the USDA SBIR/STTR Phase II program?",
+      "reference": "Only SBIR/STTR Phase I recipients",
+      "answer": "Only prior Phase I grant recipients are eligible to apply.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9988510608673096,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "This solicitation is only for SBIR/STTR Phase II applications, and only prior Phase I grant recipients are eligible to apply.",
+          "verified": true,
+          "title": "Small Business Innovation Research and Small Business Technology Transfer Programs Phase II",
+          "section": "Notice of Funding Opportunity > Programs Phase II > B. Purpose and Priorities",
+          "page": 7,
+          "opportunity_id": 364020
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1646,
+        "generation": 11491,
+        "total": 13432
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with slightly different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q073",
+      "type": "answerable",
+      "category": "eligibility",
+      "question": "What is the maximum number of employees for a USDA SBIR/STTR recipient?",
+      "reference": "500 employees including affiliates",
+      "answer": "500 employees",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9950491786003113,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "An SBIR/STTR recipient, combined with its affiliates, must not have more than 500 employees.",
+          "verified": true,
+          "title": "Small Business Innovation Research and Small Business Technology Transfer Programs Phase II",
+          "section": "Notice of Funding Opportunity > Programs Phase II > Size",
+          "page": 19,
+          "opportunity_id": 364020
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1770,
+        "generation": 11584,
+        "total": 13653
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q074",
+      "type": "answerable",
+      "category": "discovery",
+      "question": "Which grant program helps states and tribes compensate ranchers for livestock killed by wolves?",
+      "reference": "FWS Wolf Livestock Loss Compensation and Prevention (F26AS00088)",
+      "answer": "The Wolf Livestock Loss Demonstration Project Grant Program",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9993675351142883,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The program prioritizes assistance to producers experiencing livestock losses resulting from wolf depredation and supports proactive measures to reduce future losses.",
+          "verified": true,
+          "title": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation and Prevention",
+          "section": "PROGRAM OVERVIEW > Program Description",
+          "page": 6,
+          "opportunity_id": 364133
+        },
+        {
+          "passage": 3,
+          "quote": "Depredation compensation funding reimburses livestock producers for losses resulting from confirmed or probable wolf depredation events.",
+          "verified": true,
+          "title": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation and Prevention",
+          "section": "BASIC INFORMATION > Executive Summary",
+          "page": 4,
+          "opportunity_id": 364133
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2201,
+        "generation": 12333,
+        "total": 14712
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States and tribes are compensated for livestock killed by wolves, matching the reference answer's key fact."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q075",
+      "type": "answerable",
+      "category": "discovery",
+      "question": "Is there a federal grant that funds pumpout stations for recreational boats?",
+      "reference": "Yes, the FWS Clean Vessel Act grant program",
+      "answer": "The Clean Vessel Act (CVA) grant funds pumpout stations for recreational boats.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9953795671463013,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Congress authorized the Clean Vessel Act Grant Program to provide cost sharing awards to designated agencies of the States, Territories, Commonwealths, and the District of Columbia for the construction, renovation, operation, and maintenance of pumpout stations and waste reception facilities for recreational vessels.",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Goals",
+          "page": 6,
+          "opportunity_id": 362055
+        },
+        {
+          "passage": 3,
+          "quote": "2. Construction, renovation, operation, and maintenance of pumpout and dump stations, including floating restrooms in the water that are not connected to land or structures connected to the land and are used solely by boaters.",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Description",
+          "page": 7,
+          "opportunity_id": 362055
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1955,
+        "generation": 17220,
+        "total": 19358
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with slightly different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q076",
+      "type": "answerable",
+      "category": "discovery",
+      "question": "Which program gives health professions schools money for scholarships for students from disadvantaged backgrounds?",
+      "reference": "HRSA Scholarships for Disadvantaged Students (SDS)",
+      "answer": "The Scholarships for Disadvantaged Students (SDS) program gives health professions schools money for scholarships for students from disadvantaged backgrounds.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997218251228333,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "providing awards to eligible health professions schools for use in awarding scholarships to students from disadvantaged backgrounds who have a financial need.",
+          "verified": true,
+          "title": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Program description > Purpose",
+          "page": 3,
+          "opportunity_id": 361429
+        },
+        {
+          "passage": 2,
+          "quote": "SDS scholarships help reduce financial obstacles for students from disadvantaged backgrounds,",
+          "verified": true,
+          "title": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Program description > Background",
+          "page": 7,
+          "opportunity_id": 361429
+        },
+        {
+          "passage": 4,
+          "quote": "From a disadvantaged background, which can be met by showing the student is from an economically, educationally or geographically vulnerable background",
+          "verified": true,
+          "title": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Trainee eligibility",
+          "page": 6,
+          "opportunity_id": 361429
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2149,
+        "generation": 12362,
+        "total": 15022
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q077",
+      "type": "answerable",
+      "category": "discovery",
+      "question": "Are there grants that help farmers and ranchers with disabilities?",
+      "reference": "USDA AgrAbility (Assistive Technology Program for Farmers with Disabilities)",
+      "answer": "Yes, the Assistive Technology Program for Farmers with Disabilities (AgrAbility) grant helps farmers and ranchers with disabilities.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9699768424034119,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "AgrAbility customers are individuals with disabilities, including veterans, who are engaged in farming ranching, and farm-related occupations and their families.",
+          "verified": true,
+          "title": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > EXECUTIVE SUMMARY",
+          "page": 4,
+          "opportunity_id": 362043
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2123,
+        "generation": 14762,
+        "total": 17057
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "System answer accurately states the name of the grant program."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q078",
+      "type": "answerable",
+      "category": "discovery",
+      "question": "Which EPA program helps prepare schools and community buildings for wildfire smoke?",
+      "reference": "EPA Wildfire Smoke Preparedness in Community Buildings",
+      "answer": "The EPA program that helps prepare schools and community buildings for wildfire smoke is the Wildfire Smoke Preparedness in Community Buildings program.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9994059801101685,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "This program provides grants to states, federally recognized Tribes, public pre-schools, local educational agencies, and non-profit organizations for the assessment, prevention, control, or abatement of wildfire smoke hazards in community buildings and related activities.",
+          "verified": true,
+          "title": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Basic Information > A. Executive Summary:",
+          "page": 4,
+          "opportunity_id": 361217
+        },
+        {
+          "passage": 3,
+          "quote": "The EPA is requesting applications to conduct research, demonstrations, technical assistance, training, education and/or outreach projects that seek to improve public health protection against smoke from wildfires by enhancing preparedness in community buildings.",
+          "verified": true,
+          "title": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Program Description > A. Purpose, Priorities, and Activities",
+          "page": 7,
+          "opportunity_id": 361217
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1657,
+        "generation": 15987,
+        "total": 17986
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q079",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "What is the deadline for the NSF CAREER program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from National Science Foundation (NSF). I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1,
+        "total": 1
+      }
+    },
+    {
+      "id": "q080",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "How much does an NIH R01 grant provide per year?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from National Institutes of Health (NIH). I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "q081",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "What are the eligibility rules for the Department of Energy SBIR program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Energy. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "q082",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "Does the Gates Foundation fund malaria vaccine research?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find anything relevant to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "no_passages",
+      "top_score": 0.0008255009888671339,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2074,
+        "total": 2074
+      }
+    },
+    {
+      "id": "q083",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "When is the deadline for Fulbright student grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find anything relevant to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "no_passages",
+      "top_score": 0.002988475142046809,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1046,
+        "total": 1046
+      }
+    },
+    {
+      "id": "q084",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "What is the award ceiling for the EPA Region 3 Wetland Program Development Grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.2563748359680176,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1006,
+        "generation": 22876,
+        "total": 23882
+      }
+    },
+    {
+      "id": "q085",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "When is the FY2028 Tribal Wildlife Grants deadline?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find anything relevant to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "no_passages",
+      "top_score": 0.02960135042667389,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1961,
+        "total": 1961
+      }
+    },
+    {
+      "id": "q086",
+      "type": "unanswerable",
+      "category": "not_in_document",
+      "question": "What was the success rate for NEH Media Projects applications last year?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.9368129372596741,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 897,
+        "generation": 11556,
+        "total": 12452
+      }
+    },
+    {
+      "id": "q087",
+      "type": "unanswerable",
+      "category": "not_in_document",
+      "question": "Does the Clean Vessel Act program fund electric boat charging stations?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.9893486499786377,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2378,
+        "generation": 10591,
+        "total": 12969
+      }
+    },
+    {
+      "id": "q088",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "Which grants fund NASA space exploration research?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from NASA. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 7,
+        "total": 7
+      }
+    },
+    {
+      "id": "q089",
+      "type": "unanswerable",
+      "category": "not_in_document",
+      "question": "Which organizations received Prescott Marine Mammal Rescue grants last year?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.8088794350624084,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2117,
+        "generation": 18504,
+        "total": 20621
+      }
+    },
+    {
+      "id": "q090",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "What is the maximum award from the DOE Solar Energy Technologies Office?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Energy. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1,
+        "total": 1
+      }
+    },
+    {
+      "id": "q091",
+      "type": "answerable",
+      "category": "amount",
+      "question": "What is the maximum scholarship amount per student under HRSA Scholarships for Disadvantaged Students?",
+      "reference": "$50,000 per academic year for dental students; $40,000 for all other health professions and nursing students",
+      "answer": "The maximum scholarship amount per student under HRSA Scholarships for Disadvantaged Students is $50,000 per academic year for dental students and $40,000 per academic year for all other health professions and nursing students.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9913026094436646,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "\u2022 Student scholarships must not exceed: o $50,000 per academic year for dental students. o $40,000 per academic year for all other health professions and nursing students.",
+          "verified": true,
+          "title": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Program description > Scholarship requirements",
+          "page": 8,
+          "opportunity_id": 361429
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2066,
+        "generation": 14600,
+        "total": 16888
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Matches the reference answer exactly."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "q092",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "How much funding does the Department of Education TRIO program offer?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Education. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2,
+        "total": 2
+      }
+    },
+    {
+      "id": "q093",
+      "type": "unanswerable",
+      "category": "out_of_corpus",
+      "question": "What are the requirements for AmeriCorps State and National grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from AmeriCorps. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    }
+  ]
+}

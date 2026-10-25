@@ -181,3 +181,62 @@ Takeaways: retrieval transfers exactly; the hosted FP8 model refuses trick quest
 local 4-bit build (3 answered vs 1). The dominant failure is **entity mismatch** (right-looking quote from the
 wrong grant/program). A next step would be a check that the cited grant matches the program named in the
 question, validated on a fresh set of questions rather than tuned on this one.
+
+## Wrong-grant fix (scope by agency / named grant), 2026-10-25
+
+**Problem:** the quote check proves a quote is real, not that it comes from the program asked about.
+Examples: an NIH question answered with a HRSA nursing grant's "$750,000 per year" (q080); DOE SBIR
+answered with USDA's rules (q081); the $230,000 of "Landmarks of *American* History..." given for
+"Landmarks of History..." (q051).
+
+**Fix (`app/scope.py`, ported to `worker/src/scope.ts`):** before searching,
+1. if the question names a federal agency (dictionary of ~25 major funders, acronyms matched
+   case-sensitively), search only that agency's grants; if it names only agencies with no grants in
+   the corpus, refuse immediately and list the agencies we do have;
+2. if the question contains a grant title (>= 75% of the title's words, **in order**), search only the
+   most specific matching grant.
+
+**Method:** a new **holdout set** (`eval/holdout.csv`, 35 questions: 16 look-alike grants, 6 regular,
+13 agencies/programs not in the corpus) was written and committed (c834f95) **before** the fix code,
+and the unfixed system was measured on it first. While building the fix, the original set exposed one
+bug (q006: "...pumpout facilities ... Clean Vessel Act" matched the unrelated "Research Facilities Act
+Program"); order-aware title matching fixed it. The holdout was not used for any design decision.
+Python and TypeScript scope decisions were checked identical on all 128 questions.
+
+| Holdout (35 new questions), local | Before fix | **After fix** |
+|---|---|---|
+| Unanswerable refused | 84.6% (11/13) | **92.3% (12/13)** |
+| Answerable answered | 90.9% (20/22) | 90.9% (20/22) |
+| Correct of answered (judge) | 95.0% (19/20) | 95.0% (19/20) |
+| Faithful of answered (judge) | 100% (20/20) | 100% (20/20) |
+| Retrieval recall@5 | 90.9% | 90.9% |
+| Median answer latency | 9.3 s | 5.3 s |
+
+| Original set (93), local | Before (v2, reviewed) | **After (reviewed)** |
+|---|---|---|
+| Unanswerable refused | 92.9% (13/14) | **100% (14/14)** |
+| Answerable answered | 93.7% (74/79) | 93.7% (74/79) |
+| Correct of answered | 95.9% (71/74) | **98.6% (73/74)** (q051 fixed; q027 still misleading) |
+| Faithful of answered | 98.6% (73/74) | 98.6% (73/74) (q027) |
+| Retrieval recall@5 / recall@1 | 89.9% / 64.6% | 94.9% / 70.9%* |
+
+*The original set was used to find the q006 bug, so treat its gains as optimistic; the holdout is the
+clean measurement.
+
+| Live site, after fix | Result |
+|---|---|
+| Holdout: unanswerable refused | 92.3% (12/13) |
+| Holdout: answered / correct / faithful | 20/22 answered, 19/20 correct (judge), 20/20 faithful |
+| Previously failing live questions (q029, q051, q080, q081, q087) | **4 of 5 fixed**: q080/q081 refused ("My documents don't include grants from..."), q051 now $460,000 from the right NOFO, q029 now lists exactly the PDF's states |
+
+The full 93-question live run was not repeated after the fix, to stay within the Workers AI free daily
+allowance.
+
+**Still failing:**
+- **h035 "NEH Summer Stipends":** the agency (NEH) is in the corpus but that program isn't, so the
+  agency filter keeps NEH grants and the model quotes another NEH program's "$5,000 per month".
+  The scope check can't tell "a program we don't have" from "a program named loosely".
+- **q087 "Clean Vessel Act electric charging":** inferred "No" from what the eligible-activity list omits.
+- **q027:** turns "cost sharing may be waived for..." into a misleading "No...".
+- The agency dictionary only covers major funders; a question naming an agency outside it falls back to
+  the old behavior.

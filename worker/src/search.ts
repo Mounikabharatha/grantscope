@@ -19,6 +19,8 @@ export interface Filters {
   agency?: string;
   minAward?: number;
   openOn?: string; // YYYY-MM-DD
+  agencyCodes?: string[]; // set by scope.ts from the question
+  opportunityIds?: number[]; // set by scope.ts from the question
 }
 
 export interface Hit {
@@ -47,7 +49,12 @@ function filterSql(sql: Sql, f: Filters) {
   return sql`
     ${f.agency ? sql`AND d.agency_code = ${f.agency}` : sql``}
     ${f.minAward != null ? sql`AND d.award_ceiling >= ${f.minAward}` : sql``}
-    ${f.openOn ? sql`AND d.close_date >= ${f.openOn}::date` : sql``}`;
+    ${f.openOn ? sql`AND d.close_date >= ${f.openOn}::date` : sql``}
+    ${f.agencyCodes?.length ? sql`AND d.agency_code = ANY(string_to_array(${f.agencyCodes.join(",")}, ','))` : sql``}
+    ${f.opportunityIds?.length
+      ? sql`AND d.opportunity_id = ANY(string_to_array(${f.opportunityIds.join(",")}, ',')::bigint[])` : sql``}`;
+// Lists go in as comma-joined text: with fetch_types off, postgres.js can't serialize JS arrays
+// ("malformed array literal"). Agency codes and ids never contain commas.
 }
 
 export async function embedQuery(ai: Ai, query: string): Promise<string> {

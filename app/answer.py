@@ -23,6 +23,7 @@ import psycopg
 
 from app.evaluation import find_quote_page, normalize
 from app.llm import MODEL, chat, parse_json
+from app.scope import scope_question, scoped_filters
 from app.search import Filters, search
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -81,13 +82,14 @@ class Answer:
     question: str
     answer: str
     refused: bool
-    refusal_reason: str | None = None  # no_passages | not_answerable | unverified
+    refusal_reason: str | None = None  # out_of_scope | no_passages | not_answerable | unverified
     citations: list[Citation] = field(default_factory=list)
     dropped_citations: list[Citation] = field(default_factory=list)
     passages: list[dict] = field(default_factory=list)
     top_score: float | None = None
     timings_ms: dict = field(default_factory=dict)
     model: str = MODEL
+    scope: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -134,13 +136,22 @@ def answer_question(
 ) -> Answer:
     timings = {}
     start = time.perf_counter()
-    passages = search(conn, question, chunk_set, TOP_K, filters, method="hybrid_rerank")
+    # Restrict the search to the agency/grant the question names (or refuse if it only names
+    # agencies we have no grants from); see app/scope.py.
+    scope = scope_question(conn, question)
+    scope_info = {"agencies": scope.agencies, "agency_codes": scope.agency_codes,
+                  "opportunity_ids": scope.opportunity_ids}
+    if scope.refusal:
+        timings["retrieval"] = round((time.perf_counter() - start) * 1000)
+        return Answer(question, scope.refusal, True, "out_of_scope", timings_ms=timings, scope=scope_info)
+
+    passages = search(conn, question, chunk_set, TOP_K, scoped_filters(filters, scope), method="hybrid_rerank")
     timings["retrieval"] = round((time.perf_counter() - start) * 1000)
     top_score = passages[0]["score"] if passages else None
 
     if not passages or top_score < MIN_RERANK_SCORE:
         return Answer(question, REFUSAL_NO_PASSAGES, True, "no_passages",
-                      passages=passages, top_score=top_score, timings_ms=timings)
+                      passages=passages, top_score=top_score, timings_ms=timings, scope=scope_info)
 
     start = time.perf_counter()
     raw = chat([
@@ -156,14 +167,14 @@ def answer_question(
     answer_text = str(out.get("answer", "")).strip()
     if not out.get("answerable") or not answer_text or is_non_answer(answer_text):
         return Answer(question, REFUSAL_NOT_ANSWERABLE, True, "not_answerable",
-                      passages=passages, top_score=top_score, timings_ms=timings)
+                      passages=passages, top_score=top_score, timings_ms=timings, scope=scope_info)
 
     checked = [verify(c, passages) for c in out.get("citations") or [] if isinstance(c, dict)]
     good = [c for c in checked if c.verified]
     bad = [c for c in checked if not c.verified]
     if not good:
         return Answer(question, REFUSAL_UNVERIFIED, True, "unverified", dropped_citations=bad,
-                      passages=passages, top_score=top_score, timings_ms=timings)
+                      passages=passages, top_score=top_score, timings_ms=timings, scope=scope_info)
 
     return Answer(question, answer_text, False, citations=good, dropped_citations=bad,
-                  passages=passages, top_score=top_score, timings_ms=timings)
+                  passages=passages, top_score=top_score, timings_ms=timings, scope=scope_info)

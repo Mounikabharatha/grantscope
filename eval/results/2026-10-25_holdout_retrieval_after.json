@@ -1,0 +1,548 @@
+[
+  {
+    "chunk_set": "section_300",
+    "method": "hybrid_rerank",
+    "name": "section_300/hybrid_rerank",
+    "n_questions": 22,
+    "recall": {
+      "1": 0.6363636363636364,
+      "3": 0.9090909090909091,
+      "5": 0.9090909090909091,
+      "10": 0.9090909090909091,
+      "20": 0.9545454545454546
+    },
+    "mrr": 0.7617079889807162,
+    "grant_at_5": 1.0,
+    "recall5_by_category": {
+      "lookalike": [
+        0.9375,
+        16
+      ],
+      "regular": [
+        0.8333333333333334,
+        6
+      ]
+    },
+    "latency_ms": {
+      "median": 1154.4847289915197,
+      "p95": 1254.3092080159113
+    },
+    "per_question": [
+      {
+        "id": "h001",
+        "category": "lookalike",
+        "question": "What is the maximum award for the NEH Landmarks of American History and Culture and Summer Institutes program?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Landmarks of American History and Culture and Summer Institutes",
+          "section": "Executive Summary"
+        }
+      },
+      {
+        "id": "h002",
+        "category": "lookalike",
+        "question": "How much can I request for a one-week project under the NEH Landmarks of History and Culture and Summer Institutes (December 9, 2026 deadline)?",
+        "rank": 2,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "Landmarks of American History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "h003",
+        "category": "lookalike",
+        "question": "How much total funding is available for the EPA Region 5 Wetland Program Development Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 5 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 5 Fiscal Year 2025 Wetland Program Development Grants > Basic Information > B. Key Information: > EPA-REG5-WPDG-25"
+        }
+      },
+      {
+        "id": "h004",
+        "category": "lookalike",
+        "question": "How many awards does EPA Region 10 expect to make under its FY2025 Wetland Program Development Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 10 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 10 Fiscal Year 2025 Wetland Program Development Grants > Basic Information > D. Funding Details:"
+        }
+      },
+      {
+        "id": "h005",
+        "category": "lookalike",
+        "question": "What is the funding range per award for the HRSA RCORP-Impact program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Communities Opioid Response Program (RCORP)-Impact",
+          "section": "Impact > Review the Opportunity > Basic Information > Funding details"
+        }
+      },
+      {
+        "id": "h006",
+        "category": "lookalike",
+        "question": "What match does the NAWCA Mexico grants program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00003 - NAWCA 2026 Mexico Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "h007",
+        "category": "lookalike",
+        "question": "What is the award floor for the NAWCA 2027-1 US Standard Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F27AS00008-NAWCA 2027-1 US Standard Grants",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "h008",
+        "category": "lookalike",
+        "question": "What cost share does the NAWCA 2026-2 US Standard Grants program require?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00026-NAWCA 2026-2 US Standard Grants",
+          "section": "BASIC INFORMATION > Executive Summary"
+        }
+      },
+      {
+        "id": "h009",
+        "category": "lookalike",
+        "question": "What is the award ceiling for the Aquatic Invasive Species Grants to Great Lakes Tribes?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00084 Aquatic Invasive Species Grants to Great Lakes Tribes - Fiscal Year 2",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "h010",
+        "category": "lookalike",
+        "question": "How many awards will HRSA make for the Strategies to Link, Engage, and Retain Men with HIV in Care: Evaluation Provider?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Strategies to Link, Engage, and Retain Men with HIV in Care: Evaluation Provider",
+          "section": "Step 1: Review the Opportunity > Basic information > Summary"
+        }
+      },
+      {
+        "id": "h011",
+        "category": "lookalike",
+        "question": "Is cost sharing required for the Strategies to Link, Engage, and Retain Men with HIV in Care: Implementation Technical Assistance Provider?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Strategies to Link, Engage, and Retain Men with HIV in Care: Implementation Tech",
+          "section": "Step 1: Review the Opportunity > Eligibility > Cost sharing"
+        }
+      },
+      {
+        "id": "h012",
+        "category": "lookalike",
+        "question": "What is the maximum for workshop grants under the USDA Tribal Colleges Research Grants Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Tribal Colleges Research Grants Program",
+          "section": "Notice of Funding Opportunity > Tribal Colleges Research Grants Program > C. Project and Grant Types"
+        }
+      },
+      {
+        "id": "h013",
+        "category": "lookalike",
+        "question": "What is the maximum award for the USDA Gus Schumacher Produce Prescription Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "The Gus Schumacher Nutrition Incentive Program Produce Prescription Program",
+          "section": "NOTICE OF FUNDING OPPORTUNITY > Produce Prescription Program > Title Description"
+        }
+      },
+      {
+        "id": "h014",
+        "category": "lookalike",
+        "question": "What cost share is required for the Highlands Conservation Act Base Funding Round?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F25AS00379 Highlands Conservation Act - Base Funding Round",
+          "section": "PREPARE YOUR APPLICATION > Application Documents > Budget Narrative"
+        }
+      },
+      {
+        "id": "h015",
+        "category": "lookalike",
+        "question": "How much funding is expected for the EPA Great Lakes Biology Monitoring Program zooplankton, Mysis, and benthic invertebrate award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Great Lakes Biology Monitoring Program: Zooplankton, Mysis, and Benthic Inverteb",
+          "section": "Great Lakes Biology Monitoring Program: Zooplankton, Mysis, and Benthic Invertebrate Components > Basic Information > D. Funding Details:"
+        }
+      },
+      {
+        "id": "h016",
+        "category": "lookalike",
+        "question": "What is the minimum non-Federal cost share for the Cooperative Endangered Species Conservation Fund Habitat Conservation Planning grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00071 Cooperative Endangered Species Conservation Fund: Habitat Conservatio",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "h017",
+        "category": "regular",
+        "question": "What is the funding range per award for the EPA Technical Assistance and Training for Rural, Small and Tribal Municipalities grants?",
+        "rank": 11,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Technical Assistance and Training for Rural, Small and Tribal Municipalities and",
+          "section": "Technical Assistance and Training for Rural, Small and Tribal Municipalities > Basic Information > F. Other Funding Considerations"
+        }
+      },
+      {
+        "id": "h018",
+        "category": "regular",
+        "question": "How much can NEH Scholarly Editions and Translations implementation awards provide?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarly Editions and Translations",
+          "section": "Executive Summary"
+        }
+      },
+      {
+        "id": "h019",
+        "category": "regular",
+        "question": "About how much will each HRSA Rural Hospital Provider Assistance Program award be?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Hospital Provider Assistance Program",
+          "section": "Step 1: Review the Opportunity > Funding details"
+        }
+      },
+      {
+        "id": "h020",
+        "category": "regular",
+        "question": "What non-federal match does the Fish and Wildlife Service Great Lakes Fish and Wildlife Restoration Act program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00062: Great Lakes Fish and Wildlife Restoration Act FY 2026",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "h021",
+        "category": "regular",
+        "question": "What cost share does the USDA Rural Cooperative Development Grants program require?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Cooperative Development Grants",
+          "section": "Notice of Funding Opportunity > Rural Cooperative Development Grants > ANNOUNCEMENT > B. Purpose and Priorities"
+        }
+      },
+      {
+        "id": "h022",
+        "category": "regular",
+        "question": "When does the State Department DRL Promoting Sovereignty and Rule of Law in Europe project start?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "DRL Promoting Sovereignty and Rule of Law in Europe",
+          "section": "Promoting Sovereignty and Rule of Law > Bureau of Democracy Human Rights and Labor, Department of State > Type of Funding FY 2025 Democracy Funds Anticipated project start date September 30, 2026"
+        }
+      }
+    ]
+  },
+  {
+    "chunk_set": "section_300",
+    "method": "scoped",
+    "name": "section_300/scoped",
+    "n_questions": 22,
+    "recall": {
+      "1": 0.6363636363636364,
+      "3": 0.9090909090909091,
+      "5": 0.9090909090909091,
+      "10": 0.9090909090909091,
+      "20": 0.9545454545454546
+    },
+    "mrr": 0.7541322314049588,
+    "grant_at_5": 1.0,
+    "recall5_by_category": {
+      "lookalike": [
+        0.9375,
+        16
+      ],
+      "regular": [
+        0.8333333333333334,
+        6
+      ]
+    },
+    "latency_ms": {
+      "median": 904.2028120020404,
+      "p95": 1058.7422089884058
+    },
+    "per_question": [
+      {
+        "id": "h001",
+        "category": "lookalike",
+        "question": "What is the maximum award for the NEH Landmarks of American History and Culture and Summer Institutes program?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Landmarks of American History and Culture and Summer Institutes",
+          "section": "Executive Summary"
+        }
+      },
+      {
+        "id": "h002",
+        "category": "lookalike",
+        "question": "How much can I request for a one-week project under the NEH Landmarks of History and Culture and Summer Institutes (December 9, 2026 deadline)?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Landmarks of History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "h003",
+        "category": "lookalike",
+        "question": "How much total funding is available for the EPA Region 5 Wetland Program Development Grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 5 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 5 Fiscal Year 2025 Wetland Program Development Grants > Basic Information > F. Other Funding Considerations"
+        }
+      },
+      {
+        "id": "h004",
+        "category": "lookalike",
+        "question": "How many awards does EPA Region 10 expect to make under its FY2025 Wetland Program Development Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 10 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 10 Fiscal Year 2025 Wetland Program Development Grants > Basic Information > D. Funding Details:"
+        }
+      },
+      {
+        "id": "h005",
+        "category": "lookalike",
+        "question": "What is the funding range per award for the HRSA RCORP-Impact program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Communities Opioid Response Program (RCORP)-Impact",
+          "section": "Impact > Review the Opportunity > Basic Information > Funding details"
+        }
+      },
+      {
+        "id": "h006",
+        "category": "lookalike",
+        "question": "What match does the NAWCA Mexico grants program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00003 - NAWCA 2026 Mexico Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "h007",
+        "category": "lookalike",
+        "question": "What is the award floor for the NAWCA 2027-1 US Standard Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F27AS00008-NAWCA 2027-1 US Standard Grants",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "h008",
+        "category": "lookalike",
+        "question": "What cost share does the NAWCA 2026-2 US Standard Grants program require?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00026-NAWCA 2026-2 US Standard Grants",
+          "section": "BASIC INFORMATION > Executive Summary"
+        }
+      },
+      {
+        "id": "h009",
+        "category": "lookalike",
+        "question": "What is the award ceiling for the Aquatic Invasive Species Grants to Great Lakes Tribes?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00084 Aquatic Invasive Species Grants to Great Lakes Tribes - Fiscal Year 2",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "h010",
+        "category": "lookalike",
+        "question": "How many awards will HRSA make for the Strategies to Link, Engage, and Retain Men with HIV in Care: Evaluation Provider?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Strategies to Link, Engage, and Retain Men with HIV in Care: Evaluation Provider",
+          "section": "Step 1: Review the Opportunity > Basic information > Summary"
+        }
+      },
+      {
+        "id": "h011",
+        "category": "lookalike",
+        "question": "Is cost sharing required for the Strategies to Link, Engage, and Retain Men with HIV in Care: Implementation Technical Assistance Provider?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Strategies to Link, Engage, and Retain Men with HIV in Care: Implementation Tech",
+          "section": "Step 1: Review the Opportunity > Eligibility > Cost sharing"
+        }
+      },
+      {
+        "id": "h012",
+        "category": "lookalike",
+        "question": "What is the maximum for workshop grants under the USDA Tribal Colleges Research Grants Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Tribal Colleges Research Grants Program",
+          "section": "Notice of Funding Opportunity > Tribal Colleges Research Grants Program > C. Project and Grant Types"
+        }
+      },
+      {
+        "id": "h013",
+        "category": "lookalike",
+        "question": "What is the maximum award for the USDA Gus Schumacher Produce Prescription Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "The Gus Schumacher Nutrition Incentive Program Produce Prescription Program",
+          "section": "NOTICE OF FUNDING OPPORTUNITY > Produce Prescription Program > Title Description"
+        }
+      },
+      {
+        "id": "h014",
+        "category": "lookalike",
+        "question": "What cost share is required for the Highlands Conservation Act Base Funding Round?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F25AS00379 Highlands Conservation Act - Base Funding Round",
+          "section": "APPLICATION REVIEW INFORMATION > Merit Review"
+        }
+      },
+      {
+        "id": "h015",
+        "category": "lookalike",
+        "question": "How much funding is expected for the EPA Great Lakes Biology Monitoring Program zooplankton, Mysis, and benthic invertebrate award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Great Lakes Biology Monitoring Program: Zooplankton, Mysis, and Benthic Inverteb",
+          "section": "Great Lakes Biology Monitoring Program: Zooplankton, Mysis, and Benthic Invertebrate Components > Basic Information > D. Funding Details:"
+        }
+      },
+      {
+        "id": "h016",
+        "category": "lookalike",
+        "question": "What is the minimum non-Federal cost share for the Cooperative Endangered Species Conservation Fund Habitat Conservation Planning grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00071 Cooperative Endangered Species Conservation Fund: Habitat Conservatio",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "h017",
+        "category": "regular",
+        "question": "What is the funding range per award for the EPA Technical Assistance and Training for Rural, Small and Tribal Municipalities grants?",
+        "rank": 11,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Technical Assistance and Training for Rural, Small and Tribal Municipalities and",
+          "section": "Technical Assistance and Training for Rural, Small and Tribal Municipalities > Basic Information > F. Other Funding Considerations"
+        }
+      },
+      {
+        "id": "h018",
+        "category": "regular",
+        "question": "How much can NEH Scholarly Editions and Translations implementation awards provide?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarly Editions and Translations",
+          "section": "Executive Summary"
+        }
+      },
+      {
+        "id": "h019",
+        "category": "regular",
+        "question": "About how much will each HRSA Rural Hospital Provider Assistance Program award be?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Hospital Provider Assistance Program",
+          "section": "Step 1: Review the Opportunity > Funding details"
+        }
+      },
+      {
+        "id": "h020",
+        "category": "regular",
+        "question": "What non-federal match does the Fish and Wildlife Service Great Lakes Fish and Wildlife Restoration Act program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00062: Great Lakes Fish and Wildlife Restoration Act FY 2026",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "h021",
+        "category": "regular",
+        "question": "What cost share does the USDA Rural Cooperative Development Grants program require?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Cooperative Development Grants",
+          "section": "Notice of Funding Opportunity > Rural Cooperative Development Grants > ANNOUNCEMENT > B. Purpose and Priorities"
+        }
+      },
+      {
+        "id": "h022",
+        "category": "regular",
+        "question": "When does the State Department DRL Promoting Sovereignty and Rule of Law in Europe project start?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "DRL Promoting Sovereignty and Rule of Law in Europe",
+          "section": "Promoting Sovereignty and Rule of Law > Bureau of Democracy Human Rights and Labor, Department of State > Type of Funding FY 2025 Democracy Funds Anticipated project start date September 30, 2026"
+        }
+      }
+    ]
+  }
+]

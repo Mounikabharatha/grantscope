@@ -8,6 +8,7 @@ keyword  - Postgres full-text search. Exact words win: acronyms ("DERA"),
 hybrid   - run both and merge with Reciprocal Rank Fusion (RRF): each chunk
            scores sum(1 / (60 + rank)) over the lists it appears in. RRF only
            uses ranks, so the two very different score scales never need tuning.
+scoped   - hybrid_rerank restricted to the agency/grant the question names (app/scope.py)
 *_rerank - a cross-encoder (BAAI/bge-reranker-base) reads the question and each
            candidate together and re-orders the top candidates. Slower but much
            more precise than comparing two separately computed vectors.
@@ -28,7 +29,7 @@ RRF_K = 60
 CANDIDATES = 50
 RERANK_CANDIDATES = 30
 RERANKER_MODEL = "BAAI/bge-reranker-base"  # also on Cloudflare Workers AI
-METHODS = ["vector", "keyword", "hybrid", "vector_rerank", "hybrid_rerank"]
+METHODS = ["vector", "keyword", "hybrid", "vector_rerank", "hybrid_rerank", "scoped"]
 
 COLUMNS = """c.chunk_id, c.opportunity_id, c.section, c.page_start, c.page_end, c.text,
              d.title, d.agency_code, d.award_ceiling, d.close_date, d.source_url"""
@@ -39,6 +40,8 @@ class Filters:
     agency_code: str | None = None
     min_award: int | None = None  # award ceiling at least this much
     open_on: date | None = None   # deadline on or after this date
+    agency_codes: list[str] | None = None     # set by app.scope from the question
+    opportunity_ids: list[int] | None = None  # set by app.scope from the question
 
 
 def filter_sql(filters: Filters) -> tuple[str, dict]:
@@ -52,6 +55,12 @@ def filter_sql(filters: Filters) -> tuple[str, dict]:
     if filters.open_on:
         clauses.append("d.close_date >= %(open_on)s")
         params["open_on"] = filters.open_on
+    if filters.agency_codes:
+        clauses.append("d.agency_code = ANY(%(agency_codes)s)")
+        params["agency_codes"] = filters.agency_codes
+    if filters.opportunity_ids:
+        clauses.append("d.opportunity_id = ANY(%(opportunity_ids)s)")
+        params["opportunity_ids"] = filters.opportunity_ids
     return "".join(f" AND {c}" for c in clauses), params
 
 
@@ -174,4 +183,11 @@ def search(
     if method == "hybrid_rerank":
         candidates = hybrid_search(conn, query, chunk_set, max(k, RERANK_CANDIDATES), filters)
         return rerank(query, candidates, k)
+    if method == "scoped":
+        from app.scope import scope_question, scoped_filters
+
+        scope = scope_question(conn, query)
+        if scope.refusal:
+            return []
+        return search(conn, query, chunk_set, k, scoped_filters(filters, scope), "hybrid_rerank")
     raise ValueError(f"unknown method {method!r}; choose from {METHODS}")

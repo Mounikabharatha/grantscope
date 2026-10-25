@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from app.evaluation import is_relevant, load_questions  # noqa: E402
+from app.evaluation import QUESTIONS, is_relevant, load_questions  # noqa: E402
 from evaluate_answers import CORRECTNESS_PROMPT, FAITHFULNESS_PROMPT, judge, report  # noqa: E402
 
 KS = [1, 3, 5, 10, 20]
@@ -96,11 +96,16 @@ def main() -> None:
     parser.add_argument("--methods", nargs="+", default=["vector", "hybrid_rerank"])
     parser.add_argument("--skip-answers", action="store_true")
     parser.add_argument("--skip-retrieval", action="store_true")
+    parser.add_argument("--questions", type=Path, default=QUESTIONS, help="e.g. eval/holdout.csv")
+    parser.add_argument("--ids", nargs="+", help="only these question ids")
+    parser.add_argument("--label", default="live")
     args = parser.parse_args()
     base = args.base_url.rstrip("/")
 
     print("Health:", get(base, "/health", {}))
-    questions = load_questions()
+    questions = load_questions(path=args.questions)
+    if args.ids:
+        questions = [q for q in questions if q.id in set(args.ids)]
     out: dict = {"base_url": base, "date": str(date.today())}
 
     if not args.skip_retrieval:
@@ -118,7 +123,7 @@ def main() -> None:
         out["answers"] = eval_answers(base, questions)
         report(out["answers"])
 
-    path = ROOT / "eval" / "results" / f"{date.today()}_live.json"
+    path = ROOT / "eval" / "results" / f"{date.today()}_{args.label}.json"
     path.write_text(json.dumps(out, indent=2, default=str))
     print(f"\nSaved to {path.relative_to(ROOT)}")
 

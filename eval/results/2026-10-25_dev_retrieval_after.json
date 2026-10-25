@@ -1,0 +1,1874 @@
+[
+  {
+    "chunk_set": "section_300",
+    "method": "hybrid_rerank",
+    "name": "section_300/hybrid_rerank",
+    "n_questions": 79,
+    "recall": {
+      "1": 0.6455696202531646,
+      "3": 0.8860759493670886,
+      "5": 0.8987341772151899,
+      "10": 0.9367088607594937,
+      "20": 0.9367088607594937
+    },
+    "mrr": 0.7651145268233877,
+    "grant_at_5": 1.0,
+    "recall5_by_category": {
+      "allowable": [
+        1.0,
+        7
+      ],
+      "amount": [
+        1.0,
+        15
+      ],
+      "compliance": [
+        1.0,
+        1
+      ],
+      "contact": [
+        1.0,
+        2
+      ],
+      "cost_share": [
+        0.9,
+        10
+      ],
+      "deadline": [
+        0.8333333333333334,
+        6
+      ],
+      "discovery": [
+        1.0,
+        5
+      ],
+      "eligibility": [
+        0.7894736842105263,
+        19
+      ],
+      "format": [
+        0.6666666666666666,
+        3
+      ],
+      "period": [
+        0.8,
+        5
+      ],
+      "process": [
+        1.0,
+        6
+      ]
+    },
+    "latency_ms": {
+      "median": 1068.5197500279173,
+      "p95": 1225.873666931875
+    },
+    "per_question": [
+      {
+        "id": "q001",
+        "category": "amount",
+        "question": "What is the maximum award for the Wolf Livestock Loss Compensation and Prevention grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "PROGRAM OVERVIEW > Program Description"
+        }
+      },
+      {
+        "id": "q002",
+        "category": "cost_share",
+        "question": "What percentage cost share is required for the wolf livestock loss compensation grant program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "q003",
+        "category": "eligibility",
+        "question": "Can tribal organizations that are not federally recognized tribes receive Tribal Wildlife Grants funding?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "BASIC INFORMATION > Executive Summary"
+        }
+      },
+      {
+        "id": "q004",
+        "category": "amount",
+        "question": "How many Tribal Wildlife Grants does FWS expect to award in FY2026?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "PROGRAM OVERVIEW > Program Description"
+        }
+      },
+      {
+        "id": "q005",
+        "category": "cost_share",
+        "question": "What is the maximum federal share for Clean Vessel Act grants in the continental states?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "q006",
+        "category": "allowable",
+        "question": "Is an inspection program for pumpout facilities an eligible activity under the Clean Vessel Act grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Description > Frequently Asked Questions and Answers"
+        }
+      },
+      {
+        "id": "q007",
+        "category": "contact",
+        "question": "Who should I contact with questions about the Prescott Marine Mammal Rescue and Response grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION > Have Questions?"
+        }
+      },
+      {
+        "id": "q008",
+        "category": "period",
+        "question": "What is the maximum period of performance for a Prescott Marine Mammal Rescue and Response grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "q009",
+        "category": "cost_share",
+        "question": "What match ratio does the NAWCA US Small Grants program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00007-NAWCA 2026 US Small Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "q010",
+        "category": "process",
+        "question": "Do I need to contact program staff before applying to the National Fish Passage Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00105 National Fish Passage Program",
+          "section": "SUBMISSION REQUIREMENTS AND DEADLINES > Address to Request Application Package"
+        }
+      },
+      {
+        "id": "q011",
+        "category": "eligibility",
+        "question": "Who is eligible to apply for the National Fish Passage Program?",
+        "rank": 7,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00105 National Fish Passage Program",
+          "section": "APPLICATION REVIEW INFORMATION > Review and Selection Process"
+        }
+      },
+      {
+        "id": "q012",
+        "category": "format",
+        "question": "How many pages can the proposal be for the DRL Advancing Labor Rights in the Garment Industry grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Advancing Labor Rights in the Garment Industry",
+          "section": "Advancing Labor Rights in the Garment Industry > Contents > D. Application Contents and Format > 3. Proposal (15 pages maximum)"
+        }
+      },
+      {
+        "id": "q013",
+        "category": "period",
+        "question": "How long is the performance period for the Advancing Labor Rights in the Garment Industry award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Advancing Labor Rights in the Garment Industry",
+          "section": "Advancing Labor Rights in the Garment Industry > Contents > A. Basic Information > 1. Overview"
+        }
+      },
+      {
+        "id": "q014",
+        "category": "amount",
+        "question": "What is the award amount for the DRL Global Digital Threat Lab?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Global Digital Threat Lab",
+          "section": "Global Digital Threat Lab > Contents > C. Program Description > 1. Goals and Objectives"
+        }
+      },
+      {
+        "id": "q015",
+        "category": "deadline",
+        "question": "When is the application deadline for the Independent Journalism Consortium in Europe?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Independent Journalism Consortium in Europe",
+          "section": "Europe > Contents > E. Submission Requirements and Deadlines > 4. Submission Dates and Times"
+        }
+      },
+      {
+        "id": "q016",
+        "category": "period",
+        "question": "What is the performance period for the Emergency Assistance for Fundamental Freedom Defenders award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Emergency Assistance for Fundamental Freedom Defenders",
+          "section": "Defenders > Contents > A. Basic Information > 1. Overview"
+        }
+      },
+      {
+        "id": "q017",
+        "category": "eligibility",
+        "question": "Can individuals apply for the DRL Early Warning and Response in Nigeria grant?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > C. Program Description > 2. Program Specific Requirements"
+        }
+      },
+      {
+        "id": "q018",
+        "category": "deadline",
+        "question": "What is the application deadline for the DRL Early Warning and Response in Nigeria grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > E. Submission Requirements and Deadlines > 4. Submission Dates and Times"
+        }
+      },
+      {
+        "id": "q019",
+        "category": "period",
+        "question": "What is the minimum period of performance for the Early Warning and Response in Nigeria project?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > A. Basic Information > Anticipated project start date"
+        }
+      },
+      {
+        "id": "q020",
+        "category": "deadline",
+        "question": "When is the application deadline for the 2026 DERA National Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Submission Requirements and Deadlines > A. Submission Dates and Times"
+        }
+      },
+      {
+        "id": "q021",
+        "category": "eligibility",
+        "question": "Are for-profit hospitals eligible to apply for EPA DERA National Program funding?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Eligibility > A. Eligible Applicants"
+        }
+      },
+      {
+        "id": "q022",
+        "category": "process",
+        "question": "What subject line should I use when emailing questions about the DERA National NOFO?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Basic Information > G. Question and Answer Process"
+        }
+      },
+      {
+        "id": "q023",
+        "category": "amount",
+        "question": "How much can an applicant request from an EPA Brownfields Job Training grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Eligibility > B. Threshold Criteria"
+        }
+      },
+      {
+        "id": "q024",
+        "category": "amount",
+        "question": "How many Brownfields Job Training grants does EPA expect to award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Basic Information > D. Funding Details"
+        }
+      },
+      {
+        "id": "q025",
+        "category": "process",
+        "question": "Can I submit more than one application to the EPA Environmental Education Grant Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q026",
+        "category": "contact",
+        "question": "Who is the technical contact for the EPA Environmental Education Grant Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Basic Information > E. Agency Contact Information:"
+        }
+      },
+      {
+        "id": "q027",
+        "category": "cost_share",
+        "question": "Can the cost share be waived for EPA Wildfire Smoke Preparedness in Community Buildings grants?",
+        "rank": 5,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Eligibility > (1) Other Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q028",
+        "category": "amount",
+        "question": "What is the maximum request for a Wildfire Smoke Preparedness in Community Buildings application?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Program Description > A. Purpose, Priorities, and Activities"
+        }
+      },
+      {
+        "id": "q029",
+        "category": "eligibility",
+        "question": "Which states are covered by the EPA Region 9 Wetland Program Development Grants?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 9 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 9 Fiscal Year 2025 Wetland Program Development Grants > Program Description > A. Purpose, Priorities, and Activities > Track Concept > Track One: WPPs (state, Tribal or territory applicants only)"
+        }
+      },
+      {
+        "id": "q030",
+        "category": "allowable",
+        "question": "Is leasing vehicles an eligible cost under EPA Region 9 Wetland Program Development Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 9 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 9 Fiscal Year 2025 Wetland Program Development Grants > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q031",
+        "category": "cost_share",
+        "question": "How much cost share does the SNEP Innovative Restoration Grants program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Southeast New England Program (SNEP) Innovative Restoration Grants",
+          "section": "Innovative Restoration Grants > Eligibility > B. Cost Sharing"
+        }
+      },
+      {
+        "id": "q032",
+        "category": "amount",
+        "question": "What is the range of individual award amounts for SNEP Innovative Restoration Grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Southeast New England Program (SNEP) Innovative Restoration Grants",
+          "section": "Innovative Restoration Grants > Basic Information > A. Executive Summary"
+        }
+      },
+      {
+        "id": "q033",
+        "category": "process",
+        "question": "Can one application address multiple project areas under the EPA Innovative Water Infrastructure Workforce Development Grant?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Innovative Water Infrastructure Workforce Development Grant",
+          "section": "Innovative Water Infrastructure Workforce Development Grant > Program Description > A. Purpose, Priorities, and Activities > (1) Project Areas Project Area 1: Targeted internship, apprenticeship, pre-apprenticeship, and postsecondary"
+        }
+      },
+      {
+        "id": "q034",
+        "category": "cost_share",
+        "question": "Is cost share required for the EPA Innovative Water Infrastructure Workforce Development Grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Innovative Water Infrastructure Workforce Development Grant",
+          "section": "Innovative Water Infrastructure Workforce Development Grant > Eligibility > B. Cost Sharing"
+        }
+      },
+      {
+        "id": "q035",
+        "category": "eligibility",
+        "question": "If my program received a 2023 Dental Faculty Loan Repayment Program award, can I apply again this cycle?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Eligibility > Types of eligible organizations > Other eligibility criteria"
+        }
+      },
+      {
+        "id": "q036",
+        "category": "eligibility",
+        "question": "What must Dental Faculty Loan Repayment Program participants agree to do?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Eligibility > Trainee eligibility"
+        }
+      },
+      {
+        "id": "q037",
+        "category": "eligibility",
+        "question": "What geographic areas can HRSA RCORP-Planning activities serve?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Communities Opioid Response Program (RCORP)-Planning",
+          "section": "Planning > Step 1: Review the Opportunity > Eligibility > Completeness and"
+        }
+      },
+      {
+        "id": "q038",
+        "category": "eligibility",
+        "question": "Can for-profit organizations apply for HRSA RCORP-Planning grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Communities Opioid Response Program (RCORP)-Planning",
+          "section": "Planning > Step 1: Review the Opportunity > Eligibility > Who can apply"
+        }
+      },
+      {
+        "id": "q039",
+        "category": "eligibility",
+        "question": "How many organizations make up a health care network for the Rural Northern Border Region Network Planning Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Northern Border Region Network Planning Program",
+          "section": "Step 1: Review the Opportunity > Eligibility > Network Requirements"
+        }
+      },
+      {
+        "id": "q040",
+        "category": "cost_share",
+        "question": "Is cost sharing required for the Rural Northern Border Region Network Planning Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Northern Border Region Network Planning Program",
+          "section": "Step 1: Review the Opportunity > Eligibility > Cost sharing"
+        }
+      },
+      {
+        "id": "q041",
+        "category": "eligibility",
+        "question": "Who can apply for HRSA's Medical Student Education Program?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Additional information on eligibility"
+        }
+      },
+      {
+        "id": "q042",
+        "category": "eligibility",
+        "question": "How much of their time must the Project Director dedicate to the HRSA Medical Student Education Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Qualifications for principal investigator or project director"
+        }
+      },
+      {
+        "id": "q043",
+        "category": "cost_share",
+        "question": "What matching is required for the HRSA Medical Student Education Program?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Completeness and responsive criteria"
+        }
+      },
+      {
+        "id": "q044",
+        "category": "eligibility",
+        "question": "Can individual students apply directly for HRSA Scholarships for Disadvantaged Students?",
+        "rank": 8,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 4: Understand Review, Selection, and Award > Selection process > Funding priorities"
+        }
+      },
+      {
+        "id": "q045",
+        "category": "compliance",
+        "question": "What maintenance of effort does the Scholarships for Disadvantaged Students program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Maintenance of effort"
+        }
+      },
+      {
+        "id": "q046",
+        "category": "format",
+        "question": "What letters of support are required for the HRSA Maternal Produce Prescription Program application?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Maternal Produce Prescription Program (MP3)",
+          "section": "Step 1: Review the Opportunity > All Proposals are Expected to:"
+        }
+      },
+      {
+        "id": "q047",
+        "category": "deadline",
+        "question": "When is the expected start date for HRSA Maternal Produce Prescription Program awards?",
+        "rank": 2,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "\u200b\u200bMaternal and Child Health (MCH) Leadership, Education, and Advancement in Unde",
+          "section": "Program > Contents > Before you begin > Step 1: Review the Opportunity > Basic information > Funding details"
+        }
+      },
+      {
+        "id": "q048",
+        "category": "eligibility",
+        "question": "Are foreign organizations eligible for the HRSA Rural Health Clinic Technical Assistance Program?",
+        "rank": 2,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "Rural Northern Border Region Network Planning Program",
+          "section": "Step 1: Review the Opportunity > Eligibility > Additional information on eligibility"
+        }
+      },
+      {
+        "id": "q049",
+        "category": "amount",
+        "question": "How much is the monthly stipend for NEH Awards for Faculty at HBCUs?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Awards for Faculty at HBCUs",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award amounts"
+        }
+      },
+      {
+        "id": "q050",
+        "category": "eligibility",
+        "question": "Can I apply for NEH Awards for Faculty at HBCUs if I am currently enrolled in a degree program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Awards for Faculty at HBCUs",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information > Currently enrolled students"
+        }
+      },
+      {
+        "id": "q051",
+        "category": "amount",
+        "question": "What is the most I can request for a three-week NEH Landmarks of History and Culture and Summer Institutes project (December 2026 deadline)?",
+        "rank": 2,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "Landmarks of American History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "q052",
+        "category": "period",
+        "question": "When does the period of performance start and end for NEH Landmarks of History and Culture and Summer Institutes awards from the December 2026 deadline?",
+        "rank": 7,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "Landmarks of American History and Culture and Summer Institutes",
+          "section": "Executive Summary"
+        }
+      },
+      {
+        "id": "q053",
+        "category": "process",
+        "question": "Can one person be project director for multiple NEH Landmarks of History and Culture and Summer Institutes applications (December 2026 deadline)?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Landmarks of History and Culture and Summer Institutes",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information"
+        }
+      },
+      {
+        "id": "q054",
+        "category": "process",
+        "question": "How many applications can an organization submit to the NEH National Digital Newspaper Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "National Digital Newspaper Program",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information"
+        }
+      },
+      {
+        "id": "q055",
+        "category": "amount",
+        "question": "How many recipients does NEH expect to fund in the National Digital Newspaper Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "National Digital Newspaper Program",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "q056",
+        "category": "format",
+        "question": "What is the page limit for the narrative in a National Digital Newspaper Program application?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "National Digital Newspaper Program",
+          "section": "D. Application Contents > 2. Application Elements > Attachment 1: Narrative (required)"
+        }
+      },
+      {
+        "id": "q057",
+        "category": "amount",
+        "question": "What is the maximum award for a Chairman's Special Award under NEH Public Humanities Projects?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Public Humanities Projects",
+          "section": "A. Program Description > 1. Purpose > Funding levels > Chairman\u2019s Special Award"
+        }
+      },
+      {
+        "id": "q058",
+        "category": "allowable",
+        "question": "Are strategic planning or feasibility studies fundable under NEH Public Humanities Projects?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Public Humanities Projects",
+          "section": "A. Program Description > 2. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q059",
+        "category": "amount",
+        "question": "How much can I request for production of a documentary film from NEH Media Projects?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "q060",
+        "category": "allowable",
+        "question": "Does NEH Media Projects fund creative writing or memoirs?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Media Projects",
+          "section": "A. Program Description > 2. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q061",
+        "category": "allowable",
+        "question": "Are indirect costs allowed in the USDA AgrAbility (Assistive Technology Program for Farmers with Disabilities) grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > (All references are to the"
+        }
+      },
+      {
+        "id": "q062",
+        "category": "amount",
+        "question": "What is the maximum state award per year for the USDA AgrAbility program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > Title Description"
+        }
+      },
+      {
+        "id": "q063",
+        "category": "cost_share",
+        "question": "What match does the USDA Beginning Farmer and Rancher Development Program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Cost Sharing or Matching"
+        }
+      },
+      {
+        "id": "q064",
+        "category": "deadline",
+        "question": "What project start date should FY2026 Beginning Farmer and Rancher Development Program applications list?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Application Restrictions"
+        }
+      },
+      {
+        "id": "q065",
+        "category": "eligibility",
+        "question": "Can an organization that received a Beginning Farmer and Rancher standard grant in FY2024 apply in FY2026?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > A. Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q066",
+        "category": "eligibility",
+        "question": "Can for-profit businesses apply for USDA Community Food Projects grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Community Food Projects Competitive Grants Program",
+          "section": "Notice of Funding Opportunity > Community Food Projects Competitive Grants Program > ANNOUNCEMENT > Training and Technical Assistance Project Eligibility"
+        }
+      },
+      {
+        "id": "q067",
+        "category": "allowable",
+        "question": "Can Federally Recognized Tribes Extension Program funds pay for meals?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Federally Recognized Tribes Extension Program",
+          "section": "Notice of Funding Opportunity > Federally Recognized Tribes Extension Program > ANNOUNCEMENT > C. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q068",
+        "category": "amount",
+        "question": "How many awards does NIFA anticipate for the Enhancing Agricultural Opportunities for Military Veterans (AgVets) program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Pr",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description"
+        }
+      },
+      {
+        "id": "q069",
+        "category": "allowable",
+        "question": "What is the indirect cost limit for the USDA Special Research Grants Program for Aquaculture Research?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Special Research Grants Program for Aquaculture Research",
+          "section": "Notice of Funding Opportunity > Special Research Grants Program for Aquaculture Research > ANNOUNCEMENT > C. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q070",
+        "category": "cost_share",
+        "question": "What matching does the USDA Specialty Crop Research Initiative require?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Specialty Crop Research Initiative",
+          "section": "Notice of Funding Opportunity > Pre-Applications > APPENDIX III: DEFINITIONS"
+        }
+      },
+      {
+        "id": "q071",
+        "category": "deadline",
+        "question": "What time are Specialty Crop Research Initiative pre-applications due?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Specialty Crop Research Initiative",
+          "section": "Notice of Funding Opportunity > Pre-Applications > B. Purpose and Priorities"
+        }
+      },
+      {
+        "id": "q072",
+        "category": "eligibility",
+        "question": "Who is eligible for the USDA SBIR/STTR Phase II program?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Small Business Innovation Research and Small Business Technology Transfer Progra",
+          "section": "Notice of Funding Opportunity > Programs Phase II > B. Purpose and Priorities"
+        }
+      },
+      {
+        "id": "q073",
+        "category": "eligibility",
+        "question": "What is the maximum number of employees for a USDA SBIR/STTR recipient?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Small Business Innovation Research and Small Business Technology Transfer Progra",
+          "section": "Notice of Funding Opportunity > Programs Phase II > Size"
+        }
+      },
+      {
+        "id": "q074",
+        "category": "discovery",
+        "question": "Which grant program helps states and tribes compensate ranchers for livestock killed by wolves?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "PROGRAM OVERVIEW > Program Description"
+        }
+      },
+      {
+        "id": "q075",
+        "category": "discovery",
+        "question": "Is there a federal grant that funds pumpout stations for recreational boats?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Goals"
+        }
+      },
+      {
+        "id": "q076",
+        "category": "discovery",
+        "question": "Which program gives health professions schools money for scholarships for students from disadvantaged backgrounds?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Program description > Purpose"
+        }
+      },
+      {
+        "id": "q077",
+        "category": "discovery",
+        "question": "Are there grants that help farmers and ranchers with disabilities?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > EXECUTIVE SUMMARY"
+        }
+      },
+      {
+        "id": "q078",
+        "category": "discovery",
+        "question": "Which EPA program helps prepare schools and community buildings for wildfire smoke?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Basic Information > A. Executive Summary:"
+        }
+      },
+      {
+        "id": "q091",
+        "category": "amount",
+        "question": "What is the maximum scholarship amount per student under HRSA Scholarships for Disadvantaged Students?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 3: Build Your Application > Application contents and format > Budget and budget narrative See merit review criterion 6: Support requested"
+        }
+      }
+    ]
+  },
+  {
+    "chunk_set": "section_300",
+    "method": "scoped",
+    "name": "section_300/scoped",
+    "n_questions": 79,
+    "recall": {
+      "1": 0.7088607594936709,
+      "3": 0.9240506329113924,
+      "5": 0.9493670886075949,
+      "10": 0.9746835443037974,
+      "20": 0.9746835443037974
+    },
+    "mrr": 0.8167872212176012,
+    "grant_at_5": 1.0,
+    "recall5_by_category": {
+      "allowable": [
+        1.0,
+        7
+      ],
+      "amount": [
+        1.0,
+        15
+      ],
+      "compliance": [
+        1.0,
+        1
+      ],
+      "contact": [
+        1.0,
+        2
+      ],
+      "cost_share": [
+        1.0,
+        10
+      ],
+      "deadline": [
+        1.0,
+        6
+      ],
+      "discovery": [
+        1.0,
+        5
+      ],
+      "eligibility": [
+        0.8421052631578947,
+        19
+      ],
+      "format": [
+        0.6666666666666666,
+        3
+      ],
+      "period": [
+        1.0,
+        5
+      ],
+      "process": [
+        1.0,
+        6
+      ]
+    },
+    "latency_ms": {
+      "median": 846.7815000331029,
+      "p95": 1095.4638329567388
+    },
+    "per_question": [
+      {
+        "id": "q001",
+        "category": "amount",
+        "question": "What is the maximum award for the Wolf Livestock Loss Compensation and Prevention grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "PROGRAM OVERVIEW > Program Description"
+        }
+      },
+      {
+        "id": "q002",
+        "category": "cost_share",
+        "question": "What percentage cost share is required for the wolf livestock loss compensation grant program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "q003",
+        "category": "eligibility",
+        "question": "Can tribal organizations that are not federally recognized tribes receive Tribal Wildlife Grants funding?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "BASIC INFORMATION > Executive Summary"
+        }
+      },
+      {
+        "id": "q004",
+        "category": "amount",
+        "question": "How many Tribal Wildlife Grants does FWS expect to award in FY2026?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "PROGRAM OVERVIEW > Program Description"
+        }
+      },
+      {
+        "id": "q005",
+        "category": "cost_share",
+        "question": "What is the maximum federal share for Clean Vessel Act grants in the continental states?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "q006",
+        "category": "allowable",
+        "question": "Is an inspection program for pumpout facilities an eligible activity under the Clean Vessel Act grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Description > Frequently Asked Questions and Answers"
+        }
+      },
+      {
+        "id": "q007",
+        "category": "contact",
+        "question": "Who should I contact with questions about the Prescott Marine Mammal Rescue and Response grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION > Have Questions?"
+        }
+      },
+      {
+        "id": "q008",
+        "category": "period",
+        "question": "What is the maximum period of performance for a Prescott Marine Mammal Rescue and Response grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "q009",
+        "category": "cost_share",
+        "question": "What match ratio does the NAWCA US Small Grants program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00007-NAWCA 2026 US Small Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?"
+        }
+      },
+      {
+        "id": "q010",
+        "category": "process",
+        "question": "Do I need to contact program staff before applying to the National Fish Passage Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00105 National Fish Passage Program",
+          "section": "SUBMISSION REQUIREMENTS AND DEADLINES > Address to Request Application Package"
+        }
+      },
+      {
+        "id": "q011",
+        "category": "eligibility",
+        "question": "Who is eligible to apply for the National Fish Passage Program?",
+        "rank": 10,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00105 National Fish Passage Program",
+          "section": "APPLICATION REVIEW INFORMATION > Review and Selection Process"
+        }
+      },
+      {
+        "id": "q012",
+        "category": "format",
+        "question": "How many pages can the proposal be for the DRL Advancing Labor Rights in the Garment Industry grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Advancing Labor Rights in the Garment Industry",
+          "section": "Advancing Labor Rights in the Garment Industry > Contents > D. Application Contents and Format > 3. Proposal (15 pages maximum)"
+        }
+      },
+      {
+        "id": "q013",
+        "category": "period",
+        "question": "How long is the performance period for the Advancing Labor Rights in the Garment Industry award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Advancing Labor Rights in the Garment Industry",
+          "section": "Advancing Labor Rights in the Garment Industry > Contents > A. Basic Information > 1. Overview"
+        }
+      },
+      {
+        "id": "q014",
+        "category": "amount",
+        "question": "What is the award amount for the DRL Global Digital Threat Lab?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Global Digital Threat Lab",
+          "section": "Global Digital Threat Lab > Contents > C. Program Description > 1. Goals and Objectives"
+        }
+      },
+      {
+        "id": "q015",
+        "category": "deadline",
+        "question": "When is the application deadline for the Independent Journalism Consortium in Europe?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Independent Journalism Consortium in Europe",
+          "section": "Europe > Contents > E. Submission Requirements and Deadlines > 4. Submission Dates and Times"
+        }
+      },
+      {
+        "id": "q016",
+        "category": "period",
+        "question": "What is the performance period for the Emergency Assistance for Fundamental Freedom Defenders award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Emergency Assistance for Fundamental Freedom Defenders",
+          "section": "Defenders > Contents > A. Basic Information > 1. Overview"
+        }
+      },
+      {
+        "id": "q017",
+        "category": "eligibility",
+        "question": "Can individuals apply for the DRL Early Warning and Response in Nigeria grant?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > C. Program Description > 2. Program Specific Requirements"
+        }
+      },
+      {
+        "id": "q018",
+        "category": "deadline",
+        "question": "What is the application deadline for the DRL Early Warning and Response in Nigeria grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > E. Submission Requirements and Deadlines > 4. Submission Dates and Times"
+        }
+      },
+      {
+        "id": "q019",
+        "category": "period",
+        "question": "What is the minimum period of performance for the Early Warning and Response in Nigeria project?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Early Warning and Response in Nigeria",
+          "section": "Early Warning and Response in Nigeria > Contents > A. Basic Information > Anticipated project start date"
+        }
+      },
+      {
+        "id": "q020",
+        "category": "deadline",
+        "question": "When is the application deadline for the 2026 DERA National Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Submission Requirements and Deadlines > A. Submission Dates and Times"
+        }
+      },
+      {
+        "id": "q021",
+        "category": "eligibility",
+        "question": "Are for-profit hospitals eligible to apply for EPA DERA National Program funding?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Eligibility > A. Eligible Applicants"
+        }
+      },
+      {
+        "id": "q022",
+        "category": "process",
+        "question": "What subject line should I use when emailing questions about the DERA National NOFO?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "2026 Diesel Emissions Reduction Act (DERA) National Program",
+          "section": "2026 Diesel Emissions Reduction Act (DERA) National Program > Basic Information > G. Question and Answer Process"
+        }
+      },
+      {
+        "id": "q023",
+        "category": "amount",
+        "question": "How much can an applicant request from an EPA Brownfields Job Training grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Eligibility > B. Threshold Criteria"
+        }
+      },
+      {
+        "id": "q024",
+        "category": "amount",
+        "question": "How many Brownfields Job Training grants does EPA expect to award?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Basic Information > D. Funding Details"
+        }
+      },
+      {
+        "id": "q025",
+        "category": "process",
+        "question": "Can I submit more than one application to the EPA Environmental Education Grant Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q026",
+        "category": "contact",
+        "question": "Who is the technical contact for the EPA Environmental Education Grant Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Basic Information > E. Agency Contact Information:"
+        }
+      },
+      {
+        "id": "q027",
+        "category": "cost_share",
+        "question": "Can the cost share be waived for EPA Wildfire Smoke Preparedness in Community Buildings grants?",
+        "rank": 5,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Eligibility > (1) Other Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q028",
+        "category": "amount",
+        "question": "What is the maximum request for a Wildfire Smoke Preparedness in Community Buildings application?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Program Description > A. Purpose, Priorities, and Activities"
+        }
+      },
+      {
+        "id": "q029",
+        "category": "eligibility",
+        "question": "Which states are covered by the EPA Region 9 Wetland Program Development Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 9 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 9 Fiscal Year 2025 Wetland Program Development Grants > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q030",
+        "category": "allowable",
+        "question": "Is leasing vehicles an eligible cost under EPA Region 9 Wetland Program Development Grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Region 9 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 9 Fiscal Year 2025 Wetland Program Development Grants > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q031",
+        "category": "cost_share",
+        "question": "How much cost share does the SNEP Innovative Restoration Grants program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Southeast New England Program (SNEP) Innovative Restoration Grants",
+          "section": "Innovative Restoration Grants > Eligibility > B. Cost Sharing"
+        }
+      },
+      {
+        "id": "q032",
+        "category": "amount",
+        "question": "What is the range of individual award amounts for SNEP Innovative Restoration Grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Southeast New England Program (SNEP) Innovative Restoration Grants",
+          "section": "Innovative Restoration Grants > Basic Information > A. Executive Summary"
+        }
+      },
+      {
+        "id": "q033",
+        "category": "process",
+        "question": "Can one application address multiple project areas under the EPA Innovative Water Infrastructure Workforce Development Grant?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Innovative Water Infrastructure Workforce Development Grant",
+          "section": "Innovative Water Infrastructure Workforce Development Grant > Program Description > A. Purpose, Priorities, and Activities > (1) Project Areas Project Area 1: Targeted internship, apprenticeship, pre-apprenticeship, and postsecondary"
+        }
+      },
+      {
+        "id": "q034",
+        "category": "cost_share",
+        "question": "Is cost share required for the EPA Innovative Water Infrastructure Workforce Development Grant?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Innovative Water Infrastructure Workforce Development Grant",
+          "section": "Innovative Water Infrastructure Workforce Development Grant > Eligibility > B. Cost Sharing"
+        }
+      },
+      {
+        "id": "q035",
+        "category": "eligibility",
+        "question": "If my program received a 2023 Dental Faculty Loan Repayment Program award, can I apply again this cycle?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Eligibility > Types of eligible organizations > Other eligibility criteria"
+        }
+      },
+      {
+        "id": "q036",
+        "category": "eligibility",
+        "question": "What must Dental Faculty Loan Repayment Program participants agree to do?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Eligibility > Trainee eligibility"
+        }
+      },
+      {
+        "id": "q037",
+        "category": "eligibility",
+        "question": "What geographic areas can HRSA RCORP-Planning activities serve?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Communities Opioid Response Program (RCORP)-Planning",
+          "section": "Planning > Step 1: Review the Opportunity > Eligibility > Completeness and"
+        }
+      },
+      {
+        "id": "q038",
+        "category": "eligibility",
+        "question": "Can for-profit organizations apply for HRSA RCORP-Planning grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Communities Opioid Response Program (RCORP)-Planning",
+          "section": "Planning > Step 1: Review the Opportunity > Eligibility > Who can apply"
+        }
+      },
+      {
+        "id": "q039",
+        "category": "eligibility",
+        "question": "How many organizations make up a health care network for the Rural Northern Border Region Network Planning Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Northern Border Region Network Planning Program",
+          "section": "Step 1: Review the Opportunity > Eligibility > Network Requirements"
+        }
+      },
+      {
+        "id": "q040",
+        "category": "cost_share",
+        "question": "Is cost sharing required for the Rural Northern Border Region Network Planning Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Northern Border Region Network Planning Program",
+          "section": "Step 1: Review the Opportunity > Eligibility > Cost sharing"
+        }
+      },
+      {
+        "id": "q041",
+        "category": "eligibility",
+        "question": "Who can apply for HRSA's Medical Student Education Program?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Additional information on eligibility"
+        }
+      },
+      {
+        "id": "q042",
+        "category": "eligibility",
+        "question": "How much of their time must the Project Director dedicate to the HRSA Medical Student Education Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Qualifications for principal investigator or project director"
+        }
+      },
+      {
+        "id": "q043",
+        "category": "cost_share",
+        "question": "What matching is required for the HRSA Medical Student Education Program?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Medical Student Education Program (MSE)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Completeness and responsive criteria"
+        }
+      },
+      {
+        "id": "q044",
+        "category": "eligibility",
+        "question": "Can individual students apply directly for HRSA Scholarships for Disadvantaged Students?",
+        "rank": 7,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Basic information > Summary"
+        }
+      },
+      {
+        "id": "q045",
+        "category": "compliance",
+        "question": "What maintenance of effort does the Scholarships for Disadvantaged Students program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Eligibility > Maintenance of effort"
+        }
+      },
+      {
+        "id": "q046",
+        "category": "format",
+        "question": "What letters of support are required for the HRSA Maternal Produce Prescription Program application?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Maternal Produce Prescription Program (MP3)",
+          "section": "Step 1: Review the Opportunity > All Proposals are Expected to:"
+        }
+      },
+      {
+        "id": "q047",
+        "category": "deadline",
+        "question": "When is the expected start date for HRSA Maternal Produce Prescription Program awards?",
+        "rank": 2,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "\u200b\u200bMaternal and Child Health (MCH) Leadership, Education, and Advancement in Unde",
+          "section": "Program > Contents > Before you begin > Step 1: Review the Opportunity > Basic information > Funding details"
+        }
+      },
+      {
+        "id": "q048",
+        "category": "eligibility",
+        "question": "Are foreign organizations eligible for the HRSA Rural Health Clinic Technical Assistance Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Rural Health Clinic Technical Assistance Program",
+          "section": "Contents > Before you begin > Review the Opportunity > Eligibility > Types of eligible organizations > Additional Information on Eligibility"
+        }
+      },
+      {
+        "id": "q049",
+        "category": "amount",
+        "question": "How much is the monthly stipend for NEH Awards for Faculty at HBCUs?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Awards for Faculty at HBCUs",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award amounts"
+        }
+      },
+      {
+        "id": "q050",
+        "category": "eligibility",
+        "question": "Can I apply for NEH Awards for Faculty at HBCUs if I am currently enrolled in a degree program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Awards for Faculty at HBCUs",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information > Currently enrolled students"
+        }
+      },
+      {
+        "id": "q051",
+        "category": "amount",
+        "question": "What is the most I can request for a three-week NEH Landmarks of History and Culture and Summer Institutes project (December 2026 deadline)?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Landmarks of History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "q052",
+        "category": "period",
+        "question": "When does the period of performance start and end for NEH Landmarks of History and Culture and Summer Institutes awards from the December 2026 deadline?",
+        "rank": 4,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Landmarks of History and Culture and Summer Institutes",
+          "section": "Executive Summary"
+        }
+      },
+      {
+        "id": "q053",
+        "category": "process",
+        "question": "Can one person be project director for multiple NEH Landmarks of History and Culture and Summer Institutes applications (December 2026 deadline)?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Landmarks of History and Culture and Summer Institutes",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information"
+        }
+      },
+      {
+        "id": "q054",
+        "category": "process",
+        "question": "How many applications can an organization submit to the NEH National Digital Newspaper Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "National Digital Newspaper Program",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information"
+        }
+      },
+      {
+        "id": "q055",
+        "category": "amount",
+        "question": "How many recipients does NEH expect to fund in the National Digital Newspaper Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "National Digital Newspaper Program",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "q056",
+        "category": "format",
+        "question": "What is the page limit for the narrative in a National Digital Newspaper Program application?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "National Digital Newspaper Program",
+          "section": "D. Application Contents > 2. Application Elements > Attachment 1: Narrative (required)"
+        }
+      },
+      {
+        "id": "q057",
+        "category": "amount",
+        "question": "What is the maximum award for a Chairman's Special Award under NEH Public Humanities Projects?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Public Humanities Projects",
+          "section": "A. Program Description > 1. Purpose > Funding levels > Chairman\u2019s Special Award"
+        }
+      },
+      {
+        "id": "q058",
+        "category": "allowable",
+        "question": "Are strategic planning or feasibility studies fundable under NEH Public Humanities Projects?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Public Humanities Projects",
+          "section": "A. Program Description > 2. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q059",
+        "category": "amount",
+        "question": "How much can I request for production of a documentary film from NEH Media Projects?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "q060",
+        "category": "allowable",
+        "question": "Does NEH Media Projects fund creative writing or memoirs?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Media Projects",
+          "section": "A. Program Description > 2. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q061",
+        "category": "allowable",
+        "question": "Are indirect costs allowed in the USDA AgrAbility (Assistive Technology Program for Farmers with Disabilities) grants?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > C. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q062",
+        "category": "amount",
+        "question": "What is the maximum state award per year for the USDA AgrAbility program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > Title Description"
+        }
+      },
+      {
+        "id": "q063",
+        "category": "cost_share",
+        "question": "What match does the USDA Beginning Farmer and Rancher Development Program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Cost Sharing or Matching"
+        }
+      },
+      {
+        "id": "q064",
+        "category": "deadline",
+        "question": "What project start date should FY2026 Beginning Farmer and Rancher Development Program applications list?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Application Restrictions"
+        }
+      },
+      {
+        "id": "q065",
+        "category": "eligibility",
+        "question": "Can an organization that received a Beginning Farmer and Rancher standard grant in FY2024 apply in FY2026?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > A. Eligibility Requirements"
+        }
+      },
+      {
+        "id": "q066",
+        "category": "eligibility",
+        "question": "Can for-profit businesses apply for USDA Community Food Projects grants?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Community Food Projects Competitive Grants Program",
+          "section": "Notice of Funding Opportunity > Community Food Projects Competitive Grants Program > ANNOUNCEMENT > Training and Technical Assistance Project Eligibility"
+        }
+      },
+      {
+        "id": "q067",
+        "category": "allowable",
+        "question": "Can Federally Recognized Tribes Extension Program funds pay for meals?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Federally Recognized Tribes Extension Program",
+          "section": "Notice of Funding Opportunity > Federally Recognized Tribes Extension Program > ANNOUNCEMENT > C. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q068",
+        "category": "amount",
+        "question": "How many awards does NIFA anticipate for the Enhancing Agricultural Opportunities for Military Veterans (AgVets) program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Pr",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description"
+        }
+      },
+      {
+        "id": "q069",
+        "category": "allowable",
+        "question": "What is the indirect cost limit for the USDA Special Research Grants Program for Aquaculture Research?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Special Research Grants Program for Aquaculture Research",
+          "section": "Notice of Funding Opportunity > Special Research Grants Program for Aquaculture Research > ANNOUNCEMENT > C. Funding Restrictions"
+        }
+      },
+      {
+        "id": "q070",
+        "category": "cost_share",
+        "question": "What matching does the USDA Specialty Crop Research Initiative require?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Specialty Crop Research Initiative",
+          "section": "Notice of Funding Opportunity > Pre-Applications > APPENDIX III: DEFINITIONS"
+        }
+      },
+      {
+        "id": "q071",
+        "category": "deadline",
+        "question": "What time are Specialty Crop Research Initiative pre-applications due?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Specialty Crop Research Initiative",
+          "section": "Notice of Funding Opportunity > Pre-Applications > Task Description Deadline"
+        }
+      },
+      {
+        "id": "q072",
+        "category": "eligibility",
+        "question": "Who is eligible for the USDA SBIR/STTR Phase II program?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Small Business Innovation Research and Small Business Technology Transfer Progra",
+          "section": "Notice of Funding Opportunity > Programs Phase II > B. Purpose and Priorities"
+        }
+      },
+      {
+        "id": "q073",
+        "category": "eligibility",
+        "question": "What is the maximum number of employees for a USDA SBIR/STTR recipient?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Small Business Innovation Research and Small Business Technology Transfer Progra",
+          "section": "Notice of Funding Opportunity > Programs Phase II > Size"
+        }
+      },
+      {
+        "id": "q074",
+        "category": "discovery",
+        "question": "Which grant program helps states and tribes compensate ranchers for livestock killed by wolves?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "PROGRAM OVERVIEW > Program Description"
+        }
+      },
+      {
+        "id": "q075",
+        "category": "discovery",
+        "question": "Is there a federal grant that funds pumpout stations for recreational boats?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "PROGRAM OVERVIEW > Program Goals"
+        }
+      },
+      {
+        "id": "q076",
+        "category": "discovery",
+        "question": "Which program gives health professions schools money for scholarships for students from disadvantaged backgrounds?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Program description > Purpose"
+        }
+      },
+      {
+        "id": "q077",
+        "category": "discovery",
+        "question": "Are there grants that help farmers and ranchers with disabilities?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Assistive Technology Program for Farmers with Disabilities",
+          "section": "Notice of Funding Opportunity > Assistive Technology Program > EXECUTIVE SUMMARY"
+        }
+      },
+      {
+        "id": "q078",
+        "category": "discovery",
+        "question": "Which EPA program helps prepare schools and community buildings for wildfire smoke?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Wildfire Smoke Preparedness in Community Buildings",
+          "section": "Wildfire Smoke Preparedness in Community Buildings > Basic Information > A. Executive Summary:"
+        }
+      },
+      {
+        "id": "q091",
+        "category": "amount",
+        "question": "What is the maximum scholarship amount per student under HRSA Scholarships for Disadvantaged Students?",
+        "rank": 2,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 3: Build Your Application > Application contents and format > Budget and budget narrative See merit review criterion 6: Support requested"
+        }
+      }
+    ]
+  }
+]
