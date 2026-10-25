@@ -3,7 +3,6 @@
 // (RRF k=60, 50 candidates per list, rerank top 30) as the evaluated Python version.
 
 import type postgres from "postgres";
-import { sigmoid } from "./text.ts";
 
 export const EMBEDDING_MODEL = "@cf/baai/bge-small-en-v1.5";
 export const RERANKER_MODEL = "@cf/baai/bge-reranker-base";
@@ -122,10 +121,10 @@ export async function rerank(ai: Ai, query: string, candidates: Hit[], k: number
   const out = (await run(RERANKER_MODEL, { query, contexts, top_k: candidates.length })) as {
     response: { id: number; score: number }[];
   };
-  // The local CrossEncoder outputs sigmoid probabilities (0-1); Workers AI returns raw
-  // relevance logits, so map them the same way to keep thresholds comparable.
+  // Workers AI already returns 0-1 relevance scores, identical to the local CrossEncoder's
+  // sigmoid output (checked on real queries: max difference 0.0000), so no conversion.
   return out.response
-    .map((r) => ({ ...candidates[r.id], score: sigmoid(r.score) }))
+    .map((r) => ({ ...candidates[r.id], score: r.score }))
     .sort((a, b) => b.score - a.score)
     .slice(0, k);
 }

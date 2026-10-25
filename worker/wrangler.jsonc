@@ -9,8 +9,9 @@
   "assets": { "directory": "./public", "binding": "ASSETS" },
   "ai": { "binding": "AI" },
   "hyperdrive": [
-    // Filled in after `npx wrangler hyperdrive create` (see README, Phase 8).
-    { "binding": "HYPERDRIVE", "id": "HYPERDRIVE_ID" }
+    // Hyperdrive config "grantscope-db" (pooled connection to Neon). Not a secret: the
+    // credentials live in Cloudflare, this is only an ID.
+    { "binding": "HYPERDRIVE", "id": "b9511581096f4b99a8cecdb0691def42" }
   ],
   "observability": { "enabled": true }
 }

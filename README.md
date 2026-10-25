@@ -1,5 +1,7 @@
 # GrantScope
 
+**Live demo: https://grantscope.mounikabharatha.workers.dev**
+
 [![CI](https://github.com/Mounikabharatha/grantscope/actions/workflows/ci.yml/badge.svg)](https://github.com/Mounikabharatha/grantscope/actions/workflows/ci.yml)
 
 Ask questions about public grant documents and get answers with citations.
@@ -135,10 +137,44 @@ The answer-generation eval needs the 5 GB Llama model, so it runs locally
 (`python scripts/evaluate_answers.py`). After re-chunking, refresh the snapshot with
 `python scripts/make_snapshot.py`.
 
+## Phase 8: live on Cloudflare
+
+**Live: https://grantscope.mounikabharatha.workers.dev**
+
+```
+Browser ─► Cloudflare Worker (TypeScript, worker/)
+             ├─ static assets: the search page + 200 grant PDFs
+             ├─ Workers AI: bge-small-en-v1.5 (CLS), bge-reranker-base, Llama 3.1 8B (FP8)
+             └─ Hyperdrive ─► Neon Postgres + pgvector (documents + 15,436 chunks, 98 MB)
+```
+
+The Worker is a port of the Python pipeline with the same SQL, prompt, RRF and quote-verification
+rules (`worker/test` mirrors the Python unit tests). Before deploying, embeddings and reranker scores
+from Workers AI were checked against the local models: identical (cosine 1.0000, same rankings).
+
+| Live site, measured through its public API | Result |
+|---|---|
+| Retrieval recall@5 (hybrid + reranker, 79 questions) | **89.9%** (same as local) |
+| Right grant in top 5 | 100% |
+| Unanswerable questions refused | 78.6% (11/14) |
+| Correct answers (of answered, reviewed) | 97.3% (71/73) |
+| Faithful: claims backed by verified quotes (of all answers shown, reviewed) | 94.7% (72/76) |
+| Median latency | search 1.8 s, answer 6.5 s |
+| Cost | $0: Cloudflare and Neon free tiers |
+
+Redeploy after changes:
+
+```bash
+python scripts/migrate_to_neon.py            # only if the data changed (needs NEON_DATABASE_URL in .env)
+cd worker && npm run deploy                  # copies the page + PDFs into public/ and deploys
+python scripts/evaluate_live.py --base-url https://grantscope.mounikabharatha.workers.dev
+```
+
 ## Tests
 
 ```bash
-python -m pytest
+python -m pytest            # Python
+cd worker && npm test       # Worker (TypeScript) parity tests
 ```
 
 ## Run it locally
@@ -169,6 +205,6 @@ Stop the server with `Ctrl + C`.
 - [x] Phase 5: hybrid search + reranker
 - [x] Phase 6: cited answers, quote verification, refusals
 - [x] Phase 7: evaluation in CI
-- [ ] Phase 8: deploy, cost and latency
+- [x] Phase 8: deploy, cost and latency
 
 Every measured number goes in [docs/results.md](docs/results.md).

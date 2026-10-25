@@ -45,7 +45,6 @@ export default {
     if (request.method !== "GET") return json({ error: "method not allowed" }, 405);
 
     const sql = postgres(env.HYPERDRIVE.connectionString, { max: 5, fetch_types: false });
-    ctx.waitUntil(sql.end()); // close the pooled connection once the response is sent
     try {
       switch (url.pathname) {
         case "/health": {
@@ -83,6 +82,10 @@ export default {
     } catch (err) {
       console.error(err);
       return json({ error: "internal error" }, 500);
+    } finally {
+      // Close the connection after the work is done (Hyperdrive keeps the real pool to Neon).
+      // Calling sql.end() before the queries would close it immediately.
+      ctx.waitUntil(sql.end());
     }
   },
 } satisfies ExportedHandler<Env>;

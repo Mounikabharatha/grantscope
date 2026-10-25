@@ -5,7 +5,9 @@ import type postgres from "postgres";
 import { search, type Filters, type Hit } from "./search.ts";
 import { isNonAnswer, normalize, parseJson } from "./text.ts";
 
-export const LLM_MODEL = "@cf/meta/llama-3.1-8b-instruct"; // the model Ollama runs locally
+// Llama 3.1 8B, the model Ollama runs locally (Q4 there, FP8 here). The non-FP8
+// @cf/meta/llama-3.1-8b-instruct was retired from Workers AI on 2026-05-30.
+export const LLM_MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const MIN_RERANK_SCORE = 0.05;
 const TOP_K = 5;
 

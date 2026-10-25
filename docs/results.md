@@ -130,3 +130,54 @@ Counting every answer shown to a user (74 answerable + 1 unanswerable that slipp
 | 2026-10-23 | Vector search only, local Mac, 30 queries, top-5 over 15,436 chunks | 22.8 ms embed + 2.7 ms DB | 37.9 ms embed + 5.1 ms DB | $0 (local model) |
 | 2026-10-24 | hybrid + reranker, local Mac (MPS), 78 eval queries, 15,436 chunks | 1,082 ms | 1,177 ms | $0 (local models). Reranking 30 passages is ~85% of the time; vector alone is ~21 ms. |
 | 2026-10-24 | full answer: retrieval + Llama 3.1 8B generation, local M1 Pro, 93 eval questions | 11.4 s | 40 s max | $0 (local models). Generation is ~85% of the time. |
+
+## Live deployment (Phase 8): Cloudflare Workers + Workers AI + Neon
+
+Deployed at https://grantscope.mounikabharatha.workers.dev (2026-10-25). Same pipeline ported to a
+TypeScript Worker: Neon Postgres + pgvector 0.8.6 via Hyperdrive; Workers AI for bge-small-en-v1.5
+(CLS pooling), bge-reranker-base, and **@cf/meta/llama-3.1-8b-instruct-fp8** (the non-FP8 Llama 3.1 8B
+was retired from Workers AI on 2026-05-30; locally Ollama runs a 4-bit build of the same model).
+
+### Model parity checks before deploying
+
+| Check | Result |
+|---|---|
+| 30 stored chunk embeddings vs Workers AI (CLS) | cosine similarity 1.0000 (min and mean): no re-embedding needed |
+| 10 eval-question embeddings, local vs Workers AI | cosine 1.0000 |
+| Reranker, 2 queries x 12 candidates | identical ranking (Spearman 1.000) and identical 0-1 scores (max diff 0.0000). This caught a bug: the first Worker draft applied a sigmoid to already-normalized scores |
+
+### Live evaluation (`scripts/evaluate_live.py`, through the public API)
+
+| Retrieval, 79 questions | R@1 | R@5 | R@10 | MRR | Right grant in top 5 | Median /search latency |
+|---|---|---|---|---|---|---|
+| vector | 49.4% | 83.5% | 88.6% | 0.625 | 97.5% | 1,286 ms |
+| **hybrid + reranker** | 65.8% | **89.9%** | 93.7% | 0.771 | **100%** | 1,751 ms |
+
+Recall@5 for hybrid + reranker is identical to local (89.9%); vector is one question higher (HNSW is
+approximate and the Neon index was built separately).
+
+| Answers, 93 questions | Local (Ollama, v2) | **Live (Workers AI FP8)** |
+|---|---|---|
+| Unanswerable correctly refused | 92.9% (13/14) | **78.6% (11/14)** |
+| Answerable answered | 93.7% (74/79) | 92.4% (73/79) |
+| Correct of answered (after review) | 95.9% (71/74) | **97.3% (71/73)** |
+| Faithful, of all answers shown (after review) | 97.3% (73/75) | **94.7% (72/76)** |
+| Quote validity | 96.1% | 95.8% (114/119) |
+| Median answer latency | 11.4 s (M1 Pro) | **6.5 s** (generation 5.0 s) |
+
+Reviewed failures on the live site:
+- **q080 (trick, NIH R01): hallucinated attribution.** Quoted a nursing grant's "Up to $750,000 per year"
+  as the NIH R01 amount. Top reranker score 0.135, above the 0.05 early-refusal cutoff.
+- **q081 (trick, DOE SBIR):** USDA SBIR rules presented as DOE's (same failure as locally).
+- **q087 (trick, Clean Vessel Act electric charging):** inferred "No" from what the eligible-activities list
+  omits instead of refusing.
+- **q029 (Region 9 states):** claimed the states aren't listed, then added New Mexico from the model's own
+  knowledge (wrong; New Mexico is Region 6). The 8B judge called it correct.
+- **q051:** quoted the other NEH Landmarks NOFO's $230,000 (same as locally).
+- 6 false refusals (q003, q017, q035, q044, q071, q091).
+- The 8B judge marked 5 well-supported answers as unsupported (q021, q048, q060, q062, q065).
+
+Takeaways: retrieval transfers exactly; the hosted FP8 model refuses trick questions less reliably than the
+local 4-bit build (3 answered vs 1). The dominant failure is **entity mismatch** (right-looking quote from the
+wrong grant/program). A next step would be a check that the cited grant matches the program named in the
+question, validated on a fresh set of questions rather than tuned on this one.

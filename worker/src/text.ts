@@ -28,7 +28,3 @@ export function parseJson(value: unknown): Record<string, unknown> {
     throw new Error("model did not return JSON");
   }
 }
-
-export function sigmoid(x: number): number {
-  return 1 / (1 + Math.exp(-x));
-}
