@@ -29,11 +29,11 @@ from app.evaluation import QUESTIONS, find_quote_page, is_relevant, load_questio
 CHUNK_SETS = ["section_300", "fixed_300"]
 
 
-def check_pages(fix: bool) -> int:
+def check_pages(fix: bool, path: Path = QUESTIONS) -> int:
     if not any((ROOT / "data" / "raw").glob("*.pdf")):
         print("\n[pages] skipped: no PDFs in data/raw (e.g. in CI)")
         return 0
-    with QUESTIONS.open(newline="") as f:
+    with path.open(newline="") as f:
         reader = csv.DictReader(f)
         fieldnames, rows = reader.fieldnames, list(reader)
     wrong = 0
@@ -51,7 +51,7 @@ def check_pages(fix: bool) -> int:
             else:
                 wrong += 1
     if fix:
-        with QUESTIONS.open("w", newline="") as f:
+        with path.open("w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(rows)
@@ -63,8 +63,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--fix-pages", action="store_true")
     parser.add_argument("--chunk-sets", nargs="+", default=CHUNK_SETS)
+    parser.add_argument("--questions", type=Path, default=QUESTIONS, help="e.g. eval/holdout.csv")
     args = parser.parse_args()
-    questions = load_questions()
+    questions = load_questions(path=args.questions)
     answerable = [q for q in questions if q.type == "answerable"]
     print(f"{len(questions)} questions: {len(answerable)} answerable, "
           f"{len(questions) - len(answerable)} unanswerable")
@@ -88,7 +89,7 @@ def main() -> None:
             problems += 1
             print(f"  MISSING {q.id}: {q.evidence!r} (grant {q.opportunity_id})")
 
-    problems += check_pages(fix=args.fix_pages)
+    problems += check_pages(fix=args.fix_pages, path=args.questions)
     print("\nOK: every evidence quote was found on its page." if not problems else f"\n{problems} problem(s) to fix.")
     sys.exit(1 if problems else 0)
 

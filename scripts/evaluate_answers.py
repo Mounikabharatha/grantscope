@@ -37,7 +37,7 @@ sys.path.insert(0, str(ROOT))
 
 from app.answer import MIN_RERANK_SCORE, answer_question  # noqa: E402
 from app.embeddings import get_model  # noqa: E402
-from app.evaluation import load_questions  # noqa: E402
+from app.evaluation import QUESTIONS, load_questions  # noqa: E402
 from app.llm import MODEL, chat, parse_json  # noqa: E402
 from app.search import get_reranker  # noqa: E402
 
@@ -78,11 +78,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--ids", nargs="+")
+    parser.add_argument("--questions", type=Path, default=QUESTIONS, help="e.g. eval/holdout.csv")
     parser.add_argument("--label", default="answers")
     args = parser.parse_args()
     load_dotenv(ROOT / ".env")
 
-    questions = load_questions()
+    questions = load_questions(path=args.questions)
     if args.ids:
         questions = [q for q in questions if q.id in set(args.ids)]
     if args.limit:

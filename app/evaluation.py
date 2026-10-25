@@ -36,8 +36,8 @@ def normalize(text: str) -> str:
     return " ".join(re.findall(r"[a-z0-9]+", text))
 
 
-def load_questions(include_drafts: bool = True) -> list[Question]:
-    with QUESTIONS.open(newline="") as f:
+def load_questions(include_drafts: bool = True, path: Path = QUESTIONS) -> list[Question]:
+    with Path(path).open(newline="") as f:
         rows = list(csv.DictReader(f))
     questions = [
         Question(

@@ -34,7 +34,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from app.embeddings import get_model  # noqa: E402
-from app.evaluation import is_relevant, load_questions  # noqa: E402
+from app.evaluation import QUESTIONS, is_relevant, load_questions  # noqa: E402
 from app.search import METHODS, search  # noqa: E402
 
 KS = [1, 3, 5, 10, 20]
@@ -101,13 +101,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--chunk-sets", nargs="+", default=["section_300", "fixed_300"])
     parser.add_argument("--methods", nargs="+", default=METHODS, choices=METHODS)
+    parser.add_argument("--questions", type=Path, default=QUESTIONS, help="e.g. eval/holdout.csv")
     parser.add_argument("--label", default="retrieval", help="name for the saved results file")
     parser.add_argument("--min-recall5", nargs="+", default=[], metavar="METHOD=VALUE",
                         help="fail (exit 1) if a method's recall@5 is below VALUE, e.g. hybrid_rerank=0.87")
     args = parser.parse_args()
     load_dotenv(ROOT / ".env")
 
-    questions = [q for q in load_questions() if q.type == "answerable"]
+    questions = [q for q in load_questions(path=args.questions) if q.type == "answerable"]
     print(f"Evaluating {len(questions)} answerable questions...")
     get_model()  # load once so latency numbers measure search, not model loading
 
