@@ -2,6 +2,11 @@
 
 **Live demo: https://grantscope.mounikabharatha.workers.dev**
 
+**Demo video:**
+
+https://github.com/user-attachments/assets/0ace97e9-0a25-429f-abcd-88119062f794
+
+
 [![CI](https://github.com/Mounikabharatha/grantscope/actions/workflows/ci.yml/badge.svg)](https://github.com/Mounikabharatha/grantscope/actions/workflows/ci.yml)
 
 Ask questions about public grant documents and get answers with citations.
