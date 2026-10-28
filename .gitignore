@@ -5,3 +5,7 @@ data/raw/
 .DS_Store
 data/chunks/
 .claude/
+
+# demo recordings (keep out of git)
+*.mov
+*.mp4
