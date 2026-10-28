@@ -136,11 +136,11 @@ def answer_question(
 ) -> Answer:
     timings = {}
     start = time.perf_counter()
-    # Restrict the search to the agency/grant the question names (or refuse if it only names
-    # agencies we have no grants from); see app/scope.py.
+    # Restrict the search to the agency/grant the question names, or refuse if it names only
+    # agencies we have no grants from or a program our documents don't cover; see app/scope.py.
     scope = scope_question(conn, question)
     scope_info = {"agencies": scope.agencies, "agency_codes": scope.agency_codes,
-                  "opportunity_ids": scope.opportunity_ids}
+                  "opportunity_ids": scope.opportunity_ids, "missing_program": scope.missing_program}
     if scope.refusal:
         timings["retrieval"] = round((time.perf_counter() - start) * 1000)
         return Answer(question, scope.refusal, True, "out_of_scope", timings_ms=timings, scope=scope_info)

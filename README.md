@@ -167,7 +167,9 @@ from Workers AI were checked against the local models: identical (cosine 1.0000,
 ...) are refused immediately with a list of the agencies we do have, and look-alike grants (e.g. two
 NEH "Landmarks" NOFOs) are told apart by matching the title in order. Measured on a separate
 35-question holdout set written before the fix: trick questions refused 11/13 -> 12/13 with no loss in
-answered or correct questions; details in [docs/results.md](docs/results.md).
+answered or correct questions. Questions naming a program we don't have (e.g. "NEH Summer Stipends") are
+refused with a list of that agency's announcements we do have: 7/15 -> 13/15 on a second holdout set, with
+all 8 control questions still answered. Details in [docs/results.md](docs/results.md).
 
 Redeploy after changes:
 

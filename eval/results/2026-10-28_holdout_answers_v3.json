@@ -1,0 +1,1039 @@
+{
+  "model": "llama3.1:8b",
+  "min_rerank_score": 0.05,
+  "records": [
+    {
+      "id": "h001",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What is the maximum award for the NEH Landmarks of American History and Culture and Summer Institutes program?",
+      "reference": "$230,000",
+      "answer": "The maximum award is up to $230,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9986888766288757,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "You may request up to $230,000, depending on the duration of your proposed project.",
+          "verified": true,
+          "title": "Landmarks of American History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 8,
+          "opportunity_id": 362024
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2144,
+        "generation": 7381,
+        "total": 9851
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with additional wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h002",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "How much can I request for a one-week project under the NEH Landmarks of History and Culture and Summer Institutes (December 9, 2026 deadline)?",
+      "reference": "$300,000",
+      "answer": "I couldn't find a supported answer to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "unverified",
+      "top_score": 0.997658371925354,
+      "citations": [],
+      "dropped_citations": [
+        {
+          "passage": 1,
+          "quote": "one week $300,000",
+          "verified": false,
+          "title": "Landmarks of History and Culture and Summer Institutes",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 8,
+          "opportunity_id": 363880
+        }
+      ],
+      "timings_ms": {
+        "retrieval": 1110,
+        "generation": 7618,
+        "total": 8728
+      }
+    },
+    {
+      "id": "h003",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "How much total funding is available for the EPA Region 5 Wetland Program Development Grants?",
+      "reference": "$2,962,000",
+      "answer": "Up to $2,962,000",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.999574601650238,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Up to $2,962,000 may be awarded under this NOFO over approximately one to four years",
+          "verified": true,
+          "title": "Region 5 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 5 Fiscal Year 2025 Wetland Program Development Grants > Basic Information > F. Other Funding Considerations",
+          "page": 5,
+          "opportunity_id": 361319
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1013,
+        "generation": 9120,
+        "total": 10317
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with only minor wording difference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h004",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "How many awards does EPA Region 10 expect to make under its FY2025 Wetland Program Development Grants?",
+      "reference": "Up to 15",
+      "answer": "EPA Region 10 expects to make up to 15 awards under its FY2025 Wetland Program Development Grants.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9998701810836792,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "It is anticipated that up to 15 awards will be made under this announcement.",
+          "verified": true,
+          "title": "Region 10 Fiscal Year 2025 Wetland Program Development Grants",
+          "section": "Region 10 Fiscal Year 2025 Wetland Program Development Grants > Basic Information > D. Funding Details:",
+          "page": 4,
+          "opportunity_id": 361313
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1689,
+        "generation": 9610,
+        "total": 11484
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with different wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h005",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What is the funding range per award for the HRSA RCORP-Impact program?",
+      "reference": "Up to $750,000",
+      "answer": "The funding range per award for the HRSA RCORP-Impact program is up to $750,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9990456700325012,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Funding range per award: Up to $750,000",
+          "verified": true,
+          "title": "Rural Communities Opioid Response Program (RCORP)-Impact",
+          "section": "Impact > Review the Opportunity > Basic Information > Funding details",
+          "page": 7,
+          "opportunity_id": 362284
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1851,
+        "generation": 10560,
+        "total": 12677
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Matches the reference answer exactly."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h006",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What match does the NAWCA Mexico grants program require?",
+      "reference": "1:1 non-federal match, with match letters at submission",
+      "answer": "A 1:1 non-federal match is required.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9984661340713501,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The Mexico program requires a 1:1 non-federal match and partner contribution match letters are required when proposal is submitted.",
+          "verified": true,
+          "title": "F26AS00003 - NAWCA 2026 Mexico Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 5,
+          "opportunity_id": 361811
+        },
+        {
+          "passage": 2,
+          "quote": "The program requires a 1:1 non-federal match.",
+          "verified": true,
+          "title": "F26AS00003 - NAWCA 2026 Mexico Grants",
+          "section": "BASIC INFORMATION > Executive Summary",
+          "page": 3,
+          "opportunity_id": 361811
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1543,
+        "generation": 9826,
+        "total": 11494
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact about match requirement and submission process."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h007",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What is the award floor for the NAWCA 2027-1 US Standard Grants?",
+      "reference": "$250,001",
+      "answer": "The award floor is $250,001.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9976933598518372,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Award Floor: $250,001",
+          "verified": true,
+          "title": "F27AS00008-NAWCA 2027-1 US Standard Grants",
+          "section": "BASIC INFORMATION",
+          "page": 3,
+          "opportunity_id": 363306
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1401,
+        "generation": 6768,
+        "total": 8228
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same award floor amount as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h008",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What cost share does the NAWCA 2026-2 US Standard Grants program require?",
+      "reference": "Minimum 1:1 non-federal match",
+      "answer": "The NAWCA 2026-2 US Standard Grants program requires a 1:1 non-federal match.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9983966946601868,
+      "citations": [
+        {
+          "passage": 3,
+          "quote": "Yes The program requires a minimum 1:1 non-federal match.",
+          "verified": true,
+          "title": "F26AS00026-NAWCA 2026-2 US Standard Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 4,
+          "opportunity_id": 361755
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1621,
+        "generation": 10263,
+        "total": 11954
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h009",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What is the award ceiling for the Aquatic Invasive Species Grants to Great Lakes Tribes?",
+      "reference": "$100,000",
+      "answer": "The award ceiling is $100,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9981560111045837,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Award Ceiling: $100,000",
+          "verified": true,
+          "title": "F26AS00084 Aquatic Invasive Species Grants to Great Lakes Tribes - Fiscal Year 2026 Great Lakes Restoration Initiative",
+          "section": "BASIC INFORMATION",
+          "page": 3,
+          "opportunity_id": 362303
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1753,
+        "generation": 4879,
+        "total": 6732
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in identical wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h010",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "How many awards will HRSA make for the Strategies to Link, Engage, and Retain Men with HIV in Care: Evaluation Provider?",
+      "reference": "One cooperative agreement",
+      "answer": "I couldn't find a supported answer to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "unverified",
+      "top_score": 0.9999203681945801,
+      "citations": [],
+      "dropped_citations": [
+        {
+          "passage": 1,
+          "quote": "It funds one cooperative agreement recipient to serve as the Evaluation Provider (EP).",
+          "verified": false,
+          "title": "Strategies to Link, Engage, and Retain Men with HIV in Care: Evaluation Provider",
+          "section": "Step 1: Review the Opportunity > Basic information > Summary",
+          "page": 3,
+          "opportunity_id": 361376
+        }
+      ],
+      "timings_ms": {
+        "retrieval": 1355,
+        "generation": 10500,
+        "total": 11855
+      }
+    },
+    {
+      "id": "h011",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "Is cost sharing required for the Strategies to Link, Engage, and Retain Men with HIV in Care: Implementation Technical Assistance Provider?",
+      "reference": "No",
+      "answer": "This program has no cost-sharing requirement.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9999659061431885,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "This program has no cost-sharing requirement.",
+          "verified": true,
+          "title": "Strategies to Link, Engage, and Retain Men with HIV in Care: Implementation Technical Assistance Provider",
+          "section": "Step 1: Review the Opportunity > Eligibility > Cost sharing",
+          "page": 6,
+          "opportunity_id": 361377
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1681,
+        "generation": 8768,
+        "total": 10636
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, different wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h012",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What is the maximum for workshop grants under the USDA Tribal Colleges Research Grants Program?",
+      "reference": "$150,000",
+      "answer": "The maximum for workshop grants under the USDA Tribal Colleges Research Grants Program is $150,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996680021286011,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "e. Workshop Grants ($150,000 maximum) would host groups of 1994s, partners, other organizations, and Federal agencies to address the needs of Tribal communities and help to spur scientific inquiry.",
+          "verified": true,
+          "title": "Tribal Colleges Research Grants Program",
+          "section": "Notice of Funding Opportunity > Tribal Colleges Research Grants Program > C. Project and Grant Types",
+          "page": 12,
+          "opportunity_id": 362029
+        },
+        {
+          "passage": 2,
+          "quote": "d. Applied Faculty/Community ($150,000 maximum) grants fund faculty, community, and student research that addresses practical Tribal community needs and opportunities.",
+          "verified": true,
+          "title": "Tribal Colleges Research Grants Program",
+          "section": "Notice of Funding Opportunity > Tribal Colleges Research Grants Program > C. Project and Grant Types",
+          "page": 12,
+          "opportunity_id": 362029
+        },
+        {
+          "passage": 4,
+          "quote": "Workshop Grants: $150,000",
+          "verified": true,
+          "title": "Tribal Colleges Research Grants Program",
+          "section": "Notice of Funding Opportunity > Tribal Colleges Research Grants Program > B. Purpose and Priorities",
+          "page": 8,
+          "opportunity_id": 362029
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1831,
+        "generation": 15060,
+        "total": 17225
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Exact wording matches reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h013",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What is the maximum award for the USDA Gus Schumacher Produce Prescription Program?",
+      "reference": "$500,000",
+      "answer": "The maximum award for the USDA Gus Schumacher Produce Prescription Program is $500,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9982825517654419,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Maximum Award Amount: $500,000",
+          "verified": true,
+          "title": "The Gus Schumacher Nutrition Incentive Program Produce Prescription Program",
+          "section": "NOTICE OF FUNDING OPPORTUNITY > Produce Prescription Program > Title Description",
+          "page": 9,
+          "opportunity_id": 362829
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2033,
+        "generation": 10224,
+        "total": 12407
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Exact wording matches reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h014",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What cost share is required for the Highlands Conservation Act Base Funding Round?",
+      "reference": "50% non-federal",
+      "answer": "50 percent non-Federal cost share is required.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.996196985244751,
+      "citations": [
+        {
+          "passage": 3,
+          "quote": "Yes 50 percent non-Federal cost share required.",
+          "verified": true,
+          "title": "F25AS00379 Highlands Conservation Act - Base Funding Round",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 4,
+          "opportunity_id": 362480
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1724,
+        "generation": 10025,
+        "total": 11839
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same wording and detail as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h015",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "How much funding is expected for the EPA Great Lakes Biology Monitoring Program zooplankton, Mysis, and benthic invertebrate award?",
+      "reference": "$8,100,000 (one award)",
+      "answer": "The amount of funding is expected to be $8,100,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9999415874481201,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The amount of funding is expected to be $8,100,000, depending on Agency funding levels, the quality of applications received, agency priorities, and other applicable considerations.",
+          "verified": true,
+          "title": "Great Lakes Biology Monitoring Program: Zooplankton, Mysis, and Benthic Invertebrate Components",
+          "section": "Great Lakes Biology Monitoring Program: Zooplankton, Mysis, and Benthic Invertebrate Components > Basic Information > D. Funding Details:",
+          "page": 4,
+          "opportunity_id": 362159
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1731,
+        "generation": 9899,
+        "total": 11819
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same amount as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h016",
+      "type": "answerable",
+      "category": "lookalike",
+      "question": "What is the minimum non-Federal cost share for the Cooperative Endangered Species Conservation Fund Habitat Conservation Planning grants?",
+      "reference": "25% of total project cost",
+      "answer": "The minimum non-Federal cost share is 25 percent of the total project cost, i.e., the amount requested from the program plus the amount of non-Federal cost share.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9997761845588684,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "the minimum non-Federal cost share is 25 percent of the total project cost",
+          "verified": true,
+          "title": "F26AS00071 Cooperative Endangered Species Conservation Fund: Habitat Conservation Plan Land Acquisition Grants",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 6,
+          "opportunity_id": 363691
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1955,
+        "generation": 10647,
+        "total": 12724
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the same key fact as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h017",
+      "type": "answerable",
+      "category": "regular",
+      "question": "What is the funding range per award for the EPA Technical Assistance and Training for Rural, Small and Tribal Municipalities grants?",
+      "reference": "$1,000,000 - $3,000,000 per award",
+      "answer": "The funding range per award is $1,000,000-$3,000,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9999094009399414,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Priority Area # Of Awards Anticipated Funding Range/Award",
+          "verified": true,
+          "title": "Technical Assistance and Training for Rural, Small and Tribal Municipalities and Wastewater Treatment Systems",
+          "section": "Technical Assistance and Training for Rural, Small and Tribal Municipalities > Basic Information > F. Other Funding Considerations",
+          "page": 6,
+          "opportunity_id": 362798
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1777,
+        "generation": 10499,
+        "total": 12477
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact with acceptable wording variation."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h018",
+      "type": "answerable",
+      "category": "regular",
+      "question": "How much can NEH Scholarly Editions and Translations implementation awards provide?",
+      "reference": "Up to $300,000 outright + $150,000 matching",
+      "answer": "Up to $100,000 per year in outright funds, plus an additional $50,000 in matching funds, for a maximum of $150,000 per year.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9994028806686401,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "up to $100,000 per year in outright funds, plus an additional $50,000 per year in matching funds",
+          "verified": true,
+          "title": "Scholarly Editions and Translations",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts > Funding Category Period of Performance Award Amount",
+          "page": 9,
+          "opportunity_id": 363014
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1680,
+        "generation": 9360,
+        "total": 11160
+      },
+      "correctness": {
+        "verdict": "partial",
+        "reason": "System answer misses the 'up to $300,000 outright' part and incorrectly states the maximum as $150,000 per year instead of a total maximum."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h019",
+      "type": "answerable",
+      "category": "regular",
+      "question": "About how much will each HRSA Rural Hospital Provider Assistance Program award be?",
+      "reference": "Approximately $148,000",
+      "answer": "Approximately $148,000",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9988364577293396,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Approximately $148,000 (ceiling amount is contingent on number of awards)",
+          "verified": true,
+          "title": "Rural Hospital Provider Assistance Program",
+          "section": "Step 1: Review the Opportunity > Funding details",
+          "page": 4,
+          "opportunity_id": 361524
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1674,
+        "generation": 6671,
+        "total": 8478
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact as reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h020",
+      "type": "answerable",
+      "category": "regular",
+      "question": "What non-federal match does the Fish and Wildlife Service Great Lakes Fish and Wildlife Restoration Act program require?",
+      "reference": "25% non-federal match",
+      "answer": "The Great Lakes Fish and Wildlife Restoration Act program requires a 25% non-federal match.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9992764592170715,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "All proposals require a 25% non-federal match.",
+          "verified": true,
+          "title": "F26AS00062: Great Lakes Fish and Wildlife Restoration Act FY 2026",
+          "section": "ELIGIBILITY > Cost Sharing Requirement > Cost Sharing Required?",
+          "page": 5,
+          "opportunity_id": 362629
+        },
+        {
+          "passage": 5,
+          "quote": "2. Has the 25% non-federal match requirement been met?",
+          "verified": true,
+          "title": "F26AS00062: Great Lakes Fish and Wildlife Restoration Act FY 2026",
+          "section": "APPLICATION REVIEW INFORMATION > Eligibility Review",
+          "page": 18,
+          "opportunity_id": 362629
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1522,
+        "generation": 12246,
+        "total": 13963
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same non-federal match percentage as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h021",
+      "type": "answerable",
+      "category": "regular",
+      "question": "What cost share does the USDA Rural Cooperative Development Grants program require?",
+      "reference": "25% of total award cost (5% for 1994 Institutions)",
+      "answer": "The USDA Rural Cooperative Development Grants program requires a 25 percent matching contribution with private funds and in-kind contributions.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9658092856407166,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "Applicants MUST provide a cost-sharing contribution to the Project that is 25 percent (or 5 percent if a 1994 Institution) of the total award cost",
+          "verified": true,
+          "title": "Rural Cooperative Development Grants",
+          "section": "Notice of Funding Opportunity > Rural Cooperative Development Grants > ANNOUNCEMENT > B. Cost Sharing or Matching",
+          "page": 10,
+          "opportunity_id": 363088
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1606,
+        "generation": 10769,
+        "total": 12532
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Matches the reference answer in key fact and wording"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h022",
+      "type": "answerable",
+      "category": "regular",
+      "question": "When does the State Department DRL Promoting Sovereignty and Rule of Law in Europe project start?",
+      "reference": "September 30, 2026",
+      "answer": "The project start date is September 30, 2026.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9967849254608154,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "FY 2025 Democracy Funds Anticipated project start date September 30, 2026",
+          "verified": true,
+          "title": "DRL Promoting Sovereignty and Rule of Law in Europe",
+          "section": "Promoting Sovereignty and Rule of Law > Bureau of Democracy Human Rights and Labor, Department of State > Type of Funding FY 2025 Democracy Funds Anticipated project start date September 30, 2026",
+          "page": 3,
+          "opportunity_id": 363595
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1609,
+        "generation": 6705,
+        "total": 8417
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated in identical wording."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "h023",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "What is the deadline for the NIH K99/R00 Pathway to Independence Award?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from National Institutes of Health (NIH). I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 5,
+        "total": 6
+      }
+    },
+    {
+      "id": "h024",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "How much funding does the Department of Energy Office of Science Early Career Research Program provide?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Energy. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1,
+        "total": 1
+      }
+    },
+    {
+      "id": "h025",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "What is the stipend for the NSF Graduate Research Fellowship?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from National Science Foundation (NSF). I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h026",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "Who can apply for NASA ROSES research grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from NASA. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h027",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "What is the award ceiling for the NOAA Coastal Resilience grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from NOAA. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h028",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "Does the Department of Defense CDMRP fund breast cancer research?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Defense. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h029",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "How much does the CDC Overdose Data to Action program award to states?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from CDC. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h030",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "What is the cost share for HUD Community Development Block Grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from HUD. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h031",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "When are applications due for the Department of Transportation BUILD grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Transportation. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h032",
+      "type": "unanswerable",
+      "category": "agency_not_in_corpus",
+      "question": "What is the maximum award for the Department of Justice Byrne JAG program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from Department of Justice. I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "h033",
+      "type": "unanswerable",
+      "category": "program_not_in_corpus",
+      "question": "What is the deadline for the EPA Clean Ports Program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I don't have the grant announcement for \"Clean Ports Program\". The EPA announcements I have are: 2025 South Florida Program; 2026 Diesel Emissions Reduction Act (DERA) National Program; Advisory Committee Coordination Support for the Chesapeake Bay Program Partnership; Brownfields Job Training (JT) Grants; Environmental Education Grant Program; Farmer to Farmer 2025; Fiscal Year (FY) 2026 Funding Opportunity for Indian Tribes and Intertribal Consortia for Nonpoint Source Management Grants Under Clean Water Act Section 319; Great Lakes Biology Monitoring Program Phytoplankton and Chlorophyll a Components; and 20 more.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 14,
+        "total": 14
+      }
+    },
+    {
+      "id": "h034",
+      "type": "unanswerable",
+      "category": "program_not_in_corpus",
+      "question": "How much funding does the USDA Rural Energy for America Program provide?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I don't have the grant announcement for \"Rural Energy for America Program\". The USDA (NIFA) announcements I have are: 1890 Institution Teaching, Research, and Extension Capacity Building Grants Program; Agriculture Risk Management Education Partnerships Competitive Grants Program; Agriculture and Food Research Initiative Competitive Grants Program Education and Workforce Development; Agriculture and Food Research Initiative Strengthening Agricultural Systems; Alaska Native Serving and Native Hawaiian Serving Institutions Education Competitive Grants Program; Alfalfa Seed and Alfalfa Forage Systems; Assistive Technology Program for Farmers with Disabilities; Beginning Farmer and Rancher Development Program; and 40 more.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 7,
+        "total": 7
+      }
+    },
+    {
+      "id": "h035",
+      "type": "unanswerable",
+      "category": "program_not_in_corpus",
+      "question": "What is the award amount for NEH Summer Stipends?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I don't have the grant announcement for \"Summer Stipends\". The NEH announcements I have are: Awards for Faculty at HBCUs; Collaborative Research; Collections Stewardship; Curriculum Development Western Civilization; Endowments for Advancing the Humanities; Landmarks of American History and Culture and Summer Institutes; Landmarks of History and Culture and Summer Institutes; Media Projects; and 4 more.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 4,
+        "total": 4
+      }
+    }
+  ]
+}

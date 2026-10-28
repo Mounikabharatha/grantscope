@@ -1,4 +1,4 @@
-from app.scope import mentioned_agencies, named_grants, tokens
+from app.scope import mentioned_agencies, named_grants, program_matches_title, program_names, tokens
 
 
 def names(q):
@@ -49,3 +49,27 @@ def test_title_words_must_appear_in_order():
 
 def test_no_named_grant_when_title_is_only_partly_mentioned():
     assert named_grants("What habitat grants exist for towns?", TITLES) == []
+
+
+def test_program_names_need_a_program_word_and_drop_the_agency():
+    assert program_names("What does the NEH Coastal Poetry Stipends program pay?") == ["Coastal Poetry Stipends"]
+    assert program_names("How much does the USDA Widget Program award?") == ["Widget Program"]
+    assert program_names("What is the maximum award for the USDA FooBar program?") == ["FooBar"]
+    # Capitalized names without a program word are not programs.
+    assert program_names("Can the University of Arizona apply?") == []
+    assert program_names("Can organizations in American Samoa apply?") == []
+    # Lowercase names are not detected (a known limit).
+    assert program_names("how much do widget grants pay?") == []
+
+
+def test_program_names_keep_connectors_and_original_spelling():
+    assert program_names("How much do EPA Talks on the History of Rivers grants give?") == ["Talks on the History of Rivers"]
+    assert program_names("Who is eligible for the USDA SBIR/STTR Phase II program?") == ["SBIR/STTR Phase II"]
+    assert program_names("What is the deadline for the EPA's Clean Widget Program?") == ["Clean Widget Program"]
+
+
+def test_program_matches_title_both_ways():
+    titles = {1: "Media Projects", 2: "The Widget Incentive Program Produce Prescription Program"}
+    assert program_matches_title("Media Projects Development", titles)  # contains a whole title
+    assert program_matches_title("Widget Produce Prescription Program", titles)  # shortened title
+    assert not program_matches_title("Summer Stipends", titles)

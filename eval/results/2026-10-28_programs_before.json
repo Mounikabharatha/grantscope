@@ -1,0 +1,687 @@
+{
+  "model": "llama3.1:8b",
+  "min_rerank_score": 0.05,
+  "records": [
+    {
+      "id": "p001",
+      "type": "answerable",
+      "category": "control",
+      "question": "What is the award ceiling for the FWS Tribal Wildlife Grants?",
+      "reference": "$200,000",
+      "answer": "The award ceiling for the FWS Tribal Wildlife Grants is $200,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.8201656937599182,
+      "citations": [
+        {
+          "passage": 4,
+          "quote": "Award Ceiling: $200,000",
+          "verified": true,
+          "title": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "BASIC INFORMATION",
+          "page": 3,
+          "opportunity_id": 362774
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2437,
+        "generation": 11841,
+        "total": 14743
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated as reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p002",
+      "type": "answerable",
+      "category": "control",
+      "question": "Can the University of Arizona apply for the NEH Collaborative Research program?",
+      "reference": "Yes, accredited public or nonprofit institutions of higher education are eligible",
+      "answer": "The University of Arizona can apply for the Collaborative Research program if the scholars have an institutional affiliation.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9961593151092529,
+      "citations": [
+        {
+          "passage": 4,
+          "quote": "Collaborating scholars with an institutional affiliation are encouraged to apply to the Collaborative Research program.",
+          "verified": true,
+          "title": "Awards for Faculty at HBCUs",
+          "section": "H. Other Information > Related funding opportunities",
+          "page": 18,
+          "opportunity_id": 361391
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1976,
+        "generation": 8104,
+        "total": 10171
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers mention the University of Arizona's eligibility and the type of institution it is."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p003",
+      "type": "answerable",
+      "category": "control",
+      "question": "What is the maximum award for the USDA AgVets program?",
+      "reference": "$750,000",
+      "answer": "The maximum award amount is $750,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9837100505828857,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Maximum Award Amount: $750,000",
+          "verified": true,
+          "title": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description",
+          "page": 7,
+          "opportunity_id": 363139
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1883,
+        "generation": 9094,
+        "total": 11109
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated as reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p004",
+      "type": "answerable",
+      "category": "control",
+      "question": "How much can I request for a film under NEH Media Projects Development awards?",
+      "reference": "Up to $75,000",
+      "answer": "You may request up to $75,000 for Development of a film project under NEH Media Projects Development awards.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996743202209473,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "You may request up to $75,000 for Development of a film project,",
+          "verified": true,
+          "title": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 7,
+          "opportunity_id": 361558
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1672,
+        "generation": 8271,
+        "total": 10050
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same funding limit as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p005",
+      "type": "answerable",
+      "category": "control",
+      "question": "What is the award ceiling for the Clean Vessel Act Grant Program?",
+      "reference": "$1,500,000 (coastal states may get up to $3,000,000 split between coastal and inland)",
+      "answer": "The award ceiling for the Clean Vessel Act Grant Program is $1,500,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9784924387931824,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Award Ceiling: $1,500,000",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "BASIC INFORMATION",
+          "page": 3,
+          "opportunity_id": 362055
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2065,
+        "generation": 7534,
+        "total": 9705
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Matches the reference answer exactly"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p006",
+      "type": "answerable",
+      "category": "control",
+      "question": "How many awards does the Prescott Marine Mammal Rescue and Response Grant Program expect to make?",
+      "reference": "21",
+      "answer": "The Prescott Marine Mammal Rescue and Response Grant Program expects to make 21 awards.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9995101690292358,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Expected Number of Awards: 21",
+          "verified": true,
+          "title": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION",
+          "page": 3,
+          "opportunity_id": 363992
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1761,
+        "generation": 9299,
+        "total": 11181
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same number as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p007",
+      "type": "answerable",
+      "category": "control",
+      "question": "Does the EPA Environmental Education Grant Program require cost sharing?",
+      "reference": "Yes, applicants must meet a cost share requirement",
+      "answer": "The EPA Environmental Education Grant Program requires a cost share of at least 25% of the total project amount.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9998482465744019,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "a minimum of 25% of the total project amount (Total project amount = EPA Funding Request + Non-Federal Match)",
+          "verified": true,
+          "title": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > B. Cost Sharing and Subawards > (1) Cost Share Requirement",
+          "page": 7,
+          "opportunity_id": 361098
+        },
+        {
+          "passage": 5,
+          "quote": "b. The dollar amount of cost share funds you will be providing. This amount must be at least 25% of the total budget for the project.",
+          "verified": true,
+          "title": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Application Contents and Format > B. Project Narrative Description",
+          "page": 15,
+          "opportunity_id": 361098
+        }
+      ],
+      "dropped_citations": [
+        {
+          "passage": 4,
+          "quote": "the cost share (non-federal match) must be at least 25% of the total cost of the project.",
+          "verified": false,
+          "title": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > A. Eligible Applicants > (1) Other Eligibility Requirements",
+          "page": 5,
+          "opportunity_id": 361098
+        }
+      ],
+      "timings_ms": {
+        "retrieval": 1621,
+        "generation": 14392,
+        "total": 16361
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers state that cost sharing is required, with the system answer providing a specific percentage."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p008",
+      "type": "answerable",
+      "category": "control",
+      "question": "Can organizations in American Samoa apply for the Clean Vessel Act grants?",
+      "reference": "Yes, through the governor-designated agency (third parties can partner with it)",
+      "answer": "Yes, organizations in American Samoa can apply for the Clean Vessel Act grants.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9966572523117065,
+      "citations": [
+        {
+          "passage": 3,
+          "quote": "the governor-designated agencies of the United States, Puerto Rico, the Northern Mariana Islands, Guam, American Samoa, and the U.S. Virgin Islands;",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "ELIGIBILITY > Additional Information on Eligibility",
+          "page": 5,
+          "opportunity_id": 362055
+        },
+        {
+          "passage": 5,
+          "quote": "This program accepts applications through GrantSolutions.gov.",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "GET READY TO APPLY > Required System Registrations > GRANTSOLUTIONS",
+          "page": 6,
+          "opportunity_id": 362055
+        }
+      ],
+      "dropped_citations": [
+        {
+          "passage": 1,
+          "quote": "the Territories of Guam, American Samoa, and the U.S. Virgin Islands.",
+          "verified": false,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "BASIC INFORMATION > Executive Summary",
+          "page": 4,
+          "opportunity_id": 362055
+        }
+      ],
+      "timings_ms": {
+        "retrieval": 1881,
+        "generation": 11521,
+        "total": 13584
+      },
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with no additional incorrect information."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "p009",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "What is the maximum award for NEH Digital Humanities Advancement Grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.6597458720207214,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1957,
+        "generation": 8430,
+        "total": 10387
+      }
+    },
+    {
+      "id": "p010",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "When is the deadline for NEH Preservation Assistance Grants for Smaller Institutions?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "May 11, 2026",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9333965182304382,
+      "citations": [
+        {
+          "passage": 5,
+          "quote": "Funding Opportunity Title Collections Stewardship Funding Opportunity Number Federal Assistance Listing Number 45.037 Application Deadline May 11, 2026, 11:59 p.m. Eastern Time",
+          "verified": true,
+          "title": "Collections Stewardship",
+          "section": "Executive Summary",
+          "page": 2,
+          "opportunity_id": 361480
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1702,
+        "generation": 7529,
+        "total": 9332
+      }
+    },
+    {
+      "id": "p011",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "How much funding do NEH Dialogues on the Experience of War grants provide?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The NEH Dialogues on the Experience of War grants provide up to $75,000 for Planning, up to $500,000 for Implementation, or up to $2,000,000 for a Chairman\u2019s Special Award.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.45361843705177307,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "You may request up to $75,000 for Planning, up to $500,000 for Implementation, or up to $2,000,000 for a Chairman\u2019s Special Award,",
+          "verified": true,
+          "title": "Public Humanities Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 10,
+          "opportunity_id": 364098
+        },
+        {
+          "passage": 1,
+          "quote": "up to $2,000,000 for a Chairman\u2019s Special Award,",
+          "verified": true,
+          "title": "Public Humanities Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 7,
+          "opportunity_id": 364098
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1669,
+        "generation": 10903,
+        "total": 12796
+      }
+    },
+    {
+      "id": "p012",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "What is the award ceiling for EPA Solid Waste Infrastructure for Recycling Grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find anything relevant to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "no_passages",
+      "top_score": 0.03764821216464043,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1681,
+        "total": 1681
+      }
+    },
+    {
+      "id": "p013",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "Who can apply for EPA Pollution Prevention Grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "Nonprofit organizations, public institutions of higher education, and nonprofit private universities and colleges can apply for EPA Pollution Prevention Grants.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.11943899840116501,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Nonprofit organizations. \u2022 Public institutions of higher education (IHEs) \u2022 Nonprofit private universities and colleges",
+          "verified": true,
+          "title": "Training and Technical Assistance to Improve Water Quality and Enable Small Public Water Systems to Provide Safe Drinking Water",
+          "section": "Training and Technical Assistance to Improve Water Quality and Enable Small Public Water Systems to Provide Safe Drinking Water > Eligibility > A. Eligible Applicants",
+          "page": 8,
+          "opportunity_id": 361870
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 971,
+        "generation": 8406,
+        "total": 9567
+      }
+    },
+    {
+      "id": "p014",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "How much does the USDA Farmers Market Promotion Program award?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find anything relevant to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "no_passages",
+      "top_score": 0.014392668381333351,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1700,
+        "total": 1700
+      }
+    },
+    {
+      "id": "p015",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "What is the deadline for the USDA Food Safety Outreach Program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "There is no information about the USDA Food Safety Outreach Program in the provided passages. However, the USDA Food Safety Outreach Program is listed in the Assistance Listings under number 10.443.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.3408626616001129,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "The Outreach and Assistance for Veteran Farmers and Ranchers (OAVFR) Program is listed in the Assistance Listings under number 10.443.",
+          "verified": true,
+          "title": "Outreach and Assistance for Veteran Farmers and Ranchers Program",
+          "section": "Notice of Funding Opportunity > Outreach and Assistance for Veteran Farmers > ANNOUNCEMENT",
+          "page": 2,
+          "opportunity_id": 363816
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 985,
+        "generation": 13920,
+        "total": 15123
+      }
+    },
+    {
+      "id": "p016",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "What service commitment does the HRSA Nurse Corps Loan Repayment Program require?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The HRSA Nurse Corps Loan Repayment Program requires a 2-year service commitment.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9098966121673584,
+      "citations": [
+        {
+          "passage": 5,
+          "quote": "You may obligate loan repayments at the start of a participant\u2019s year of service, but you must only pay participants upon completion of each year of service.",
+          "verified": true,
+          "title": "Dental Faculty Loan Repayment Program (DFLRP)",
+          "section": "Contents > Before you begin > Step 1: Review the Opportunity > Program description > Loan repayment program requirements",
+          "page": 12,
+          "opportunity_id": 361375
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2772,
+        "generation": 11467,
+        "total": 14500
+      }
+    },
+    {
+      "id": "p017",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "What is the maximum award for the HRSA Rural Health Care Services Outreach Program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.4082777202129364,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1821,
+        "generation": 8401,
+        "total": 10222
+      }
+    },
+    {
+      "id": "p018",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "Who is eligible for the DRL Global Equality Fund?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "U.S.-based non-profit organizations/nongovernmental organizations (NGOs), Foreign-based non-profit organizations/NGOs, Private or public institutions of higher education, For-profit organizations or businesses",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.18142475187778473,
+      "citations": [
+        {
+          "passage": 3,
+          "quote": "U.S.-based non-profit organizations/nongovernmental organizations (NGOs) \u2022 Foreign-based non-profit organizations/NGOs \u2022 Private or public institutions of higher education \u2022 For-profit organizations or businesses",
+          "verified": true,
+          "title": "DRL Promoting Sovereignty and Rule of Law in Europe",
+          "section": "Promoting Sovereignty and Rule of Law > Bureau of Democracy Human Rights and Labor, Department of State > B. Eligibility",
+          "page": 3,
+          "opportunity_id": 363595
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1682,
+        "generation": 10219,
+        "total": 12001
+      }
+    },
+    {
+      "id": "p019",
+      "type": "unanswerable",
+      "category": "program_missing",
+      "question": "How much does the FWS Tribal Landowner Incentive Program provide?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find anything relevant to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "no_passages",
+      "top_score": 0.013588867150247097,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1662,
+        "total": 1662
+      }
+    },
+    {
+      "id": "p020",
+      "type": "unanswerable",
+      "category": "hard_mentioned_in_passing",
+      "question": "What is the maximum rebate under the EPA Clean School Bus Program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find anything relevant to this question in the grant documents.",
+      "refused": true,
+      "refusal_reason": "no_passages",
+      "top_score": 0.0002966404426842928,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 951,
+        "total": 951
+      }
+    },
+    {
+      "id": "p021",
+      "type": "unanswerable",
+      "category": "hard_mentioned_in_passing",
+      "question": "How much funding is available through the USDA Organic Agriculture Research and Extension Initiative?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The USDA Organic Agriculture Research and Extension Initiative has $7,500,000 available in FY 2026.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9876496195793152,
+      "citations": [
+        {
+          "passage": 5,
+          "quote": "The amount available for grants in FY 2026 is approximately $7,500,000.",
+          "verified": true,
+          "title": "Integrated Research, Education, and Extension Competitive Grants Program \u2013 Organic Transitions",
+          "section": "Notice of Funding Opportunity > Integrated Research, Education, and Extension Competitive Grants Program \u2013 Organic Transitions > ANNOUNCEMENT > EXECUTIVE SUMMARY",
+          "page": 4,
+          "opportunity_id": 362783
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 972,
+        "generation": 7370,
+        "total": 8477
+      }
+    },
+    {
+      "id": "p022",
+      "type": "unanswerable",
+      "category": "hard_mentioned_in_passing",
+      "question": "What is the award ceiling for the HRSA Healthy Start program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.4220893979072571,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1599,
+        "generation": 10555,
+        "total": 12154
+      }
+    },
+    {
+      "id": "p023",
+      "type": "unanswerable",
+      "category": "hard_lowercase",
+      "question": "how much do nurse corps scholarships pay?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The Nurse Corps scholarships pay up to $40,000 per academic year for nursing students.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.19064471125602722,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "o $40,000 per academic year for all other health professions and nursing students.",
+          "verified": true,
+          "title": "Scholarships for Disadvantaged Students (SDS)",
+          "section": "Step 1: Review the Opportunity > Program description > Scholarship requirements",
+          "page": 8,
+          "opportunity_id": 361429
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1872,
+        "generation": 6995,
+        "total": 9084
+      }
+    }
+  ]
+}

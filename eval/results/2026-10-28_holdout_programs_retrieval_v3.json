@@ -1,0 +1,232 @@
+[
+  {
+    "chunk_set": "section_300",
+    "method": "hybrid_rerank",
+    "name": "section_300/hybrid_rerank",
+    "n_questions": 8,
+    "recall": {
+      "1": 0.5,
+      "3": 0.75,
+      "5": 0.875,
+      "10": 0.875,
+      "20": 1.0
+    },
+    "mrr": 0.6458333333333333,
+    "grant_at_5": 1.0,
+    "recall5_by_category": {
+      "control": [
+        0.875,
+        8
+      ]
+    },
+    "latency_ms": {
+      "median": 1114.0193335013464,
+      "p95": 1203.695832984522
+    },
+    "per_question": [
+      {
+        "id": "p001",
+        "category": "control",
+        "question": "What is the award ceiling for the FWS Tribal Wildlife Grants?",
+        "rank": 4,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "p002",
+        "category": "control",
+        "question": "Can the University of Arizona apply for the NEH Collaborative Research program?",
+        "rank": 2,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "Awards for Faculty at HBCUs",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information > Collaborative projects"
+        }
+      },
+      {
+        "id": "p003",
+        "category": "control",
+        "question": "What is the maximum award for the USDA AgVets program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Pr",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description"
+        }
+      },
+      {
+        "id": "p004",
+        "category": "control",
+        "question": "How much can I request for a film under NEH Media Projects Development awards?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "p005",
+        "category": "control",
+        "question": "What is the award ceiling for the Clean Vessel Act Grant Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "p006",
+        "category": "control",
+        "question": "How many awards does the Prescott Marine Mammal Rescue and Response Grant Program expect to make?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "p007",
+        "category": "control",
+        "question": "Does the EPA Environmental Education Grant Program require cost sharing?",
+        "rank": 12,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > B. Cost Sharing and Subawards > (1) Cost Share Requirement"
+        }
+      },
+      {
+        "id": "p008",
+        "category": "control",
+        "question": "Can organizations in American Samoa apply for the Clean Vessel Act grants?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "BASIC INFORMATION > Executive Summary"
+        }
+      }
+    ]
+  },
+  {
+    "chunk_set": "section_300",
+    "method": "scoped",
+    "name": "section_300/scoped",
+    "n_questions": 8,
+    "recall": {
+      "1": 0.5,
+      "3": 0.75,
+      "5": 0.875,
+      "10": 0.875,
+      "20": 1.0
+    },
+    "mrr": 0.6458333333333333,
+    "grant_at_5": 1.0,
+    "recall5_by_category": {
+      "control": [
+        0.875,
+        8
+      ]
+    },
+    "latency_ms": {
+      "median": 929.0692920330912,
+      "p95": 1024.8499579029158
+    },
+    "per_question": [
+      {
+        "id": "p001",
+        "category": "control",
+        "question": "What is the award ceiling for the FWS Tribal Wildlife Grants?",
+        "rank": 4,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "F26AS00088 Endangered Species Conservation \u2013 Wolf Livestock Loss Compensation an",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "p002",
+        "category": "control",
+        "question": "Can the University of Arizona apply for the NEH Collaborative Research program?",
+        "rank": 2,
+        "grant_rank": 2,
+        "top1": {
+          "grant": "Awards for Faculty at HBCUs",
+          "section": "C. Eligibility Information > 2. Other Eligibility Information > Collaborative projects"
+        }
+      },
+      {
+        "id": "p003",
+        "category": "control",
+        "question": "What is the maximum award for the USDA AgVets program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Pr",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description"
+        }
+      },
+      {
+        "id": "p004",
+        "category": "control",
+        "question": "How much can I request for a film under NEH Media Projects Development awards?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "p005",
+        "category": "control",
+        "question": "What is the award ceiling for the Clean Vessel Act Grant Program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "p006",
+        "category": "control",
+        "question": "How many awards does the Prescott Marine Mammal Rescue and Response Grant Program expect to make?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant Program",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "p007",
+        "category": "control",
+        "question": "Does the EPA Environmental Education Grant Program require cost sharing?",
+        "rank": 12,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Environmental Education Grant Program",
+          "section": "Environmental Education Grant Program > Eligibility > B. Cost Sharing and Subawards > (1) Cost Share Requirement"
+        }
+      },
+      {
+        "id": "p008",
+        "category": "control",
+        "question": "Can organizations in American Samoa apply for the Clean Vessel Act grants?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "BASIC INFORMATION > Executive Summary"
+        }
+      }
+    ]
+  }
+]

@@ -52,7 +52,7 @@ export interface Answer {
   top_score: number | null;
   timings_ms: Record<string, number>;
   model: string;
-  scope: { agencies: string[]; agency_codes: string[]; opportunity_ids: number[] };
+  scope: { agencies: string[]; agency_codes: string[]; opportunity_ids: number[]; missing_program: string | null };
 }
 
 export function formatPassages(passages: Hit[]): string {
@@ -100,7 +100,8 @@ export async function answerQuestion(sql: postgres.Sql, ai: Ai, question: string
   // Restrict the search to the agency/grant the question names, or refuse if it only names
   // agencies we have no grants from (scope.ts).
   const scope = await scopeQuestion(sql, question);
-  const scopeInfo = { agencies: scope.agencies, agency_codes: scope.agency_codes, opportunity_ids: scope.opportunity_ids };
+  const scopeInfo = { agencies: scope.agencies, agency_codes: scope.agency_codes, opportunity_ids: scope.opportunity_ids,
+    missing_program: scope.missing_program };
   const base = { question, citations: [], dropped_citations: [], timings_ms: timings, model: LLM_MODEL, scope: scopeInfo };
   if (scope.refusal) {
     timings.retrieval = Date.now() - start;

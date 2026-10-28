@@ -9,6 +9,10 @@ the answer to an NIH question, or one NEH "Landmarks" NOFO's amount given for it
 2. Named grant: if the question contains (nearly) a whole grant title, in order, search only that grant, or
    the most specific of several matching titles ("Landmarks of American History..." vs
    "Landmarks of History...").
+3. Missing program: if no grant title matched but the question names a program (a capitalized phrase
+   with a word like Program, Grants, Award, Stipends or Fund in or right after it, e.g. "NEH Summer
+   Stipends") that appears nowhere in our documents, refuse and list the programs we do have. Without
+   this, the agency filter keeps the agency's other grants and the model quotes one of them instead.
 
 The agency list covers major federal funders in general, not just the six in the corpus; the title
 threshold (75% of a title's words) was fixed before evaluating. Questions that name neither an
@@ -79,7 +83,8 @@ class Scope:
     agencies: list[str] = field(default_factory=list)  # agency names mentioned in the question
     agency_codes: list[str] = field(default_factory=list)  # corpus agency codes to restrict to
     opportunity_ids: list[int] = field(default_factory=list)  # named grant(s) to restrict to
-    refusal: str | None = None  # set when the question only names agencies we have no grants from
+    refusal: str | None = None  # set when we can tell up front that the documents can't answer
+    missing_program: str | None = None  # a program the question names that our documents don't cover
 
 
 def tokens(text: str) -> list[str]:
@@ -148,6 +153,102 @@ def _documents(dsn: str) -> tuple[tuple[int, str, str], ...]:
         return tuple(conn.execute("SELECT opportunity_id, title, agency_code FROM documents").fetchall())
 
 
+PROGRAM_HEADS = {"program", "programs", "grant", "grants", "award", "awards", "stipend", "stipends",
+                 "fellowship", "fellowships", "scholarship", "scholarships", "initiative", "fund", "prize",
+                 "challenge", "competition", "loan", "loans"}
+CONNECTORS = {"of", "and", "for", "the", "on", "to", "in", "&"}
+# Capitalized only because they start the question.
+QUESTION_WORDS = {"what", "how", "when", "who", "which", "where", "why", "is", "are", "can", "does", "do",
+                  "did", "will", "should", "could", "would", "may", "must", "has", "have", "tell", "list"}
+
+
+def _strip_agencies(name: str) -> str:
+    for agency in AGENCIES:
+        for pattern in agency.patterns:
+            name = re.sub(pattern + r"(['’]s)?", " ", name, flags=0 if pattern.startswith(r"\b") else re.I)
+    words = name.split()
+    while words and words[0].lower() in CONNECTORS | {"u.s.", "us", "'s", "’s"}:
+        words.pop(0)
+    while words and words[-1].lower() in CONNECTORS:
+        words.pop()
+    return " ".join(words)
+
+
+def program_names(question: str) -> list[str]:
+    """Program names written in the question, e.g. "NEH Summer Stipends" -> "Summer Stipends".
+
+    A name is a run of capitalized words (connectors like "of"/"and" allowed inside) that contains a
+    program word (Program, Grants, Award, ...) or is followed by one ("the AgVets program").
+    Runs without one, like "University of Arizona" or "American Samoa", are ignored. Names are
+    returned exactly as typed ("SBIR/STTR Phase II"), so phrase search tokenizes them like the PDFs.
+    """
+    found = list(re.finditer(r"[A-Za-z0-9][A-Za-z0-9'’&./\-]*", question))
+    words = [m.group(0) for m in found]
+    names, i = [], 0
+    while i < len(words):
+        w = words[i]
+        if not w[0].isupper() or (i == 0 and w.lower() in QUESTION_WORDS):
+            i += 1
+            continue
+        j = i + 1
+        while j < len(words):
+            if words[j][0].isupper() or words[j][0].isdigit():
+                j += 1
+                continue
+            k = j  # connectors inside a name, possibly several ("Dialogues on the Experience of War")
+            while k < len(words) and words[k].lower() in CONNECTORS:
+                k += 1
+            if k > j and k < len(words) and words[k][0].isupper():
+                j = k + 1
+            else:
+                break
+        run = words[i:j]
+        follower = words[j].lower().rstrip(".?!,") if j < len(words) else ""
+        if any(x.lower().rstrip(".?!,") in PROGRAM_HEADS for x in run) or follower in PROGRAM_HEADS:
+            name = _strip_agencies(question[found[i].start():found[j - 1].end()].rstrip(".?!,"))
+            content = [x for x in name.lower().split() if x not in CONNECTORS and x.rstrip("s") not in
+                       {h.rstrip("s") for h in PROGRAM_HEADS}]
+            if content:
+                names.append(name)
+        i = j
+    return names
+
+
+def program_matches_title(name: str, titles: dict[int, str]) -> bool:
+    """The name contains one of our grant titles ("Media Projects Development" ⊇ "Media Projects"),
+    or is a shortened form of one (all its words appear in order in the title)."""
+    name_tokens = tokens(name)
+    for title in titles.values():
+        full = tokens(title)
+        t = list(dict.fromkeys(full))
+        if len(t) >= 2 and in_order_matches(t, name_tokens) == len(t):
+            return True
+        if len(name_tokens) >= 2 and in_order_matches(name_tokens, full) == len(name_tokens):
+            return True
+    return False
+
+
+def program_known(conn: psycopg.Connection, name: str, titles: dict[int, str]) -> bool:
+    """A program name is known if it matches one of our titles, or appears as a phrase anywhere in
+    our documents (e.g. "Clean Vessel Act Grant Program" in the CVA announcement's text)."""
+    if program_matches_title(name, titles):
+        return True
+    row = conn.execute(
+        """SELECT EXISTS (
+             SELECT 1 FROM chunks c
+             WHERE c.chunk_set = 'section_300' AND c.opportunity_id = ANY(%s)
+               AND c.tsv @@ phraseto_tsquery('english', %s))""",
+        (list(titles), name),
+    ).fetchone()
+    return bool(row[0])
+
+
+def clean_title(title: str) -> str:
+    title = OPPORTUNITY_CODE.sub(" ", title)
+    title = re.sub(r"\b(FY|Fiscal Year)\s*\d{2,4}\b|_NOFO|\bNotice of Funding Opportunity\b", " ", title)
+    return re.sub(r"[\s_:\-–]+", " ", title).strip(" -–:_")
+
+
 def corpus_agencies() -> str:
     return ", ".join(a.name for a in AGENCIES if a.codes)
 
@@ -166,6 +267,22 @@ def scope_question(conn: psycopg.Connection, question: str) -> Scope:
 
     titles = {oid: title for oid, title, code in docs if not codes or code in codes}
     scope.opportunity_ids = named_grants(question, titles)
+    if scope.opportunity_ids:
+        return scope
+
+    for name in program_names(question):
+        if not program_known(conn, name, titles):
+            scope.missing_program = name
+            if codes:
+                agency = " / ".join(scope.agencies)
+                ours = sorted({clean_title(t) for t in titles.values()})
+                listed = "; ".join(ours[:8]) + (f"; and {len(ours) - 8} more" if len(ours) > 8 else "")
+                scope.refusal = (f"I don't have the grant announcement for \"{name}\". "
+                                 f"The {agency} announcements I have are: {listed}.")
+            else:
+                scope.refusal = (f"I couldn't find \"{name}\" in any of the 200 grant announcements I have "
+                                 f"(from {corpus_agencies()}).")
+            break
     return scope
 
 

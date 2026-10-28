@@ -240,3 +240,42 @@ allowance.
 - **q027:** turns "cost sharing may be waived for..." into a misleading "No...".
 - The agency dictionary only covers major funders; a question naming an agency outside it falls back to
   the old behavior.
+
+## Missing-program fix, 2026-10-28
+
+**Problem:** for a program we don't have at an agency we do cover (e.g. "NEH Summer Stipends"), the agency
+filter kept that agency's other grants and the model quoted one of them ("$5,000 per month").
+
+**Fix (`app/scope.py`, `worker/src/scope.ts`):** when no grant title matched, find program names in the
+question (capitalized phrases containing or followed by Program/Grants/Award/Stipends/Fund/...), drop the
+agency name, and refuse unless the name contains or shortens one of our titles, or appears as a phrase in
+our documents. The refusal lists the agency's announcements we do have.
+
+**Method:** a new set, `eval/holdout_programs.csv` (23 questions: 11 programs absent from the corpus, 3
+mentioned only in passing, 1 lowercase, 8 controls that must still be answered), was committed (69952a4)
+before the fix. While building it, the older sets exposed two false refusals ("SBIR/STTR Phase II": keep
+names as typed; "Gus Schumacher Produce Prescription Program": accept shortened titles), which were fixed
+before the new set was run. Python and TypeScript decisions identical on all 151 questions.
+
+| Program set (23), local | Before | **After** |
+|---|---|---|
+| Missing programs refused | 46.7% (7/15) | **86.7% (13/15)** |
+| Controls answered and correct | 8/8 | **8/8** |
+| Median answer latency | 10.2 s | 1.7 s |
+| Live site, after | | 13/15 refused, 8/8 controls correct |
+
+| Older sets, local, after | Before (v2 fix) | After |
+|---|---|---|
+| Holdout (35): unanswerable refused | 12/13 | **13/13** (Summer Stipends fixed) |
+| Holdout: correct of answered | 19/20 | 19/20 |
+| Original (93): unanswerable refused | 14/14 | 14/14 |
+| Original: answered / correct (reviewed) | 74/79, 73/74 | 74/79, 73/74 |
+| Retrieval recall@5 (all sets) | unchanged | unchanged |
+
+On the 128 questions behind the resume numbers, after this fix: refusals 27/27 (100%), faithful 93/94
+(99%); both up from 96% / 98%.
+
+**Still failing (as predicted when the set was written):**
+- p021 "USDA Organic Agriculture Research and Extension Initiative": named in another USDA NOFO, so the
+  phrase check counts it as known and the model invents an amount.
+- p023 "how much do nurse corps scholarships pay?": lowercase names are not detected.

@@ -1,5 +1,5 @@
-// Scope a question to the agency or grant it names, ported 1:1 from app/scope.py.
-// Fixes "right fact, wrong grant" answers; see the Python module for the reasoning.
+// Scope a question to the agency, grant or program it names, ported 1:1 from app/scope.py.
+// Fixes "right fact, wrong grant" answers and refuses programs we don't have; see the Python module.
 
 import type postgres from "postgres";
 import { normalize } from "./text.ts";
@@ -55,6 +55,7 @@ export interface Scope {
   agency_codes: string[];
   opportunity_ids: number[];
   refusal: string | null;
+  missing_program: string | null;
 }
 
 export function tokens(text: string): string[] {
@@ -114,7 +115,8 @@ async function documents(sql: postgres.Sql) {
 export async function scopeQuestion(sql: postgres.Sql, question: string): Promise<Scope> {
   const agencies = mentionedAgencies(question);
   const codes = [...new Set(agencies.flatMap((a) => a.codes))].sort();
-  const scope: Scope = { agencies: agencies.map((a) => a.name), agency_codes: codes, opportunity_ids: [], refusal: null };
+  const scope: Scope = { agencies: agencies.map((a) => a.name), agency_codes: codes, opportunity_ids: [], refusal: null,
+    missing_program: null };
   if (agencies.length && !codes.length) {
     const corpus = AGENCIES.filter((a) => a.codes.length).map((a) => a.name).join(", ");
     scope.refusal = `My documents don't include grants from ${agencies.map((a) => a.name).join(" or ")}. ` +
@@ -125,5 +127,104 @@ export async function scopeQuestion(sql: postgres.Sql, question: string): Promis
   const titles = new Map(docs.filter((d) => !codes.length || codes.includes(d.agency_code))
     .map((d) => [d.opportunity_id, d.title]));
   scope.opportunity_ids = namedGrants(question, titles);
+  if (scope.opportunity_ids.length) return scope;
+
+  for (const name of programNames(question)) {
+    if (await programKnown(sql, name, titles)) continue;
+    scope.missing_program = name;
+    if (codes.length) {
+      const ours = [...new Set([...titles.values()].map(cleanTitle))].sort();
+      const listed = ours.slice(0, 8).join("; ") + (ours.length > 8 ? `; and ${ours.length - 8} more` : "");
+      scope.refusal = `I don't have the grant announcement for "${name}". ` +
+        `The ${scope.agencies.join(" / ")} announcements I have are: ${listed}.`;
+    } else {
+      const corpus = AGENCIES.filter((a) => a.codes.length).map((a) => a.name).join(", ");
+      scope.refusal = `I couldn't find "${name}" in any of the 200 grant announcements I have (from ${corpus}).`;
+    }
+    break;
+  }
   return scope;
+}
+
+const PROGRAM_HEADS = new Set(["program", "programs", "grant", "grants", "award", "awards", "stipend", "stipends",
+  "fellowship", "fellowships", "scholarship", "scholarships", "initiative", "fund", "prize", "challenge",
+  "competition", "loan", "loans"]);
+const HEAD_STEMS = new Set([...PROGRAM_HEADS].map((h) => h.replace(/s+$/, "")));
+const CONNECTORS = new Set(["of", "and", "for", "the", "on", "to", "in", "&"]);
+const QUESTION_WORDS = new Set(["what", "how", "when", "who", "which", "where", "why", "is", "are", "can", "does",
+  "do", "did", "will", "should", "could", "would", "may", "must", "has", "have", "tell", "list"]);
+const isUpper = (c: string) => c !== c.toLowerCase() && c === c.toUpperCase();
+const isDigit = (c: string) => c >= "0" && c <= "9";
+const bare = (w: string) => w.toLowerCase().replace(/[.?!,]+$/, "");
+
+function stripAgencies(name: string): string {
+  for (const a of AGENCIES) {
+    for (const p of a.patterns) {
+      name = name.replace(new RegExp(p + "(['’]s)?", p.startsWith("\\b") ? "g" : "gi"), " ");
+    }
+  }
+  const words = name.split(/\s+/).filter(Boolean);
+  while (words.length && (CONNECTORS.has(words[0].toLowerCase()) || ["u.s.", "us", "'s", "’s"].includes(words[0].toLowerCase()))) words.shift();
+  while (words.length && CONNECTORS.has(words[words.length - 1].toLowerCase())) words.pop();
+  return words.join(" ");
+}
+
+/** Program names written in the question, as typed, e.g. "NEH Summer Stipends" -> "Summer Stipends". */
+export function programNames(question: string): string[] {
+  const found = [...question.matchAll(/[A-Za-z0-9][A-Za-z0-9'’&./\-]*/g)];
+  const words = found.map((m) => m[0]);
+  const names: string[] = [];
+  let i = 0;
+  while (i < words.length) {
+    const w = words[i];
+    if (!isUpper(w[0]) || (i === 0 && QUESTION_WORDS.has(w.toLowerCase()))) { i++; continue; }
+    let j = i + 1;
+    while (j < words.length) {
+      if (isUpper(words[j][0]) || isDigit(words[j][0])) { j++; continue; }
+      let k = j; // connectors inside a name, possibly several
+      while (k < words.length && CONNECTORS.has(words[k].toLowerCase())) k++;
+      if (k > j && k < words.length && isUpper(words[k][0])) j = k + 1;
+      else break;
+    }
+    const run = words.slice(i, j);
+    const follower = j < words.length ? bare(words[j]) : "";
+    if (run.some((x) => PROGRAM_HEADS.has(bare(x))) || PROGRAM_HEADS.has(follower)) {
+      const start = found[i].index!;
+      const end = found[j - 1].index! + found[j - 1][0].length;
+      const name = stripAgencies(question.slice(start, end).replace(/[.?!,]+$/, ""));
+      const content = name.toLowerCase().split(/\s+/).filter((x) => x && !CONNECTORS.has(x) && !HEAD_STEMS.has(x.replace(/s+$/, "")));
+      if (content.length) names.push(name);
+    }
+    i = j;
+  }
+  return names;
+}
+
+/** The name contains one of our titles, or is a shortened form of one (all its words in order). */
+export function programMatchesTitle(name: string, titles: Map<number, string>): boolean {
+  const nameTokens = tokens(name);
+  for (const title of titles.values()) {
+    const full = tokens(title);
+    const t = [...new Set(full)];
+    if (t.length >= 2 && inOrderMatches(t, nameTokens) === t.length) return true;
+    if (nameTokens.length >= 2 && inOrderMatches(nameTokens, full) === nameTokens.length) return true;
+  }
+  return false;
+}
+
+async function programKnown(sql: postgres.Sql, name: string, titles: Map<number, string>): Promise<boolean> {
+  if (programMatchesTitle(name, titles)) return true;
+  const ids = [...titles.keys()].join(",");
+  const [row] = await sql`
+    SELECT EXISTS (
+      SELECT 1 FROM chunks c
+      WHERE c.chunk_set = 'section_300' AND c.opportunity_id = ANY(string_to_array(${ids}, ',')::bigint[])
+        AND c.tsv @@ phraseto_tsquery('english', ${name})) AS known`;
+  return Boolean(row.known);
+}
+
+function cleanTitle(title: string): string {
+  return title.replace(OPPORTUNITY_CODE, " ")
+    .replace(/\b(FY|Fiscal Year)\s*\d{2,4}\b|_NOFO|\bNotice of Funding Opportunity\b/g, " ")
+    .replace(/[\s_:\-–]+/g, " ").trim().replace(/^[-–:_ ]+|[-–:_ ]+$/g, "");
 }
