@@ -187,7 +187,7 @@ cd worker && npm test       # Worker (TypeScript) parity tests
 ## Run it locally
 
 ```bash
-cd ~/Desktop/RAG/grantscope
+cd grantscope   # wherever you cloned the repo
 source .venv/bin/activate
 uvicorn app.main:app --port 8010
 ```
