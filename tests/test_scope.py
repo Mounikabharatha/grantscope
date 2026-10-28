@@ -73,3 +73,30 @@ def test_program_matches_title_both_ways():
     assert program_matches_title("Media Projects Development", titles)  # contains a whole title
     assert program_matches_title("Widget Produce Prescription Program", titles)  # shortened title
     assert not program_matches_title("Summer Stipends", titles)
+
+
+def test_lowercase_safe_acronyms_are_agencies_but_ordinary_words_are_not():
+    assert names("how much does usda give?") == ["USDA (NIFA)"]
+    assert names("when are nih awards due?") == ["National Institutes of Health (NIH)"]
+    assert names("a doe crossed the dot on the road") == []
+
+
+def test_lowercase_program_names():
+    from app.scope import lowercase_program_names as lp
+    assert lp("how much do widget corps scholarships pay?") == ["widget corps"]
+    assert lp("what does the usda river basin grant program cover?") == ["river basin"]
+    assert lp("what does the river education and training program pay?") == ["river education and training"]
+    # Too generic (one descriptive word) or a modifier ("award amounts"): not a program name.
+    assert lp("how much are the planning grants?") == []
+    assert lp("what is the range of individual award amounts?") == []
+    # "for" ends a lowercase name; it joins clauses too often.
+    assert lp("which program gives schools money for scholarships?") == []
+
+
+def test_near_in_order():
+    from app.scope import near_in_order
+    text = "the nurse education practice quality and retention program".split()
+    assert near_in_order(["nurse", "education"], text, 5)
+    assert near_in_order(["nurse", "quality"], text, 5)  # a couple of words in between is fine
+    assert not near_in_order(["quality", "nurse"], text, 5)  # order matters
+    assert not near_in_order(["nurse", "program"], text, 4)  # too far apart

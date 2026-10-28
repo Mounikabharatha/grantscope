@@ -11,8 +11,10 @@ the answer to an NIH question, or one NEH "Landmarks" NOFO's amount given for it
    "Landmarks of History...").
 3. Missing program: if no grant title matched but the question names a program (a capitalized phrase
    with a word like Program, Grants, Award, Stipends or Fund in or right after it, e.g. "NEH Summer
-   Stipends") that appears nowhere in our documents, refuse and list the programs we do have. Without
+   Stipends", or in lowercase the descriptive words before such a word, e.g. "nurse corps
+   scholarships") that our documents don't mention, refuse and list the programs we do have. Without
    this, the agency filter keeps the agency's other grants and the model quotes one of them instead.
+   Safe agency acronyms are also recognized in lowercase ("usda", "nih").
 
 The agency list covers major federal funders in general, not just the six in the corpus; the title
 threshold (75% of a title's words) was fixed before evaluating. Questions that name neither an
@@ -116,16 +118,34 @@ def in_order_matches(title: list[str], question: list[str]) -> int:
     return prev[-1]
 
 
+# Acronyms that are also safe to recognize when typed in lowercase ("usda", "nih"). Left out on
+# purpose: doe, dot, dol, dod (ordinary words or too ambiguous in lowercase).
+LOWERCASE_ACRONYMS = {
+    "EPA": ["epa"], "USDA (NIFA)": ["usda", "nifa"], "NEH": ["neh"], "HRSA (HHS)": ["hrsa", "hhs"],
+    "State Department (DRL)": ["drl"], "U.S. Fish and Wildlife Service": ["fws", "usfws"],
+    "National Institutes of Health (NIH)": ["nih"], "National Science Foundation (NSF)": ["nsf"],
+    "NASA": ["nasa"], "NOAA": ["noaa"], "CDC": ["cdc"], "SAMHSA": ["samhsa"], "HUD": ["hud"],
+    "Department of Justice": ["doj"], "Department of Homeland Security / FEMA": ["fema", "dhs"],
+    "Department of Defense": ["cdmrp", "darpa"], "Small Business Administration": ["sba"],
+    "National Endowment for the Arts": ["nea"], "Institute of Museum and Library Services": ["imls"],
+    "NIST": ["nist"], "USAID": ["usaid"], "AmeriCorps": ["americorps"], "Department of Energy": ["arpa-e"],
+}
+
+
+def _agency_patterns(agency: Agency):
+    """(regex, flags) pairs: acronyms case-sensitive, spelled-out names any case, plus the
+    lowercase forms of safe acronyms."""
+    for pattern in agency.patterns:
+        yield pattern, 0 if pattern.startswith(r"\b") else re.I
+    for acronym in LOWERCASE_ACRONYMS.get(agency.name, []):
+        yield r"\b" + re.escape(acronym) + r"\b", 0
+
+
 def mentioned_agencies(question: str) -> list[Agency]:
     found = []
     for agency in AGENCIES:
-        for pattern in agency.patterns:
-            # Acronyms (patterns starting with \b, e.g. \bNSF\b) match case-sensitively so
-            # ordinary words like "doe" or "dot" don't count; spelled-out names match in any case.
-            flags = 0 if pattern.startswith(r"\b") else re.I
-            if re.search(pattern, question, flags):
-                found.append(agency)
-                break
+        if any(re.search(p, question, flags) for p, flags in _agency_patterns(agency)):
+            found.append(agency)
     return found
 
 
@@ -164,8 +184,8 @@ QUESTION_WORDS = {"what", "how", "when", "who", "which", "where", "why", "is", "
 
 def _strip_agencies(name: str) -> str:
     for agency in AGENCIES:
-        for pattern in agency.patterns:
-            name = re.sub(pattern + r"(['’]s)?", " ", name, flags=0 if pattern.startswith(r"\b") else re.I)
+        for pattern, flags in _agency_patterns(agency):
+            name = re.sub(pattern + r"(['’]s)?", " ", name, flags=flags)
     words = name.split()
     while words and words[0].lower() in CONNECTORS | {"u.s.", "us", "'s", "’s"}:
         words.pop(0)
@@ -214,6 +234,54 @@ def program_names(question: str) -> list[str]:
     return names
 
 
+# Words that end a lowercase program name when reading backwards from the program word.
+LOWERCASE_STOP = QUESTION_WORDS | {
+    "the", "a", "an", "my", "our", "your", "their", "its", "this", "that", "these", "those", "any", "some",
+    "much", "many", "more", "most", "max", "maximum", "minimum", "total", "from", "under", "in", "on", "to",
+    "with", "about", "by", "per", "or", "i", "we", "you", "they", "it", "get", "apply", "there", "much", "if",
+    "s", "for", "of", "and"}
+
+
+LOWERCASE_CONNECTORS = {"and", "of"}  # "for"/"to"/"in" join clauses too often in lowercase text
+# After a program word these mean it is a modifier ("award amounts"), not the end of a name.
+ATTRIBUTE_NOUNS = {"amount", "amounts", "ceiling", "ceilings", "floor", "size", "sizes", "range", "deadline",
+                   "deadlines", "date", "dates", "funding", "money", "period", "limit", "limits", "cap", "rules",
+                   "requirements", "requirement", "eligibility", "application", "applications", "recipients",
+                   "recipient", "budget", "budgets", "terms", "duration", "length", "number", "total"}
+
+
+def lowercase_program_names(question: str) -> list[str]:
+    """Lowercase program names: the descriptive words just before a program word, e.g.
+    "how much do nurse corps scholarships pay?" -> "nurse corps" (agency acronyms dropped,
+    connectors like "and" kept inside: "education and training program" -> "education and
+    training"). Needs at least two descriptive words; "the planning grants" is too generic."""
+    words = re.findall(r"[a-z0-9][a-z0-9'’\-]*|[A-Z][A-Za-z0-9'’\-]*", question)
+    agency_words = {a for forms in LOWERCASE_ACRONYMS.values() for a in forms}
+    names = []
+    for i, w in enumerate(words):
+        if w.lower() not in PROGRAM_HEADS or i == 0:
+            continue
+        if i + 1 < len(words) and words[i + 1].lower() in ATTRIBUTE_NOUNS:
+            continue  # "award amounts", "grant deadline": the program word describes something else
+        j = i
+        while j > 0:
+            prev = words[j - 1]
+            if prev[0].isupper() or prev.lower() in agency_words:
+                break
+            if prev.lower() in LOWERCASE_CONNECTORS and j - 2 >= 0 and words[j - 2].lower() not in LOWERCASE_STOP \
+                    and words[j - 2][0].islower() and words[j - 2].lower() not in agency_words:
+                j -= 1  # keep "and"/"of" inside a name when a descriptive word comes before it
+                continue
+            if prev.lower() in LOWERCASE_STOP or prev.lower() in PROGRAM_HEADS:
+                break
+            j -= 1
+        phrase = [x for x in words[j:i] if x.lower() not in CONNECTORS or x != words[j]]
+        content = [x for x in phrase if x.lower() not in CONNECTORS]
+        if len(content) >= 2:
+            names.append(" ".join(phrase))
+    return names
+
+
 def program_matches_title(name: str, titles: dict[int, str]) -> bool:
     """The name contains one of our grant titles ("Media Projects Development" ⊇ "Media Projects"),
     or is a shortened form of one (all its words appear in order in the title)."""
@@ -243,6 +311,41 @@ def program_known(conn: psycopg.Connection, name: str, titles: dict[int, str]) -
     return bool(row[0])
 
 
+NEAR_WINDOW_EXTRA = 3  # lowercase names: words must appear in order within len(name) + 3 words
+
+
+def lowercase_program_known(conn: psycopg.Connection, name: str, titles: dict[int, str]) -> bool:
+    """Lowercase names are often loose descriptions, so the check is looser than a phrase match:
+    the name's words must appear in order, close together (within len + 3 words), somewhere in our
+    documents, or the name must match one of our titles."""
+    if program_matches_title(name, titles):
+        return True
+    words = tokens(name)
+    rows = conn.execute(
+        """SELECT d.title || ' ' || coalesce(c.section, '') || ' ' || c.text
+           FROM chunks c JOIN documents d USING (opportunity_id)
+           WHERE c.chunk_set = 'section_300' AND c.opportunity_id = ANY(%s)
+             AND c.tsv @@ plainto_tsquery('english', %s)
+           LIMIT 200""",
+        (list(titles), " ".join(words)),
+    ).fetchall()
+    return any(near_in_order(words, tokens(text), len(words) + NEAR_WINDOW_EXTRA) for (text,) in rows)
+
+
+def near_in_order(words: list[str], text: list[str], window: int) -> bool:
+    """True if `words` appear in order within some stretch of `window` tokens of `text`."""
+    for start, tok in enumerate(text):
+        if tok != words[0]:
+            continue
+        k = 1
+        for t in text[start + 1:start + window]:
+            if k < len(words) and t == words[k]:
+                k += 1
+        if k == len(words):
+            return True
+    return False
+
+
 def clean_title(title: str) -> str:
     title = OPPORTUNITY_CODE.sub(" ", title)
     title = re.sub(r"\b(FY|Fiscal Year)\s*\d{2,4}\b|_NOFO|\bNotice of Funding Opportunity\b", " ", title)
@@ -270,8 +373,10 @@ def scope_question(conn: psycopg.Connection, question: str) -> Scope:
     if scope.opportunity_ids:
         return scope
 
-    for name in program_names(question):
-        if not program_known(conn, name, titles):
+    candidates = [(n, program_known) for n in program_names(question)]
+    candidates += [(n, lowercase_program_known) for n in lowercase_program_names(question)]
+    for name, known in candidates:
+        if not known(conn, name, titles):
             scope.missing_program = name
             if codes:
                 agency = " / ".join(scope.agencies)

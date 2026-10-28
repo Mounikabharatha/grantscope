@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { isNonAnswer, normalize, parseJson } from "../src/text.ts";
 import { formatPassages, verify } from "../src/answer.ts";
 import { rrfFuse } from "../src/search.ts";
-import { mentionedAgencies, namedGrants, programMatchesTitle, programNames, tokens } from "../src/scope.ts";
+import { lowercaseProgramNames, mentionedAgencies, namedGrants, nearInOrder, programMatchesTitle, programNames, tokens } from "../src/scope.ts";
 
 const PASSAGES = [
   { chunk_id: "a", opportunity_id: 1, title: "Wolf Livestock Loss", section: "ELIGIBILITY > Cost Sharing Required?",
@@ -103,4 +103,29 @@ test("program matches a title both ways", () => {
   assert.ok(programMatchesTitle("Media Projects Development", titles));
   assert.ok(programMatchesTitle("Widget Produce Prescription Program", titles));
   assert.ok(!programMatchesTitle("Summer Stipends", titles));
+});
+
+// Same cases as tests/test_scope.py (lowercase)
+test("lowercase safe acronyms are agencies, ordinary words are not", () => {
+  const names = (q: string) => mentionedAgencies(q).map((a) => a.name);
+  assert.deepEqual(names("how much does usda give?"), ["USDA (NIFA)"]);
+  assert.deepEqual(names("when are nih awards due?"), ["National Institutes of Health (NIH)"]);
+  assert.deepEqual(names("a doe crossed the dot on the road"), []);
+});
+
+test("lowercase program names", () => {
+  assert.deepEqual(lowercaseProgramNames("how much do widget corps scholarships pay?"), ["widget corps"]);
+  assert.deepEqual(lowercaseProgramNames("what does the usda river basin grant program cover?"), ["river basin"]);
+  assert.deepEqual(lowercaseProgramNames("what does the river education and training program pay?"), ["river education and training"]);
+  assert.deepEqual(lowercaseProgramNames("how much are the planning grants?"), []);
+  assert.deepEqual(lowercaseProgramNames("what is the range of individual award amounts?"), []);
+  assert.deepEqual(lowercaseProgramNames("which program gives schools money for scholarships?"), []);
+});
+
+test("near in order", () => {
+  const text = "the nurse education practice quality and retention program".split(" ");
+  assert.ok(nearInOrder(["nurse", "education"], text, 5));
+  assert.ok(nearInOrder(["nurse", "quality"], text, 5));
+  assert.ok(!nearInOrder(["quality", "nurse"], text, 5));
+  assert.ok(!nearInOrder(["nurse", "program"], text, 4));
 });

@@ -1,0 +1,117 @@
+[
+  {
+    "chunk_set": "section_300",
+    "method": "scoped",
+    "name": "section_300/scoped",
+    "n_questions": 8,
+    "recall": {
+      "1": 0.5,
+      "3": 0.625,
+      "5": 0.75,
+      "10": 0.75,
+      "20": 0.875
+    },
+    "mrr": 0.5791666666666666,
+    "grant_at_5": 1.0,
+    "recall5_by_category": {
+      "lowercase_control": [
+        0.75,
+        8
+      ]
+    },
+    "latency_ms": {
+      "median": 931.2770829419605,
+      "p95": 1161.6525830468163
+    },
+    "per_question": [
+      {
+        "id": "l001",
+        "category": "lowercase_control",
+        "question": "what is the maximum award for the usda agvets program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Pr",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description"
+        }
+      },
+      {
+        "id": "l002",
+        "category": "lowercase_control",
+        "question": "how much can i get from the epa brownfields job training grants?",
+        "rank": 3,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Program Description > A. Purpose, Priorities, and Activities > 1. Purpose"
+        }
+      },
+      {
+        "id": "l003",
+        "category": "lowercase_control",
+        "question": "how much match does the clean vessel act grant program require?",
+        "rank": null,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "APPLICATION REVIEW INFORMATION > Review and Selection Process"
+        }
+      },
+      {
+        "id": "l004",
+        "category": "lowercase_control",
+        "question": "what's the most a tribe can get from tribal wildlife grants?",
+        "rank": 20,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "BASIC INFORMATION > Executive Summary"
+        }
+      },
+      {
+        "id": "l005",
+        "category": "lowercase_control",
+        "question": "what is the award ceiling for the national fish passage program?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "F26AS00105 National Fish Passage Program",
+          "section": "BASIC INFORMATION"
+        }
+      },
+      {
+        "id": "l006",
+        "category": "lowercase_control",
+        "question": "how much do neh media projects development awards give for a film?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts"
+        }
+      },
+      {
+        "id": "l007",
+        "category": "lowercase_control",
+        "question": "what match does the usda beginning farmer and rancher development program require?",
+        "rank": 1,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Cost Sharing or Matching"
+        }
+      },
+      {
+        "id": "l008",
+        "category": "lowercase_control",
+        "question": "how much are the implementation awards for neh scholarly editions and translations?",
+        "rank": 4,
+        "grant_rank": 1,
+        "top1": {
+          "grant": "Scholarly Editions and Translations",
+          "section": "Executive Summary"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,643 @@
+{
+  "base_url": "https://grantscope.mounikabharatha.workers.dev",
+  "date": "2026-10-28",
+  "answers": [
+    {
+      "id": "l001",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "what is the maximum award for the usda agvets program?",
+      "reference": "$750,000",
+      "answer": "The maximum award amount is $750,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9944289922714233,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Maximum Award Amount: $750,000",
+          "verified": true,
+          "title": "Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program",
+          "section": "Notice of Funding Opportunity > Enhancing Agricultural Opportunities for Military Veterans Competitive Grants Program > ANNOUNCEMENT > Title Description",
+          "page": 7,
+          "page_end": 8,
+          "opportunity_id": 363139
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2563,
+        "generation": 3262,
+        "total": 6494
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same maximum award amount as the reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "l002",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "how much can i get from the epa brownfields job training grants?",
+      "reference": "Up to $300,000",
+      "answer": "Up to $300,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.999593198299408,
+      "citations": [
+        {
+          "passage": 4,
+          "quote": "The Job Training Coalition may request up to $300,000 to recruit, train, and place unemployed and underemployed residents of solid and hazardous waste-impacted communities.",
+          "verified": true,
+          "title": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Basic Information > D. Funding Details > Brownfields Job Training Coalition",
+          "page": 7,
+          "page_end": 7,
+          "opportunity_id": 363223
+        },
+        {
+          "passage": 5,
+          "quote": "Indicate the amount of federal funds requested (must not exceed $300,000 in EPA Brownfields Job Training Grants funds).",
+          "verified": true,
+          "title": "FY27 Brownfields Job Training (JT) Grants",
+          "section": "FY27 BROWNFIELDS JOB TRAINING (JT) GRANTS > Application Contents and Format > B. Application Information Sheet",
+          "page": 23,
+          "page_end": 23,
+          "opportunity_id": 363223
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1701,
+        "generation": 6099,
+        "total": 8354
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "l003",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "how much match does the clean vessel act grant program require?",
+      "reference": "25% match (federal share at most 75%)",
+      "answer": "The Clean Vessel Act grant program does not require a match for applications requesting $50,000 or less.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9266782999038696,
+      "citations": [
+        {
+          "passage": 2,
+          "quote": "We will fully fund each eligible application requesting $50,000 or less if funding levels permit.",
+          "verified": true,
+          "title": "F26AS00013 FY 2026 Clean Vessel Act (CVA) Notice of Funding Opportunity",
+          "section": "APPLICATION REVIEW INFORMATION > Review and Selection Process",
+          "page": 16,
+          "page_end": 17,
+          "opportunity_id": 362055
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 2415,
+        "generation": 16525,
+        "total": 19536
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "partial",
+        "reason": "It mentions a specific exception, but doesn't state the overall match requirement."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "l004",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "what's the most a tribe can get from tribal wildlife grants?",
+      "reference": "$200,000",
+      "answer": "up to $200,000",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9800174236297607,
+      "citations": [
+        {
+          "passage": 4,
+          "quote": "If multiple applications exceed this amount, only the highest-scoring application(s) will be accepted, and any other(s) will be determined to be ineligible.",
+          "verified": true,
+          "title": "F26AS00040_Fiscal Year 2026_Tribal Wildlife Grants (TWG)_NOFO",
+          "section": "ELIGIBILITY > Additional Information on Eligibility",
+          "page": 5,
+          "page_end": 6,
+          "opportunity_id": 362774
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1513,
+        "generation": 4044,
+        "total": 6039
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated with different wording"
+      },
+      "faithfulness": {
+        "supported": false,
+        "unsupported_claim": "up to $200,000"
+      }
+    },
+    {
+      "id": "l005",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "what is the award ceiling for the national fish passage program?",
+      "reference": "$1,000,000",
+      "answer": "The award ceiling is $1,000,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9976745247840881,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Award Ceiling: $1,000,000",
+          "verified": true,
+          "title": "F26AS00105 National Fish Passage Program",
+          "section": "BASIC INFORMATION",
+          "page": 2,
+          "page_end": 3,
+          "opportunity_id": 363699
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1411,
+        "generation": 3849,
+        "total": 5860
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated as reference."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "l006",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "how much do neh media projects development awards give for a film?",
+      "reference": "Up to $75,000",
+      "answer": "up to $75,000",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996693134307861,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "up to $75,000 for Development of a film project,",
+          "verified": true,
+          "title": "Media Projects",
+          "section": "B. Federal Award Information > 2. Summary of Funding > Award Amounts",
+          "page": 7,
+          "page_end": 8,
+          "opportunity_id": 361558
+        },
+        {
+          "passage": 2,
+          "quote": "Development: up to $75,000;",
+          "verified": true,
+          "title": "Media Projects",
+          "section": "Executive Summary",
+          "page": 2,
+          "page_end": 3,
+          "opportunity_id": 361558
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1916,
+        "generation": 6448,
+        "total": 8838
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "States the exact same key fact as the reference answer."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "l007",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "what match does the usda beginning farmer and rancher development program require?",
+      "reference": "25% of grant funds",
+      "answer": "25 percent of the funds provided by the grant or cooperative agreement",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9990310668945312,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Applicants MUST provide match from nonfederal sources in the form of cash or in-kind contribution in an amount equal to 25 percent of the funds provided by the grant or cooperative agreement.",
+          "verified": true,
+          "title": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > B. Cost Sharing or Matching",
+          "page": 18,
+          "page_end": 18,
+          "opportunity_id": 362376
+        },
+        {
+          "passage": 5,
+          "quote": "a match in the form of cash or in-kind contributions in an amount equal to 25 percent of the funds provided by the grant or cooperative agreement.",
+          "verified": true,
+          "title": "Beginning Farmer and Rancher Development Program",
+          "section": "Notice of Funding Opportunity > Beginning Farmer and Rancher Development Program > (A) In general",
+          "page": 18,
+          "page_end": 18,
+          "opportunity_id": 362376
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1235,
+        "generation": 8237,
+        "total": 9881
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Same key fact stated, with minor wording difference"
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "l008",
+      "type": "answerable",
+      "category": "lowercase_control",
+      "question": "how much are the implementation awards for neh scholarly editions and translations?",
+      "reference": "Up to $300,000 outright (+ $150,000 matching)",
+      "answer": "Up to $100,000 per year in outright funds, plus an additional $50,000 in matching funds, for a maximum of $150,000 per year and a maximum of $450,000 per award.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9996767044067383,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Implementation: Up to $100,000 per year in outright funds, plus an additional $50,000 in matching funds, for a maximum of $150,000 per year and a maximum of $450,000 per award.",
+          "verified": true,
+          "title": "Scholarly Editions and Translations",
+          "section": "Executive Summary",
+          "page": 2,
+          "page_end": 3,
+          "opportunity_id": 363014
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1369,
+        "generation": 6866,
+        "total": 8905
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8",
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both answers mention the maximum award amount and the presence of matching funds."
+      },
+      "faithfulness": {
+        "supported": true,
+        "unsupported_claim": ""
+      }
+    },
+    {
+      "id": "l009",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "how much do neh summer seminars pay participants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The stipend amounts are $1600 for one week, $2500 for two weeks, and $3200 for three weeks.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9956774115562439,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "one week two weeks three weeks $1600 $2500 $3200",
+          "verified": true,
+          "title": "Landmarks of History and Culture and Summer Institutes",
+          "section": "D. Application Contents > 3. Budget Instructions Specific to this Program > Participant stipends",
+          "page": 15,
+          "page_end": 15,
+          "opportunity_id": 363880
+        },
+        {
+          "passage": 2,
+          "quote": "one week two weeks three weeks $1600 $2500 $3200",
+          "verified": true,
+          "title": "Landmarks of American History and Culture and Summer Institutes",
+          "section": "D. Application Contents > 3. Budget Instructions Specific to this Program > Participant stipends",
+          "page": 15,
+          "page_end": 15,
+          "opportunity_id": 362024
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1283,
+        "generation": 6750,
+        "total": 8536
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l010",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "what is the deadline for the usda specialty crop block grant program?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I don't have the grant announcement for \"specialty crop block\". The USDA (NIFA) announcements I have are: 1890 Institution Teaching, Research, and Extension Capacity Building Grants Program; Agriculture Risk Management Education Partnerships Competitive Grants Program; Agriculture and Food Research Initiative Competitive Grants Program Education and Workforce Development; Agriculture and Food Research Initiative Strengthening Agricultural Systems; Alaska Native Serving and Native Hawaiian Serving Institutions Education Competitive Grants Program; Alfalfa Seed and Alfalfa Forage Systems; Assistive Technology Program for Farmers with Disabilities; Beginning Farmer and Rancher Development Program; and 40 more.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 277,
+        "total": 785
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l011",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "how much funding does the hrsa nurse anesthetist traineeship provide?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The grant documents I found don't answer this question.",
+      "refused": true,
+      "refusal_reason": "not_answerable",
+      "top_score": 0.9680173397064209,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1337,
+        "generation": 1434,
+        "total": 3485
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l012",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "who can apply for fws neotropical migratory bird conservation grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I don't have the grant announcement for \"neotropical migratory bird conservation\". The U.S. Fish and Wildlife Service announcements I have are: 2027 Multistate Conservation Grant Program Announcement; Aquatic Invasive Species Grants to Great Lakes States Great Lakes Restoration Initiative; Aquatic Invasive Species Grants to Great Lakes Tribes Great Lakes Restoration Initiative; Aquatic Invasive Species Interjurisdictional Grants to the Great Lakes States and Tribes Great Lakes Restoration Initiative; Butte Creek/Sutter Bypass Weir 1 Improvement Design and Permitting Project; Clean Vessel Act (CVA); Coastal Program; Cooperative Endangered Species Conservation Fund Habitat Conservation Plan Land Acquisition Grants; and 20 more.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 291,
+        "total": 834
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l013",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "what is the award ceiling for epa exchange network grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I don't have the grant announcement for \"exchange network\". The EPA announcements I have are: 2025 South Florida Program; 2026 Diesel Emissions Reduction Act (DERA) National Program; Advisory Committee Coordination Support for the Chesapeake Bay Program Partnership; Brownfields Job Training (JT) Grants; Environmental Education Grant Program; Farmer to Farmer 2025; Fiscal Year (FY) 2026 Funding Opportunity for Indian Tribes and Intertribal Consortia for Nonpoint Source Management Grants Under Clean Water Act Section 319; Great Lakes Biology Monitoring Program Phytoplankton and Chlorophyll a Components; and 20 more.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 158,
+        "total": 1690
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l014",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "how much do environmental justice collaborative problem-solving grants give?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find \"environmental justice collaborative problem-solving\" in any of the 200 grant announcements I have (from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service).",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 143,
+        "total": 607
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l015",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "what does the behavioral health workforce education and training program pay?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find \"behavioral health workforce education and training\" in any of the 200 grant announcements I have (from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service).",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 192,
+        "total": 954
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l016",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "who is eligible for the human rights defenders fund?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "Individuals must have a demonstrated history of work, generally defined as six months or longer, defending fundamental freedoms using nonviolent methods.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.8729068040847778,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Individuals must have a demonstrated history of work, generally defined as six months or longer, defending fundamental freedoms using nonviolent methods.",
+          "verified": true,
+          "title": "Emergency Assistance for Fundamental Freedom Defenders",
+          "section": "Defenders > Contents > Program Description > 1. Goals and Objectives",
+          "page": 6,
+          "page_end": 7,
+          "opportunity_id": 363780
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1577,
+        "generation": 5865,
+        "total": 9841
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l017",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "how much does the rural business development grant program award?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "The Rural Business Development Grant Program awards between $200,000 and $1,000,000.",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9757477641105652,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "Minimum Award Amount: $200,000 Maximum Award Amount: $1,000,000",
+          "verified": true,
+          "title": "Rural Cooperative Development Grants",
+          "section": "Notice of Funding Opportunity > Rural Cooperative Development Grants > ANNOUNCEMENT > B. Purpose and Priorities",
+          "page": 7,
+          "page_end": 8,
+          "opportunity_id": 363088
+        },
+        {
+          "passage": 3,
+          "quote": "AVERAGE INDIVIDUAL AWARD RANGE: $200,000 - $1,000,000",
+          "verified": true,
+          "title": "Rural Cooperative Development Grants",
+          "section": "Notice of Funding Opportunity > Rural Cooperative Development Grants",
+          "page": 1,
+          "page_end": 1,
+          "opportunity_id": 363088
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1546,
+        "generation": 5050,
+        "total": 7102
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l018",
+      "type": "unanswerable",
+      "category": "lowercase_program_missing",
+      "question": "what is the deadline for healthy tomorrows partnership grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "I couldn't find \"healthy tomorrows partnership\" in any of the 200 grant announcements I have (from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service).",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 161,
+        "total": 607
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l019",
+      "type": "unanswerable",
+      "category": "lowercase_agency_missing",
+      "question": "how much do nsf career awards provide?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from National Science Foundation (NSF). I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 447
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l020",
+      "type": "unanswerable",
+      "category": "lowercase_agency_missing",
+      "question": "when are nih k99 applications due?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "My documents don't include grants from National Institutes of Health (NIH). I only have grant announcements from EPA, USDA (NIFA), NEH, HRSA (HHS), State Department (DRL), U.S. Fish and Wildlife Service.",
+      "refused": true,
+      "refusal_reason": "out_of_scope",
+      "top_score": null,
+      "citations": [],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 0,
+        "total": 462
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    },
+    {
+      "id": "l021",
+      "type": "unanswerable",
+      "category": "hard_mentioned_in_passing",
+      "question": "how much are epa brownfields assessment grants?",
+      "reference": "NOT IN DOCUMENTS - system should refuse",
+      "answer": "up to $500,000 and between $500,001 and $4,000,000",
+      "refused": false,
+      "refusal_reason": null,
+      "top_score": 0.9945617318153381,
+      "citations": [
+        {
+          "passage": 1,
+          "quote": "up to $500,000 and 26 awards for between $500,001 and $4,000,000 will be made under this announcement.",
+          "verified": true,
+          "title": "FY26 Guidelines for Brownfield Cleanup Grants",
+          "section": "FY26 GUIDELINES FOR BROWNFIELD CLEANUP GRANTS > Basic Information > D. Funding Details",
+          "page": 5,
+          "page_end": 5,
+          "opportunity_id": 360901
+        }
+      ],
+      "dropped_citations": [],
+      "timings_ms": {
+        "retrieval": 1688,
+        "generation": 6129,
+        "total": 8333
+      },
+      "model": "@cf/meta/llama-3.1-8b-instruct-fp8"
+    }
+  ]
+}

@@ -81,10 +81,28 @@ export function inOrderMatches(title: string[], question: string[]): number {
   return prev[question.length];
 }
 
+// Acronyms also safe to recognize in lowercase ("usda", "nih"); doe, dot, dol, dod left out on purpose.
+const LOWERCASE_ACRONYMS: Record<string, string[]> = {
+  "EPA": ["epa"], "USDA (NIFA)": ["usda", "nifa"], "NEH": ["neh"], "HRSA (HHS)": ["hrsa", "hhs"],
+  "State Department (DRL)": ["drl"], "U.S. Fish and Wildlife Service": ["fws", "usfws"],
+  "National Institutes of Health (NIH)": ["nih"], "National Science Foundation (NSF)": ["nsf"],
+  "NASA": ["nasa"], "NOAA": ["noaa"], "CDC": ["cdc"], "SAMHSA": ["samhsa"], "HUD": ["hud"],
+  "Department of Justice": ["doj"], "Department of Homeland Security / FEMA": ["fema", "dhs"],
+  "Department of Defense": ["cdmrp", "darpa"], "Small Business Administration": ["sba"],
+  "National Endowment for the Arts": ["nea"], "Institute of Museum and Library Services": ["imls"],
+  "NIST": ["nist"], "USAID": ["usaid"], "AmeriCorps": ["americorps"], "Department of Energy": ["arpa-e"],
+};
+const escapeRe = (x: string) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+function agencyPatterns(a: Agency): [string, string][] {
+  return [
+    ...a.patterns.map((p): [string, string] => [p, p.startsWith("\\b") ? "" : "i"]),
+    ...(LOWERCASE_ACRONYMS[a.name] ?? []).map((x): [string, string] => ["\\b" + escapeRe(x) + "\\b", ""]),
+  ];
+}
+
 export function mentionedAgencies(question: string): Agency[] {
-  // Acronyms (patterns starting with \b) match case-sensitively; spelled-out names in any case.
-  return AGENCIES.filter((a) =>
-    a.patterns.some((p) => new RegExp(p, p.startsWith("\\b") ? "" : "i").test(question)));
+  return AGENCIES.filter((a) => agencyPatterns(a).some(([p, f]) => new RegExp(p, f).test(question)));
 }
 
 export function namedGrants(question: string, titles: Map<number, string>): number[] {
@@ -129,8 +147,12 @@ export async function scopeQuestion(sql: postgres.Sql, question: string): Promis
   scope.opportunity_ids = namedGrants(question, titles);
   if (scope.opportunity_ids.length) return scope;
 
-  for (const name of programNames(question)) {
-    if (await programKnown(sql, name, titles)) continue;
+  const candidates: [string, typeof programKnown][] = [
+    ...programNames(question).map((n): [string, typeof programKnown] => [n, programKnown]),
+    ...lowercaseProgramNames(question).map((n): [string, typeof programKnown] => [n, lowercaseProgramKnown]),
+  ];
+  for (const [name, known] of candidates) {
+    if (await known(sql, name, titles)) continue;
     scope.missing_program = name;
     if (codes.length) {
       const ours = [...new Set([...titles.values()].map(cleanTitle))].sort();
@@ -159,8 +181,8 @@ const bare = (w: string) => w.toLowerCase().replace(/[.?!,]+$/, "");
 
 function stripAgencies(name: string): string {
   for (const a of AGENCIES) {
-    for (const p of a.patterns) {
-      name = name.replace(new RegExp(p + "(['’]s)?", p.startsWith("\\b") ? "g" : "gi"), " ");
+    for (const [p, f] of agencyPatterns(a)) {
+      name = name.replace(new RegExp(p + "(['’]s)?", f + "g"), " ");
     }
   }
   const words = name.split(/\s+/).filter(Boolean);
@@ -198,6 +220,66 @@ export function programNames(question: string): string[] {
     i = j;
   }
   return names;
+}
+
+const LOWERCASE_CONNECTORS = new Set(["and", "of"]);
+const LOWERCASE_STOP = new Set([...QUESTION_WORDS, "the", "a", "an", "my", "our", "your", "their", "its", "this",
+  "that", "these", "those", "any", "some", "much", "many", "more", "most", "max", "maximum", "minimum", "total", "from",
+  "under", "in", "on", "to", "with", "about", "by", "per", "or", "i", "we", "you", "they", "it", "get", "apply", "there",
+  "if", "s", "for", "of", "and"]);
+const ATTRIBUTE_NOUNS = new Set(["amount", "amounts", "ceiling", "ceilings", "floor", "size", "sizes", "range",
+  "deadline", "deadlines", "date", "dates", "funding", "money", "period", "limit", "limits", "cap", "rules",
+  "requirements", "requirement", "eligibility", "application", "applications", "recipients", "recipient", "budget",
+  "budgets", "terms", "duration", "length", "number", "total"]);
+const NEAR_WINDOW_EXTRA = 3;
+
+/** Lowercase program names: the descriptive words before a program word ("nurse corps scholarships"). */
+export function lowercaseProgramNames(question: string): string[] {
+  const words = question.match(/[a-z0-9][a-z0-9'’\-]*|[A-Z][A-Za-z0-9'’\-]*/g) ?? [];
+  const agencyWords = new Set(Object.values(LOWERCASE_ACRONYMS).flat());
+  const isLower = (c: string) => c !== c.toUpperCase();
+  const names: string[] = [];
+  words.forEach((w, i) => {
+    if (!PROGRAM_HEADS.has(w.toLowerCase()) || i === 0) return;
+    if (i + 1 < words.length && ATTRIBUTE_NOUNS.has(words[i + 1].toLowerCase())) return;
+    let j = i;
+    while (j > 0) {
+      const prev = words[j - 1];
+      if (isUpper(prev[0]) || agencyWords.has(prev.toLowerCase())) break;
+      if (LOWERCASE_CONNECTORS.has(prev.toLowerCase()) && j - 2 >= 0 && !LOWERCASE_STOP.has(words[j - 2].toLowerCase())
+          && isLower(words[j - 2][0]) && !agencyWords.has(words[j - 2].toLowerCase())) { j--; continue; }
+      if (LOWERCASE_STOP.has(prev.toLowerCase()) || PROGRAM_HEADS.has(prev.toLowerCase())) break;
+      j--;
+    }
+    const phrase = words.slice(j, i).filter((x, k) => k !== 0 || !CONNECTORS.has(x.toLowerCase()));
+    const content = phrase.filter((x) => !CONNECTORS.has(x.toLowerCase()));
+    if (content.length >= 2) names.push(phrase.join(" "));
+  });
+  return names;
+}
+
+/** `words` appear in order within some stretch of `window` tokens of `text`. */
+export function nearInOrder(words: string[], text: string[], window: number): boolean {
+  for (let start = 0; start < text.length; start++) {
+    if (text[start] !== words[0]) continue;
+    let k = 1;
+    for (const t of text.slice(start + 1, start + window)) if (k < words.length && t === words[k]) k++;
+    if (k === words.length) return true;
+  }
+  return false;
+}
+
+async function lowercaseProgramKnown(sql: postgres.Sql, name: string, titles: Map<number, string>): Promise<boolean> {
+  if (programMatchesTitle(name, titles)) return true;
+  const words = tokens(name);
+  const ids = [...titles.keys()].join(",");
+  const rows = await sql`
+    SELECT d.title || ' ' || coalesce(c.section, '') || ' ' || c.text AS t
+    FROM chunks c JOIN documents d USING (opportunity_id)
+    WHERE c.chunk_set = 'section_300' AND c.opportunity_id = ANY(string_to_array(${ids}, ',')::bigint[])
+      AND c.tsv @@ plainto_tsquery('english', ${words.join(" ")})
+    LIMIT 200`;
+  return rows.some((r) => nearInOrder(words, tokens(r.t as string), words.length + NEAR_WINDOW_EXTRA));
 }
 
 /** The name contains one of our titles, or is a shortened form of one (all its words in order). */

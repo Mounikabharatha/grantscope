@@ -279,3 +279,44 @@ On the 128 questions behind the resume numbers, after this fix: refusals 27/27 (
 - p021 "USDA Organic Agriculture Research and Extension Initiative": named in another USDA NOFO, so the
   phrase check counts it as known and the model invents an amount.
 - p023 "how much do nurse corps scholarships pay?": lowercase names are not detected.
+
+## Lowercase fix, 2026-10-28
+
+**Problem:** program-name detection only saw Capitalized Names, and agency acronyms were case-sensitive,
+so "how much do nurse corps scholarships pay?" or "usda ..." slipped through to the model.
+
+**Fix (`app/scope.py`, `worker/src/scope.ts`):**
+- Safe agency acronyms are also recognized in lowercase (usda, epa, neh, hrsa, nih, nsf, ...); doe, dot, dol
+  and dod are left out because they are ordinary words.
+- Lowercase program names: the descriptive words just before a program word ("nurse corps scholarships" ->
+  "nurse corps"); at least two descriptive words; "and"/"of" allowed inside; skipped when the program word
+  is a modifier ("award amounts").
+- Because lowercase phrases are often loose descriptions, they count as known if their words appear in order
+  within len + 3 words anywhere in our documents (stricter phrase match for capitalized names unchanged).
+
+**Method:** `eval/holdout_lowercase.csv` (21 all-lowercase questions: 10 missing programs, 2 missing agencies,
+1 hard case, 8 controls) committed (403feef) before the fix. The program-word list was kept frozen even though
+two questions use words outside it ("traineeship", "seminars"). While building, the older sets exposed two
+false refusals ("range of individual award amounts", "money for scholarships"), fixed by the modifier rule and
+by limiting connectors to and/of, before the new set was run. Python and TypeScript identical on 172 questions.
+
+| Lowercase set (21) | Before | **After (local)** | **After (live)** |
+|---|---|---|---|
+| Unanswerable refused | 53.8% (7/13) | **69.2% (9/13)** | 69.2% (9/13) |
+| Controls answered | 8/8 | 8/8 | 8/8 |
+| Controls correct (judge) | 7/8 | 7/8 | 7/8 |
+
+| Older sets, after | Result |
+|---|---|
+| Program set (23): missing programs refused | 13/15 -> **14/15** ("nurse corps" now caught); controls 8/8 |
+| Holdout (35) | 13/13 refused, 19/20 correct (unchanged) |
+| Original (93) | 14/14 refused, 74/79 answered, 73/74 correct and faithful after review (unchanged) |
+| Retrieval recall@5 (all sets) | unchanged |
+
+**Still failing:**
+- l009 "neh summer seminars": "seminars" is not a program word (list kept frozen).
+- l016 "human rights defenders fund", l017 "rural business development grant program": those words appear
+  close together in our documents in other contexts, so the lowercase check counts them as known.
+- l021 "epa brownfields assessment grants": mentioned in passing in an EPA NOFO (expected hard case).
+- Live l004: correct amount ("up to $200,000") but the attached quote doesn't contain it (weak citation);
+  l003 answered a side rule instead of the 25% match (partial). Model-quality issues, not scope issues.
